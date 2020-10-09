@@ -1,0 +1,41 @@
+#receipt_upload_status.pending,
+#receipt_upload_status option[value="pending"]{
+  color: orange;
+}
+#receipt_upload_status.approved,
+#receipt_upload_status option[value="approved"]{
+  color: green;
+}
+#receipt_upload_status.rejected,
+#receipt_upload_status option[value="rejected"]{
+  color: red;
+}
+
+.wp-core-ui select.pending,
+.wp-core-ui select.pending:focus {
+	border-color: orange;
+	color: orange;
+	box-shadow: 0 0 0 1px orange;
+}
+.wp-core-ui select.approved,
+.wp-core-ui select.approved:focus {
+	border-color: green;
+	color: green;
+	box-shadow: 0 0 0 1px green;
+}
+.wp-core-ui select.rejected,
+.wp-core-ui select.rejected:focus {
+	border-color: red;
+	color: red;
+	box-shadow: 0 0 0 1px red;
+}
+
+#receipt_upload-receipt-upload input,
+#receipt_upload-receipt-upload select,
+#receipt_upload-receipt-upload textarea{
+  width: 100%;
+}
+
+#change_receipt_attachment_id{
+  cursor: pointer;
+}
