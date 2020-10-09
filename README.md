@@ -1,2 +1,6 @@
-# pepro bacs upload receipt for woocommerce
- Upload Receipt for BACS Payments in WooCommerce. Allow customers to transfer money to your bank account, then upload its receipt from order screen and admin can approve/reject it
+**Pepro BACS Upload Receipt for WooCommerce**
+==========================
+
+### **Developed by** [Perpro Development Group](https://pepro.dev/) for WooCommerce
+
+*Current Version: 1.2.0* \| *Lead Developer:* [Amirhosseinhpv](https://hpv.im/)
