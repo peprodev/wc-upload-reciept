@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Pepro BACS Upload Receipt for WooCommerce
+Plugin Name: Pepro BACS Receipt Upload for WooCommerce
 Description: Upload Receipt for BACS Payments in WooCommerce. Allow customers to transfer money to your bank account, then upload its receipt from order screen and admin can approve/reject it
 Contributors: amirhosseinhpv, peprodev
 Tags: functionality, woocommmerce, payment, bacs, transfer, receipt, receipt upload
@@ -8,7 +8,7 @@ Author: Pepro Dev. Group
 Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
-Plugin URI: https://pepro.dev/about
+Plugin URI: https://pepro.dev/wc-bacs-receipt-upload
 Version: 1.2.0
 Stable tag: 1.2.0
 Requires at least: 5.0
@@ -22,10 +22,10 @@ Copyright: (c) 2020 Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
-defined("ABSPATH") or die("WooCommerce Upload Receipt :: Unauthorized Access!");
+defined("ABSPATH") or die("BACS Receipt Upload for WooCommerce :: Unauthorized Access!");
 
-if (!class_exists("wooCommerceUploadRecieptbyPEPRO")) {
-    class wooCommerceUploadRecieptbyPEPRO
+if (!class_exists("peproWoCcommerceBACSReceiptUpload")) {
+    class peproWoCcommerceBACSReceiptUpload
     {
         private static $_instance = null;
         public $td;
@@ -67,7 +67,7 @@ if (!class_exists("wooCommerceUploadRecieptbyPEPRO")) {
             $this->authorICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-users" aria-hidden="true"></span> ';
             $this->settingURL = '<span style="display: inline;float: none;padding: 0;" class="dashicons dashicons-admin-settings dashicons-small" aria-hidden="true"></span> ';
             $this->submitionURL = '<span style="display: inline;float: none;padding: 0;" class="dashicons dashicons-images-alt dashicons-small" aria-hidden="true"></span> ';
-            $this->title = __("WooCommerce Upload Receipt", $this->td);
+            $this->title = __("WooCommerce BACS Receipt Upload", $this->td);
             $this->title_w = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
             add_filter( "wc_order_statuses", array( $this,"add_wc_order_statuses"), 10000, 1);
             add_action("init", array($this, 'init_plugin'));
@@ -432,11 +432,6 @@ if (!class_exists("wooCommerceUploadRecieptbyPEPRO")) {
                   wp_send_json_error( array("msg"=>__("Unauthorized Access!",$this->td)));
                 }
 
-
-                // $uploadedfile = $_FILES['file'];
-                // $upload_overrides = array('test_form' => false);
-                // $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
-
                 // These files need to be included as dependencies when on the front end.
                 require_once( ABSPATH . 'wp-admin/includes/image.php' );
                 require_once( ABSPATH . 'wp-admin/includes/file.php' );
@@ -448,21 +443,22 @@ if (!class_exists("wooCommerceUploadRecieptbyPEPRO")) {
                 // Check if there's an image
                 if (isset($_FILES['file']['size']) && $_FILES['file']['size'] > 0){
                     if(in_array($_FILES['file']['type'], $allowed_image_types) && $_FILES['file']['size'] <= $max_image_size){
-                      $attachment_id = media_handle_upload( 'file', $_POST["order"] );
+                      $postOrder = sanitize_text_field( $_POST["order"] );
+                      $attachment_id = media_handle_upload( 'file', $postOrder );
                       $datetime = current_time( "Y-m-d H:i:s" );
                       if ( !is_wp_error( $attachment_id ) ) {
                           // There was an error uploading the image.
-                          update_post_meta( $_POST["order"], "receipt_uplaoded_attachment_id", $attachment_id);
-                          update_post_meta( $_POST["order"], "receipt_upload_date_uploaded", $datetime);
-                          update_post_meta( $_POST["order"], "receipt_upload_status", "pending");
-                          $status = $this->get_meta('receipt_upload_status', $_POST["order"]);
+                          update_post_meta( $postOrder, "receipt_uplaoded_attachment_id", $attachment_id);
+                          update_post_meta( $postOrder, "receipt_upload_date_uploaded", $datetime);
+                          update_post_meta( $postOrder, "receipt_upload_status", "pending");
+                          $status = $this->get_meta('receipt_upload_status', $postOrder);
                           $statustxt = $this->get_status($status);
                           $_image_src = wp_get_attachment_image_src($attachment_id)[0];
-                          $order = wc_get_order(  $_POST["order"] );
+                          $order = wc_get_order(  $postOrder );
                           $order->update_status( 'receipt-approval' );
                           $order->add_order_note( sprintf(__("Customer uploaded payment receipt image. %s",$this->td), "<a target='_blank' href='".wp_get_attachment_url( $attachment_id )."'><span class='dashicons dashicons-visibility'></span></a>") );
 
-                          do_action( "woocommerce_customer_uploaded_receipt", $_POST["order"], $attachment_id );
+                          do_action( "woocommerce_customer_uploaded_receipt", $postOrder, $attachment_id );
 
                           wp_send_json_success( array( "msg" => __("Upload completed successfully.",$this->td), "date" => date_i18n( "Y-m-d l H:i:s", $datetime ), "status" => $status, "statustx" => $statustxt, "url" => $_image_src));
                       } else {
@@ -493,8 +489,8 @@ if (!class_exists("wooCommerceUploadRecieptbyPEPRO")) {
               include_once ABSPATH . 'wp-admin/includes/plugin.php';
               deactivate_plugins(plugin_basename(__FILE__));
             }
-            $wooCommerceUploadRecieptbyPEPRO_class_options = $this->get_setting_options();
-            foreach ($wooCommerceUploadRecieptbyPEPRO_class_options as $sections) {
+            $peproWoCcommerceBACSReceiptUpload_class_options = $this->get_setting_options();
+            foreach ($peproWoCcommerceBACSReceiptUpload_class_options as $sections) {
                 foreach ($sections["data"] as $id=>$def) {
                     add_option($id, $def);
                     register_setting($sections["name"], $id);
@@ -588,9 +584,9 @@ if (!class_exists("wooCommerceUploadRecieptbyPEPRO")) {
      */
     add_action(
         "plugins_loaded", function () {
-            global $wooCommerceUploadRecieptbyPEPRO;
+            global $peproWoCcommerceBACSReceiptUpload;
             load_plugin_textdomain("wcuploadrcp", false, dirname(plugin_basename(__FILE__))."/languages/");
-            $wooCommerceUploadRecieptbyPEPRO = new wooCommerceUploadRecieptbyPEPRO;
+            $peproWoCcommerceBACSReceiptUpload = new peproWoCcommerceBACSReceiptUpload;
         }
     );
 }

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WooCommerce Upload Reciept\n"
-"POT-Creation-Date: 2020-09-17 14:46+0430\n"
+"POT-Creation-Date: 2020-10-10 00:41+0330\n"
 "PO-Revision-Date: 2020-09-17 14:21+0430\n"
 "Last-Translator: Amirhosseinhpv <amirhossein@hpv.im>\n"
 "Language-Team: Amirhosseinhpv <amirhossein@hpv.im>\n"
@@ -21,173 +21,191 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#. Plugin Name of the plugin/theme
-#: wc-upload-reciept.php:79
-msgid "WooCommerce Upload Reciept"
+#: wc-upload-reciept.php:70
+msgid "WooCommerce BACS Receipt Upload"
 msgstr ""
 
-#: wc-upload-reciept.php:80
+#: wc-upload-reciept.php:71
 #, php-format
 msgid "%2$s ver. %1$s"
 msgstr ""
 
-#: wc-upload-reciept.php:105
+#: wc-upload-reciept.php:96
 msgid "Payment Receipt Approval"
 msgstr ""
 
-#: wc-upload-reciept.php:145
+#: wc-upload-reciept.php:136
 msgid "Awaiting Upload"
 msgstr ""
 
-#: wc-upload-reciept.php:174
+#: wc-upload-reciept.php:165
 msgid "Upload Receipt"
 msgstr ""
 
-#: wc-upload-reciept.php:197
+#: wc-upload-reciept.php:188
 msgid "Click to change"
 msgstr ""
 
-#: wc-upload-reciept.php:198
+#: wc-upload-reciept.php:189
 msgid "Receipt Attachment ID"
 msgstr ""
 
-#: wc-upload-reciept.php:201
-msgid "Reciept Approval Status"
+#: wc-upload-reciept.php:192
+msgid "Receipt Approval Status"
 msgstr ""
 
-#: wc-upload-reciept.php:203 wc-upload-reciept.php:265
+#: wc-upload-reciept.php:194 wc-upload-reciept.php:256
 msgid "Pending Approval"
 msgstr ""
 
-#: wc-upload-reciept.php:204 wc-upload-reciept.php:268
+#: wc-upload-reciept.php:195 wc-upload-reciept.php:259
 msgid "Receipt Approved"
 msgstr ""
 
-#: wc-upload-reciept.php:205 wc-upload-reciept.php:271
-#: wc-upload-reciept.php:378 wc-upload-reciept.php:394
+#: wc-upload-reciept.php:196 wc-upload-reciept.php:262
 msgid "Receipt Rejected"
 msgstr ""
 
-#: wc-upload-reciept.php:209
-msgid "Reciept Approval Upload Date"
+#: wc-upload-reciept.php:200
+msgid "Receipt Approval Upload Date"
 msgstr ""
 
-#: wc-upload-reciept.php:213
-msgid "Last Reciept Approval Status Change Date"
+#: wc-upload-reciept.php:204
+msgid "Last Receipt Approval Status Change Date"
 msgstr ""
 
-#: wc-upload-reciept.php:217
+#: wc-upload-reciept.php:208
 msgid "Admin Note"
 msgstr ""
 
-#: wc-upload-reciept.php:275
+#: wc-upload-reciept.php:266
 msgid "Unknown Status"
 msgstr ""
 
-#: wc-upload-reciept.php:298
+#: wc-upload-reciept.php:289
 msgid "Upload receipt"
 msgstr ""
 
-#: wc-upload-reciept.php:311
+#: wc-upload-reciept.php:302
 msgid "Current receipt: "
 msgstr ""
 
-#: wc-upload-reciept.php:325
+#: wc-upload-reciept.php:316
 msgid "Upload Receipt: "
 msgstr ""
 
-#: wc-upload-reciept.php:330
+#: wc-upload-reciept.php:321
 msgid "Upload"
 msgstr ""
 
-#: wc-upload-reciept.php:343
+#: wc-upload-reciept.php:334
 msgid "Date Uploaded: "
 msgstr ""
 
-#: wc-upload-reciept.php:353
+#: wc-upload-reciept.php:344
 msgid "Admin Note: "
 msgstr ""
 
-#: wc-upload-reciept.php:368 wc-upload-reciept.php:393
+#: wc-upload-reciept.php:359
 msgid "Awaiting Receipt Approval"
 msgstr ""
 
-#: wc-upload-reciept.php:373
+#: wc-upload-reciept.php:364
 #, php-format
 msgid "Awaiting Receipt Approval (%s)"
 msgid_plural "Awaiting Receipt Approval (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: wc-upload-reciept.php:383
+#: wc-upload-reciept.php:369 wc-upload-reciept.php:385
+msgctxt "pst"
+msgid "Receipt Rejected"
+msgstr ""
+
+#: wc-upload-reciept.php:374
 #, php-format
 msgid "Receipt Rejected (%s)"
 msgid_plural "Receipt Rejected (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: wc-upload-reciept.php:417 wc-upload-reciept.php:418
+#: wc-upload-reciept.php:384
+msgctxt "pst"
+msgid "Awaiting Receipt Approval"
+msgstr ""
+
+#: wc-upload-reciept.php:408 wc-upload-reciept.php:409
 msgid "Support"
 msgstr ""
 
-#: wc-upload-reciept.php:433
+#: wc-upload-reciept.php:424
 #, php-format
 msgctxt "footer-copyright"
 msgid "Thanks for using %s products"
 msgstr ""
 
-#: wc-upload-reciept.php:433
+#: wc-upload-reciept.php:424
 msgid "Pepro Dev"
 msgstr ""
 
-#: wc-upload-reciept.php:434
+#: wc-upload-reciept.php:425
 #, php-format
 msgctxt "footer-copyright"
 msgid "%s — Version %s"
 msgstr ""
 
-#: wc-upload-reciept.php:441
+#: wc-upload-reciept.php:432
 msgid "Unauthorized Access!"
 msgstr ""
 
-#: wc-upload-reciept.php:472
+#: wc-upload-reciept.php:459
 #, php-format
 msgid "Customer uploaded payment receipt image. %s"
 msgstr ""
 
-#: wc-upload-reciept.php:476
+#: wc-upload-reciept.php:463
 msgid "Upload completed successfully."
 msgstr ""
 
-#: wc-upload-reciept.php:482
+#: wc-upload-reciept.php:469
 msgid ""
 "There was an error uploading your file. Please check file type and size."
 msgstr ""
 
-#: wc-upload-reciept.php:485
+#: wc-upload-reciept.php:472
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: wc-upload-reciept.php:496
+#: wc-upload-reciept.php:483
 #, php-format
 msgctxt "required-plugin"
 msgid "%1$s needs %2$s in order to function"
 msgstr ""
 
-#: wc-upload-reciept.php:498
+#: wc-upload-reciept.php:485
 msgctxt "required-plugin"
 msgid "WooCommerce"
 msgstr ""
 
+#. Plugin Name of the plugin/theme
+msgid "Pepro BACS Receipt Upload for WooCommerce"
+msgstr ""
+
 #. Plugin URI of the plugin/theme
-#. Author URI of the plugin/theme
-msgid "https://pepro.dev/"
+msgid "https://pepro.dev/wc-bacs-receipt-upload"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Upload Reciept for WooCommerce and allow customers to pay cart-2-cart"
+msgid ""
+"Upload Receipt for BACS Payments in WooCommerce. Allow customers to "
+"transfer money to your bank account, then upload its receipt from order "
+"screen and admin can approve/reject it"
 msgstr ""
 
 #. Author of the plugin/theme
 msgid "Pepro Dev. Group"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://pepro.dev/"
 msgstr ""

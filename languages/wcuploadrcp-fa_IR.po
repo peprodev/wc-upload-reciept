@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Upload Reciept\n"
-"POT-Creation-Date: 2020-09-17 14:48+0430\n"
-"PO-Revision-Date: 2020-09-17 14:48+0430\n"
+"POT-Creation-Date: 2020-10-10 00:41+0330\n"
+"PO-Revision-Date: 2020-10-10 00:41+0330\n"
 "Last-Translator: Amirhosseinhpv <amirhossein@hpv.im>\n"
 "Language-Team: Amirhosseinhpv <amirhossein@hpv.im>\n"
 "Language: fa_IR\n"
@@ -21,160 +21,164 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#. Plugin Name of the plugin/theme
-#: wc-upload-reciept.php:79
-msgid "WooCommerce Upload Reciept"
+#: wc-upload-reciept.php:70
+msgid "WooCommerce BACS Receipt Upload"
 msgstr "آپلود رسید واریزی ووکامرس"
 
-#: wc-upload-reciept.php:80
+#: wc-upload-reciept.php:71
 #, php-format
 msgid "%2$s ver. %1$s"
 msgstr "%2$s نسخه %1$s"
 
-#: wc-upload-reciept.php:105
+#: wc-upload-reciept.php:96
 msgid "Payment Receipt Approval"
 msgstr "رسید واریز تایید شد"
 
-#: wc-upload-reciept.php:145
+#: wc-upload-reciept.php:136
 msgid "Awaiting Upload"
 msgstr "منتظر آپلود رسید"
 
-#: wc-upload-reciept.php:174
+#: wc-upload-reciept.php:165
 msgid "Upload Receipt"
 msgstr "رسید واریزی"
 
-#: wc-upload-reciept.php:197
+#: wc-upload-reciept.php:188
 msgid "Click to change"
 msgstr "برای ویرایش کلیک کنید"
 
-#: wc-upload-reciept.php:198
+#: wc-upload-reciept.php:189
 msgid "Receipt Attachment ID"
 msgstr "آیدی اتچمنت رسید واریزی"
 
-#: wc-upload-reciept.php:201
-msgid "Reciept Approval Status"
+#: wc-upload-reciept.php:192
+msgid "Receipt Approval Status"
 msgstr "وضعیت رسید واریزی"
 
-#: wc-upload-reciept.php:203 wc-upload-reciept.php:265
+#: wc-upload-reciept.php:194 wc-upload-reciept.php:256
 msgid "Pending Approval"
 msgstr "در انتظار بررسی"
 
-#: wc-upload-reciept.php:204 wc-upload-reciept.php:268
+#: wc-upload-reciept.php:195 wc-upload-reciept.php:259
 msgid "Receipt Approved"
 msgstr "تایید شده"
 
-#: wc-upload-reciept.php:205 wc-upload-reciept.php:271
+#: wc-upload-reciept.php:196 wc-upload-reciept.php:262
 msgid "Receipt Rejected"
 msgstr "رد شده"
 
-#: wc-upload-reciept.php:209
-msgid "Reciept Approval Upload Date"
+#: wc-upload-reciept.php:200
+msgid "Receipt Approval Upload Date"
 msgstr "تاریخ آپلود رسید واریزی"
 
-#: wc-upload-reciept.php:213
-msgid "Last Reciept Approval Status Change Date"
+#: wc-upload-reciept.php:204
+msgid "Last Receipt Approval Status Change Date"
 msgstr "تاریخ آخرین تغییر وضعیت رسید واریزی"
 
-#: wc-upload-reciept.php:217
+#: wc-upload-reciept.php:208
 msgid "Admin Note"
 msgstr "یادداشت ادمین برای کاربر"
 
-#: wc-upload-reciept.php:275
+#: wc-upload-reciept.php:266
 msgid "Unknown Status"
 msgstr "وضعیت نا مشخص"
 
-#: wc-upload-reciept.php:298
+#: wc-upload-reciept.php:289
 msgid "Upload receipt"
 msgstr "آپلود رسید واریزی"
 
-#: wc-upload-reciept.php:311
+#: wc-upload-reciept.php:302
 msgid "Current receipt: "
 msgstr "رسید واریزی فعلی: "
 
-#: wc-upload-reciept.php:325
+#: wc-upload-reciept.php:316
 msgid "Upload Receipt: "
 msgstr "آپلود رسید واریزی: "
 
-#: wc-upload-reciept.php:330
+#: wc-upload-reciept.php:321
 msgid "Upload"
 msgstr "آپلود"
 
-#: wc-upload-reciept.php:343
+#: wc-upload-reciept.php:334
 msgid "Date Uploaded: "
 msgstr "تاریخ آپلود: "
 
-#: wc-upload-reciept.php:353
+#: wc-upload-reciept.php:344
 msgid "Admin Note: "
 msgstr "یادداشت مدیر: "
 
-#: wc-upload-reciept.php:368 wc-upload-reciept.php:393
+#: wc-upload-reciept.php:359
 msgid "Awaiting Receipt Approval"
 msgstr "بررسی رسید واریزی"
 
-#: wc-upload-reciept.php:373
+#: wc-upload-reciept.php:364
 #, php-format
 msgid "Awaiting Receipt Approval (%s)"
 msgid_plural "Awaiting Receipt Approval (%s)"
 msgstr[0] "بررسی رسید واریزی (%s)"
 msgstr[1] "بررسی رسید واریزی (%s)"
 
-#: wc-upload-reciept.php:378 wc-upload-reciept.php:394
+#: wc-upload-reciept.php:369 wc-upload-reciept.php:385
 msgctxt "pst"
 msgid "Receipt Rejected"
 msgstr "رسید واریزی رد شده"
 
-#: wc-upload-reciept.php:383
+#: wc-upload-reciept.php:374
 #, php-format
 msgid "Receipt Rejected (%s)"
 msgid_plural "Receipt Rejected (%s)"
 msgstr[0] "رسید واریزی رد شده (%s)"
 msgstr[1] "رسید واریزی رد شده (%s)"
 
-#: wc-upload-reciept.php:417 wc-upload-reciept.php:418
+#: wc-upload-reciept.php:384
+msgctxt "pst"
+msgid "Awaiting Receipt Approval"
+msgstr "بررسی رسید واریزی"
+
+#: wc-upload-reciept.php:408 wc-upload-reciept.php:409
 msgid "Support"
 msgstr "پشتیبانی این محصول"
 
-#: wc-upload-reciept.php:433
+#: wc-upload-reciept.php:424
 #, php-format
 msgctxt "footer-copyright"
 msgid "Thanks for using %s products"
 msgstr "بابت استفاده از محصولات %s سپاسگزاریم"
 
-#: wc-upload-reciept.php:433
+#: wc-upload-reciept.php:424
 msgid "Pepro Dev"
 msgstr "تیم برنامه ‏نویسی پپرو"
 
-#: wc-upload-reciept.php:434
+#: wc-upload-reciept.php:425
 #, php-format
 msgctxt "footer-copyright"
 msgid "%s — Version %s"
 msgstr "%s — نسخه %s"
 
-#: wc-upload-reciept.php:441
+#: wc-upload-reciept.php:432
 msgid "Unauthorized Access!"
 msgstr "شما دسترسی لازم را ندارید !"
 
-#: wc-upload-reciept.php:472
+#: wc-upload-reciept.php:459
 #, php-format
 msgid "Customer uploaded payment receipt image. %s"
 msgstr "مشتری تصویر رسید واریزی را آپلود کرد. %s"
 
-#: wc-upload-reciept.php:476
+#: wc-upload-reciept.php:463
 msgid "Upload completed successfully."
 msgstr "آپلود با موفقیت انجام گردید."
 
-#: wc-upload-reciept.php:482
+#: wc-upload-reciept.php:469
 msgid ""
 "There was an error uploading your file. Please check file type and size."
 msgstr ""
 "متاسفیم ، در فرایند بارگیری فایل مشکلی پیش آمد. لطفا نوع و اندازه فایل را چک "
 "کنید."
 
-#: wc-upload-reciept.php:485
+#: wc-upload-reciept.php:472
 msgid "There was an error uploading your file."
 msgstr "متاسفیم ، در فرایند بارگیری فایل مشکلی پیش آمد."
 
-#: wc-upload-reciept.php:496
+#: wc-upload-reciept.php:483
 #, php-format
 msgctxt "required-plugin"
 msgid "%1$s needs %2$s in order to function"
@@ -182,25 +186,41 @@ msgstr ""
 "افزونه %1$s برای عملکرد صحیح به افزونه %2$s نیاز دارد. لطفا نسبت به نصب و "
 "فعالسازی اقدام کنید"
 
-#: wc-upload-reciept.php:498
+#: wc-upload-reciept.php:485
 msgctxt "required-plugin"
 msgid "WooCommerce"
 msgstr "ووکامرس"
 
+#. Plugin Name of the plugin/theme
+msgid "Pepro BACS Receipt Upload for WooCommerce"
+msgstr "آپلود رسید واریزی انتقال وجه برای ووکامرس"
+
 #. Plugin URI of the plugin/theme
-#. Author URI of the plugin/theme
-msgid "https://pepro.dev/"
-msgstr "https://pepro.dev/"
+msgid "https://pepro.dev/wc-bacs-receipt-upload"
+msgstr "https://pepro.dev/wc-bacs-receipt-upload"
 
 #. Description of the plugin/theme
-msgid "Upload Reciept for WooCommerce and allow customers to pay cart-2-cart"
+msgid ""
+"Upload Receipt for BACS Payments in WooCommerce. Allow customers to transfer "
+"money to your bank account, then upload its receipt from order screen and "
+"admin can approve/reject it"
 msgstr ""
-"افزونه آپلود رسید واریزی از سمت مشتریان از پنل مشاهده سفارشات و تایید/رد "
-"ادمین برای فروشگاه ساز ووکامرس"
+"آپلود رسید واریزی توسط کاربران برای خرید هایی که با روش انتقال بانکی در "
+"ووکامرس انجام شده (BACS) و تایید، حذف، ویرایش یا رد رسید آپلودی توسط ادمین"
 
 #. Author of the plugin/theme
 msgid "Pepro Dev. Group"
 msgstr "تیم برنامه ‏نویسی پپرو"
+
+#. Author URI of the plugin/theme
+msgid "https://pepro.dev/"
+msgstr "https://pepro.dev/"
+
+#~ msgid ""
+#~ "Upload Reciept for WooCommerce and allow customers to pay cart-2-cart"
+#~ msgstr ""
+#~ "افزونه آپلود رسید واریزی از سمت مشتریان از پنل مشاهده سفارشات و تایید/رد "
+#~ "ادمین برای فروشگاه ساز ووکامرس"
 
 #~ msgid "Change status to Awaiting Receipt Approval"
 #~ msgstr "تغییر وضعیت رسید واریزی به تایید"
