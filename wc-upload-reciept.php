@@ -215,39 +215,26 @@ if (!class_exists("peproWoCcommerceBACSReceiptUpload")) {
         	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
         	if ( ! isset( $_POST['receipt_upload_nonce'] ) || ! wp_verify_nonce( $_POST['receipt_upload_nonce'], '_receipt_upload_nonce' ) ) return;
         	if ( ! current_user_can( 'edit_post', $post_id ) ) return;
-
         	if ( isset( $_POST['receipt_uplaoded_attachment_id'] ) )
-        		update_post_meta( $post_id, 'receipt_uplaoded_attachment_id', esc_attr( $_POST['receipt_uplaoded_attachment_id'] ) );
+        		update_post_meta( $post_id, 'receipt_uplaoded_attachment_id', sanitize_text_field( $_POST['receipt_uplaoded_attachment_id'] ) );
         	if ( isset( $_POST['receipt_upload_date_uploaded'] ) )
-        		update_post_meta( $post_id, 'receipt_upload_date_uploaded', esc_attr( $_POST['receipt_upload_date_uploaded'] ) );
-
+        		update_post_meta( $post_id, 'receipt_upload_date_uploaded', sanitize_text_field( $_POST['receipt_upload_date_uploaded'] ) );
           do_action( "woocommerce_admin_saved_receipt_approval", $post_id, $_POST);
-
           if ( isset( $_POST['receipt_upload_status'] ) ){
-
             $prev = $this->get_meta( "receipt_upload_status", $post_id );
-
-            $new = esc_attr($_POST['receipt_upload_status']);
-
+            $new = sanitize_text_field($_POST['receipt_upload_status']);
             if ( $new !== $prev ){
-
               update_post_meta( $post_id, 'receipt_upload_last_change', current_time( "Y-m-d H:i:s" ));
-
               do_action( "woocommerce_admin_changed_receipt_approval_status", $post_id, $prev, $new);
-
             }
-
             if ( "rejected" == $new){
               $order = wc_get_order( $post_id );
               $order->update_status( 'receipt-rejected' );
             }
-
-
             update_post_meta( $post_id, 'receipt_upload_status', $new );
           }
-
         	if ( isset( $_POST['receipt_upload_admin_note'] ) )
-        		update_post_meta( $post_id, 'receipt_upload_admin_note', esc_attr( $_POST['receipt_upload_admin_note'] ) );
+        		update_post_meta( $post_id, 'receipt_upload_admin_note', sanitize_text_field( $_POST['receipt_upload_admin_note'] ) );
         }
         public function get_status($status)
         {
