@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name: Pepro BACS Receipt Upload for WooCommerce
 Description: Upload Receipt for BACS Payments in WooCommerce. Allow customers to transfer money to your bank account, then upload its receipt from order screen and admin can approve/reject it
@@ -9,8 +10,8 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/wc-bacs-receipt-upload
-Version: 1.2.0
-Stable tag: 1.2.0
+Version: 1.2.1
+Stable tag: 1.2.1
 Requires at least: 5.0
 Tested up to: 5.4
 Requires PHP: 5.6
@@ -22,6 +23,8 @@ Copyright: (c) 2020 Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
+# @Last modified by:   Amirhosseinhpv
+# @Last modified time: 2020/11/08 19:04:44
 defined("ABSPATH") or die("BACS Receipt Upload for WooCommerce :: Unauthorized Access!");
 
 if (!class_exists("peproWoCcommerceBACSReceiptUpload")) {
@@ -60,7 +63,7 @@ if (!class_exists("peproWoCcommerceBACSReceiptUpload")) {
             $this->plugin_basename = plugin_basename(__FILE__);
             $this->url = admin_url("admin.php?page={$this->db_slug}");
             $this->plugin_file = __FILE__;
-            $this->version = "1.2.0";
+            $this->version = "1.2.1";
             $this->deactivateURI = null;
             $this->deactivateICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
             $this->versionICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -175,7 +178,7 @@ if (!class_exists("peproWoCcommerceBACSReceiptUpload")) {
           wp_enqueue_media();
           add_thickbox();
           wp_enqueue_style( "wc-orders.css", "{$this->assets_url}/backend/css/wc-orders.css");
-          wp_enqueue_script( "wc-orders.js", "{$this->assets_url}/backend/js/wc-orders.js", array("jquery"),);
+          wp_enqueue_script( "wc-orders.js", "{$this->assets_url}/backend/js/wc-orders.js", array("jquery"), current_time( "timestamp" ));
           $src = $this->receipt_upload_get_meta( 'receipt_uplaoded_attachment_id' );
           if ($src){
             $src = wp_get_attachment_image_src($this->receipt_upload_get_meta( 'receipt_uplaoded_attachment_id' ),array('300','300'))[0];
