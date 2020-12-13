@@ -1,3 +1,14 @@
+/**
+ * @Author: Amirhosseinhpv
+ * @Date:   2020/10/07 18:58:16
+ * @Email:  its@hpv.im
+ * @Last modified by:   Amirhosseinhpv
+ * @Last modified time: 2020/12/14 02:43:02
+ * @License: GPLv2
+ * @Copyright: Copyright © 2020 Amirhosseinhpv, All rights reserved.
+ */
+
+
 (function($) {
 
   $(document).ready(function() {
@@ -40,7 +51,8 @@
           }
         },
         error: function(response) {
-          handle_err(response);
+          alert("Unknown Server Error Occured! Try again.");
+          $("#receipt-file").val("");
         },
         complete: function() {
           $(".receipt_uploading-loader").hide();

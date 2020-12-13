@@ -3,11 +3,11 @@ Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
 Tags: functionality,woocommmerce,payment,bacs,transfer,receipt,receipt upload
 Requires at least: 5.0
-Tested up to: 5.5.1
-Stable tag: 1.2.1
+Tested up to: 5.6
+Stable tag: 1.3
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 4.2.0
+WC tested up to: 4.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,11 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Changelog ==
 
+= 1.3 =
+
+- WP-5.6 compatible
+- Error handling during upload fix
+
 = 1.2.1 =
 
 - Fixed Translation and some small errors
@@ -82,6 +87,11 @@ You can help us improve our works by committing/requesting your changes to Pepro
 ***PEPRO DEV*** is a premium supplier of quality WordPress plugins, services and support. Join us at [https://pepro.dev/](https://pepro.dev/) and also don't forget to check our [free plugins](http://profiles.wordpress.org/peprodev/), we hope you enjoy them!
 
 == Upgrade Notice ==
+
+= 1.3 =
+
+- WP-5.6 compatible
+- Error handling during upload fix
 
 = 1.2.1 =
 

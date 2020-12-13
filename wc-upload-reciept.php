@@ -1,5 +1,4 @@
 <?php
-
 /*
 Plugin Name: Pepro BACS Receipt Upload for WooCommerce
 Description: Upload Receipt for BACS Payments in WooCommerce. Allow customers to transfer money to your bank account, then upload its receipt from order screen and admin can approve/reject it
@@ -10,21 +9,21 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/wc-bacs-receipt-upload
-Version: 1.2.1
-Stable tag: 1.2.1
+Version: 1.3.0
+Stable tag: 1.3.0
 Requires at least: 5.0
-Tested up to: 5.4
+Tested up to: 5.6
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 4.2.0
-Text Domain: wcuploadrcp
+WC tested up to: 4.8.0
+Text Domain: pepro-bacs-receipt-upload-for-woocommerce
 Domain Path: /languages
 Copyright: (c) 2020 Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 # @Last modified by:   Amirhosseinhpv
-# @Last modified time: 2020/11/08 19:04:44
+# @Last modified time: 2020/12/14 02:45:36
 defined("ABSPATH") or die("BACS Receipt Upload for WooCommerce :: Unauthorized Access!");
 
 if (!class_exists("peproWoCcommerceBACSReceiptUpload")) {
@@ -575,7 +574,7 @@ if (!class_exists("peproWoCcommerceBACSReceiptUpload")) {
     add_action(
         "plugins_loaded", function () {
             global $peproWoCcommerceBACSReceiptUpload;
-            load_plugin_textdomain("wcuploadrcp", false, dirname(plugin_basename(__FILE__))."/languages/");
+            load_plugin_textdomain("pepro-bacs-receipt-upload-for-woocommerce", false, dirname(plugin_basename(__FILE__))."/languages/");
             $peproWoCcommerceBACSReceiptUpload = new peproWoCcommerceBACSReceiptUpload;
         }
     );
