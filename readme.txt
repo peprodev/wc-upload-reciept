@@ -4,12 +4,13 @@ Donate link: https://pepro.dev/donate
 Tags: functionality,woocommmerce,payment,bacs,transfer,receipt,receipt upload
 Requires at least: 5.0
 Tested up to: 5.6
-Stable tag: 1.3
+Stable tag: 1.3.1
 Requires PHP: 5.6
 WC requires at least: 4.0
 WC tested up to: 4.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+@Last modified time: 2020/12/14 02:58:57
 
 Upload Receipt for BACS Payments in WooCommerce. Allow customers to transfer money to your bank account, then upload its receipt from order screen and admin can approve/reject it.
 
@@ -73,6 +74,7 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 - WP-5.6 compatible
 - Error handling during upload fix
+- text-domain change
 
 = 1.2.1 =
 
@@ -92,6 +94,7 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 - WP-5.6 compatible
 - Error handling during upload fix
+- text-domain change
 
 = 1.2.1 =
 

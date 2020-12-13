@@ -9,8 +9,8 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/wc-bacs-receipt-upload
-Version: 1.3.0
-Stable tag: 1.3.0
+Version: 1.3.1
+Stable tag: 1.3.1
 Requires at least: 5.0
 Tested up to: 5.6
 Requires PHP: 5.6
@@ -23,7 +23,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 # @Last modified by:   Amirhosseinhpv
-# @Last modified time: 2020/12/14 02:45:36
+# @Last modified time: 2020/12/14 02:58:05
 defined("ABSPATH") or die("BACS Receipt Upload for WooCommerce :: Unauthorized Access!");
 
 if (!class_exists("peproWoCcommerceBACSReceiptUpload")) {
@@ -52,9 +52,9 @@ if (!class_exists("peproWoCcommerceBACSReceiptUpload")) {
         public function __construct()
         {
             global $wpdb;
-            $this->td = "wcuploadrcp";
+            $this->td = "pepro-bacs-receipt-upload-for-woocommerce";
             self::$_instance = $this;
-            $this->db_slug = $this->td;
+            $this->db_slug = "wcuploadrcp";
             $this->db_table = $wpdb->prefix . $this->db_slug;
             $this->plugin_dir = plugin_dir_path(__FILE__);
             $this->plugin_url = plugins_url("", __FILE__);
@@ -304,7 +304,7 @@ if (!class_exists("peproWoCcommerceBACSReceiptUpload")) {
                     <tr>
                       <th scope="row"><?=__("Upload Receipt: ",$this->td);?></th>
                       <td class="receipt-img-upload">
-                          <form id="uploadreceiptfileimage" enctype="multipart/form-data"><?php wp_nonce_field($this->td, 'uniqnonce' ); ?>
+                          <form id="uploadreceiptfileimage" enctype="multipart/form-data"><?php wp_nonce_field($this->db_slug, 'uniqnonce' ); ?>
                           <div style="display: inline-block;">
                             <input type="file" id="receipt-file" name="upload" required accept="image/*" style="width: auto;" />
                             <button class="start-upload button" type="button"><?=__("Upload",$this->td);?></button>
@@ -417,7 +417,7 @@ if (!class_exists("peproWoCcommerceBACSReceiptUpload")) {
         {
             if (wp_doing_ajax() && $_POST['action'] == "upload-payment-receipt") {
 
-                if (!wp_verify_nonce( $_POST["nonce"], $this->td)){
+                if (!wp_verify_nonce( $_POST["nonce"], $this->db_slug)){
                   wp_send_json_error( array("msg"=>__("Unauthorized Access!",$this->td)));
                 }
 

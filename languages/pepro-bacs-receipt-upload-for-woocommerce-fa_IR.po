@@ -1,15 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Upload Reciept\n"
-"POT-Creation-Date: 2020-12-14 02:45+0330\n"
-"PO-Revision-Date: 2020-12-14 02:45+0330\n"
-"Last-Translator: Amirhosseinhpv <amirhossein@hpv.im>\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"Project-Id-Version: Pepro BACS Receipt Upload for WooCommerce\n"
+"POT-Creation-Date: 2020-12-14 02:53+0330\n"
+"PO-Revision-Date: 2020-12-14 02:53+0330\n"
 "Language-Team: Amirhosseinhpv <amirhossein@hpv.im>\n"
-"Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -18,6 +16,8 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: Amirhosseinhpv <amirhossein@hpv.im>\n"
+"Language: fa_IR\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
@@ -96,7 +96,7 @@ msgstr "آپلود رسید واریزی: "
 
 #: wc-upload-reciept.php:310
 msgid "Upload"
-msgstr "آپلود"
+msgstr "آپلود ویدئو"
 
 #: wc-upload-reciept.php:323
 msgid "Date Uploaded: "
@@ -120,7 +120,7 @@ msgstr[1] "بررسی رسید واریزی (%s)"
 #: wc-upload-reciept.php:358 wc-upload-reciept.php:374
 msgctxt "pst"
 msgid "Receipt Rejected"
-msgstr "رسید واریزی رد شده"
+msgstr "رد شده"
 
 #: wc-upload-reciept.php:363
 #, php-format
@@ -215,12 +215,3 @@ msgstr "تیم برنامه ‏نویسی پپرو"
 #. Author URI of the plugin/theme
 msgid "https://pepro.dev/"
 msgstr "https://pepro.dev/"
-
-#~ msgid ""
-#~ "Upload Reciept for WooCommerce and allow customers to pay cart-2-cart"
-#~ msgstr ""
-#~ "افزونه آپلود رسید واریزی از سمت مشتریان از پنل مشاهده سفارشات و تایید/رد "
-#~ "ادمین برای فروشگاه ساز ووکامرس"
-
-#~ msgid "Change status to Awaiting Receipt Approval"
-#~ msgstr "تغییر وضعیت رسید واریزی به تایید"
