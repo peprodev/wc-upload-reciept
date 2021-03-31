@@ -3,11 +3,11 @@ Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
 Tags: functionality,woocommmerce,payment,bacs,transfer,receipt,receipt upload
 Requires at least: 5.0
-Tested up to: 5.6
+Tested up to: 5.7
 Stable tag: 1.3.1
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 4.8.0
+WC tested up to: 5.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 @Last modified time: 2020/12/14 02:58:57
