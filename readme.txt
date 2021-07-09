@@ -65,10 +65,25 @@ You can help us improve our works by committing/requesting your changes to Pepro
 5. Customer receipt uploaded in order details page
 6. Customer receipt rejected and admin commented in order details page
 7. Customer receipt approved in order details page
+8. Options page (added since version 1.4)
 
 
 
 == Changelog ==
+
+= 1.4 =
+
+- Added Settings page: wp-admin/admin.php?page=wc-settings&tab=checkout&section=upload_receipt
+- Added Settings page link in plugins meta row
+- Added Size Limit Option
+- Added File Type Option (can use PDF as receipt, just add application/pdf as Mimes)
+- Changed UI in Admin Side, minimal style
+- General Bug Fixes and Improvements
+- Changed Class name to `Pepro_Upload_Receipt_WooCommerce`
+- Changed text-domain to `receipt-upload`
+- DEV: added hook: `pepro_upload_receipt_allowed_file_mimes`
+- DEV: added hook: `pepro_upload_receipt_max_upload_size`
+
 
 = 1.3 =
 
@@ -89,6 +104,19 @@ You can help us improve our works by committing/requesting your changes to Pepro
 ***PEPRO DEV*** is a premium supplier of quality WordPress plugins, services and support. Join us at [https://pepro.dev/](https://pepro.dev/) and also don't forget to check our [free plugins](http://profiles.wordpress.org/peprodev/), we hope you enjoy them!
 
 == Upgrade Notice ==
+
+= 1.4 =
+
+- Added Settings page: wp-admin/admin.php?page=wc-settings&tab=checkout&section=upload_receipt
+- Added Settings page link in plugins meta row
+- Added Size Limit Option
+- Added File Type Option (can use PDF as receipt, just add application/pdf as Mimes)
+- Changed UI in Admin Side, minimal style
+- General Bug Fixes and Improvements
+- Changed Class name to `Pepro_Upload_Receipt_WooCommerce`
+- Changed text-domain to `receipt-upload`
+- DEV: added hook: `pepro_upload_receipt_allowed_file_mimes`
+- DEV: added hook: `pepro_upload_receipt_max_upload_size`
 
 = 1.3 =
 

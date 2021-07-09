@@ -1,3 +1,14 @@
+/**
+ * @Author: Amirhosseinhpv
+ * @Date:   2020/10/07 18:58:16
+ * @Email:  its@hpv.im
+ * @Last modified by:   Amirhosseinhpv
+ * @Last modified time: 2021/07/09 17:27:54
+ * @License: GPLv2
+ * @Copyright: Copyright © Amirhosseinhpv (https://hpv.im), all rights reserved.
+ */
+
+
 #receipt_upload_status.pending,
 #receipt_upload_status option[value="pending"]{
   color: orange;
@@ -38,4 +49,13 @@
 
 #change_receipt_attachment_id{
   cursor: pointer;
+}
+#receipt_upload-receipt-upload p label {
+  margin-bottom: 0.3rem;
+  display: block;
+  margin-top: 1rem;
+}
+
+.wcuploadrcp.column-wcuploadrcp > * {
+	border-radius: 2px;
 }

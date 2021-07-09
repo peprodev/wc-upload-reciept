@@ -1,6 +1,6 @@
-**Pepro BACS Upload Receipt for WooCommerce**
+**WooCommerce Upload Receipt**
 ==========================
 
 ### **Developed by** [Perpro Development Group](https://pepro.dev/) for WooCommerce
 
-*Current Version: 1.3.1* \| *Lead Developer:* [Amirhosseinhpv](https://hpv.im/)
+*Current Version: 1.4.0* \| *Lead Developer:* [Amirhosseinhpv](https://hpv.im/)

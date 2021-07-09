@@ -1,0 +1,258 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Upload Receipt\n"
+"POT-Creation-Date: 2021-07-09 17:12+0430\n"
+"PO-Revision-Date: 2021-07-09 17:13+0430\n"
+"Last-Translator: Amirhosseinhpv <its@hpv.im>\n"
+"Language-Team: Amirhosseinhpv <its@hpv.im>\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: wc-upload-reciept.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#. Plugin Name of the plugin/theme
+#: wc-upload-reciept.php:71
+msgid "WooCommerce Upload Receipt"
+msgstr "آپلود رسید پرداخت ووکامرس"
+
+#: wc-upload-reciept.php:72
+#, php-format
+msgid "%2$s ver. %1$s"
+msgstr "%2$s نسخه %1$s"
+
+#: wc-upload-reciept.php:98 wc-upload-reciept.php:243 wc-upload-reciept.php:399
+msgid "Upload Receipt"
+msgstr "آپلود رسید پرداخت"
+
+#: wc-upload-reciept.php:111
+msgid "Allowed File Types"
+msgstr "نوع فایل های مجاز"
+
+#: wc-upload-reciept.php:118
+#, php-format
+msgid ""
+"Add allowed file MIME-Types, one per each line, e.g. add application/pdf to "
+"support PDF file. %s"
+msgstr ""
+"نوع MIME-Types فایل های مجاز را در هر خط یک مورد وارد کنید، به عنوان مثال "
+"برای افزودن پشتیبانی از PDF میتوانید application/pdf را اضافه کنید. %s"
+
+#: wc-upload-reciept.php:118
+msgid "Learn more"
+msgstr "بیشتر بخوانید"
+
+#: wc-upload-reciept.php:122
+msgid "Maximum file size"
+msgstr "حداکثر حجم رسید آپلودی"
+
+#: wc-upload-reciept.php:131
+msgid "Change maximum upload file size in Megabytes (MB)"
+msgstr "تغییر حداکثر اندازه فایل رسید پرداختی به مگابایت (MB)"
+
+#: wc-upload-reciept.php:155
+msgid "Payment Receipt Approval"
+msgstr "رسید پرداخت تایید شد"
+
+#: wc-upload-reciept.php:197
+msgid "Awaiting Upload"
+msgstr "منتظر آپلود رسید"
+
+#: wc-upload-reciept.php:264
+msgid "Click to change"
+msgstr "برای ویرایش کلیک کنید"
+
+#: wc-upload-reciept.php:265
+msgid "Receipt Attachment ID"
+msgstr "آیدی اتچمنت رسید پرداختی"
+
+#: wc-upload-reciept.php:268
+msgid "Receipt Approval Status"
+msgstr "وضعیت رسید پرداختی"
+
+#: wc-upload-reciept.php:270 wc-upload-reciept.php:331
+msgid "Pending Approval"
+msgstr "در انتظار بررسی"
+
+#: wc-upload-reciept.php:271 wc-upload-reciept.php:334
+msgid "Receipt Approved"
+msgstr "تایید شده"
+
+#: wc-upload-reciept.php:272 wc-upload-reciept.php:337
+msgid "Receipt Rejected"
+msgstr "رد شده"
+
+#: wc-upload-reciept.php:276
+msgid "Receipt Approval Upload Date"
+msgstr "تاریخ آپلود رسید پرداختی"
+
+#: wc-upload-reciept.php:280
+msgid "Last Receipt Approval Status Change Date"
+msgstr "تاریخ آخرین تغییر وضعیت رسید پرداختی"
+
+#: wc-upload-reciept.php:284
+msgid "Admin Note"
+msgstr "یادداشت ادمین برای کاربر"
+
+#: wc-upload-reciept.php:288
+msgid "Upload Setting"
+msgstr "تنظیمات آپلود"
+
+#: wc-upload-reciept.php:340
+msgid "Unknown Status"
+msgstr "وضعیت نا مشخص"
+
+#. translators: ## is file size in MB
+#: wc-upload-reciept.php:363
+msgctxt "js-translate"
+msgid "File size must be less than ## MB"
+msgstr "حجم فایل باید کمتر از ## مگابایت باشد"
+
+#: wc-upload-reciept.php:364
+msgctxt "js-translate"
+msgid "Unknown Server Error Occured! Try again."
+msgstr "خطای ناشناخته از سمت سرور رخ داد! مجددا تلاش کنید."
+
+#: wc-upload-reciept.php:365
+msgctxt "js-translate"
+msgid "Select a file first."
+msgstr "ابتدا یک فایل را انتخاب کنید."
+
+#: wc-upload-reciept.php:368
+msgid "Upload receipt"
+msgstr "آپلود رسید پرداختی"
+
+#: wc-upload-reciept.php:381
+msgid "Current receipt: "
+msgstr "رسید پرداختی فعلی: "
+
+#: wc-upload-reciept.php:394
+msgid "Upload Receipt: "
+msgstr "آپلود رسید پرداختی: "
+
+#: wc-upload-reciept.php:412
+msgid "Date Uploaded: "
+msgstr "تاریخ آپلود: "
+
+#: wc-upload-reciept.php:421
+msgid "Admin Note: "
+msgstr "یادداشت مدیر: "
+
+#: wc-upload-reciept.php:436
+msgid "Awaiting Receipt Approval"
+msgstr "بررسی رسید پرداختی"
+
+#: wc-upload-reciept.php:441
+#, php-format
+msgid "Awaiting Receipt Approval (%s)"
+msgid_plural "Awaiting Receipt Approval (%s)"
+msgstr[0] "بررسی رسید پرداختی (%s)"
+msgstr[1] "بررسی رسید پرداختی (%s)"
+
+#: wc-upload-reciept.php:447 wc-upload-reciept.php:463
+msgctxt "pst"
+msgid "Receipt Rejected"
+msgstr "رد شده"
+
+#: wc-upload-reciept.php:452
+#, php-format
+msgid "Receipt Rejected (%s)"
+msgid_plural "Receipt Rejected (%s)"
+msgstr[0] "رسید پرداختی رد شده (%s)"
+msgstr[1] "رسید پرداختی رد شده (%s)"
+
+#: wc-upload-reciept.php:462
+msgctxt "pst"
+msgid "Awaiting Receipt Approval"
+msgstr "بررسی رسید پرداختی"
+
+#: wc-upload-reciept.php:487 wc-upload-reciept.php:488
+msgid "Support"
+msgstr "پشتیبانی این محصول"
+
+#: wc-upload-reciept.php:503
+#, php-format
+msgctxt "footer-copyright"
+msgid "Thanks for using %s products"
+msgstr "بابت استفاده از محصولات %s سپاسگزاریم"
+
+#: wc-upload-reciept.php:503
+msgid "Pepro Dev"
+msgstr "تیم برنامه ‏نویسی پپرو"
+
+#: wc-upload-reciept.php:505
+#, php-format
+msgctxt "footer-copyright"
+msgid "%s — Version %s"
+msgstr "%s — نسخه %s"
+
+#: wc-upload-reciept.php:511
+msgid "Unauthorized Access!"
+msgstr "شما دسترسی لازم را ندارید !"
+
+#: wc-upload-reciept.php:536
+#, php-format
+msgid "Customer uploaded payment receipt image. %s"
+msgstr "مشتری تصویر رسید پرداختی را آپلود کرد. %s"
+
+#: wc-upload-reciept.php:540
+msgid "Upload completed successfully."
+msgstr "آپلود با موفقیت انجام گردید."
+
+#: wc-upload-reciept.php:559
+msgid ""
+"There was an error uploading your file. Please check file type and size."
+msgstr ""
+"متاسفیم ، در فرایند بارگیری فایل مشکلی پیش آمد. لطفا نوع و اندازه فایل را چک "
+"کنید."
+
+#: wc-upload-reciept.php:570
+msgid "There was an error uploading your file."
+msgstr "متاسفیم ، در فرایند بارگیری فایل مشکلی پیش آمد."
+
+#: wc-upload-reciept.php:583
+#, php-format
+msgctxt "required-plugin"
+msgid "%1$s needs %2$s in order to function"
+msgstr ""
+"افزونه %1$s برای عملکرد صحیح به افزونه %2$s نیاز دارد. لطفا نسبت به نصب و "
+"فعالسازی اقدام کنید"
+
+#: wc-upload-reciept.php:586
+msgctxt "required-plugin"
+msgid "WooCommerce"
+msgstr "ووکامرس"
+
+#. Plugin URI of the plugin/theme
+msgid "https://pepro.dev/receipt-upload"
+msgstr "https://pepro.dev/wc-bacs-receipt-upload"
+
+#. Description of the plugin/theme
+msgid ""
+"Upload Receipt for BACS Payments in WooCommerce. Allow customers to transfer "
+"money to your account and upload the receipt (image/pdf) for approval"
+msgstr ""
+"آپلود رسید پرداخت سفارشات ووکامرس — کاربران برای خرید هایی که با روش انتقال "
+"بانکی انجام میشود (BACS) میتوانند رسید پرداخت (عکس/PDF) را برای بررسی مدیر "
+"فروشگاه ارسال کنند"
+
+#. Author of the plugin/theme
+msgid "Pepro Dev. Group"
+msgstr "تیم برنامه ‏نویسی پپرو"
+
+#. Author URI of the plugin/theme
+msgid "https://pepro.dev/"
+msgstr "https://pepro.dev/"
+
+#~ msgid "Upload"
+#~ msgstr "آپلود ویدئو"
