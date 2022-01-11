@@ -1,40 +1,39 @@
-=== WooCommerce Upload Receipt ===
+=== PeproDev WooCommerce Receipt Uploader ===
 Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
 Tags: functionality, woocommmerce, payment, bacs, transfer money, upload receipt, receipt upload
 Requires at least: 5.0
-Tested up to: 5.7.2
-Stable tag: 1.4.0
+Tested up to: 5.8.3
+Stable tag: 1.5.0
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 5.4.1
+WC tested up to: 6.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Upload Receipt for BACS Payments in WooCommerce. Allow customers to transfer money to your account and upload the receipt (image/pdf) for approval
+Upload Receipt for Any Payment method in WooCommerce
 
 == Description ==
 
-## No Configuration Required but Options are added since v.1.4 !
+## ⚠️ No Configuration Required! Install and Use 😍
 
-### **Upload Receipt for BACS Payments in WooCommerce. Allow customers to transfer money to your bank account, then upload its receipt from order screen and admin can approve/reject it.**
+### **Upload Receipt for Any Payment method in WooCommerce. Customers will Upload the receipt and Shop Managers will approve/reject it manually.**
 
-### Made by Developers for Developers
+- 🔥 Since v.1.5 ~> Multiple Gateways Receipt acceptance
+- ✅ Hook for Developers to run actions on receipt upload by user
+- ✅ Hook for Developers to run actions on receipt got Approved / Rejected by admin
+- ✅ Admin can change Receipt acceptant Gateways
+- ✅ Admin can change Receipt Upload size limit
+- ✅ Admin can change Receipt File types (e.g. to accept PDF ~> add application/pdf)
+- 😍 RTL-ready, Persian Translation included by default
+- 😍 Fully Compatible with Pepro Ultimate Profile Solutions
+- 😍 Fully Compatible with Pepro Ultimate Invoice for WooCommerce
+- 😍 Fully Compatible with Pepro Delivery Stages for WooCommerce
+- 😍 Fully Compatible with LocoTranslate to have your own translation
 
-- RTL-ready
-- Fully Woo-commerce integration
-- Hook for Developers to run actions on receipt upload by user
-- Hook for Developers to run actions on receipt approve/reject by admin
-- Fully Compatible with Pepro Profile (premium)
-- Fully Compatible with Pepro Ultimate Invoice for WooCommerce
-- Fully Compatible with Pepro Delivery Stages for WooCommerce
-- Admin can change Size limit option
-- Admin can change File type option (can use PDF as receipt, just add application/pdf as Mimes)
 ---
 
-#### Made by love in [Pepro Development Center](https://pepro.dev/).
-
-#### *[Pepro Dev](https://pepro.dev/) is a registered trademark of [Pepro Co](https://pepro.co/).*
+#### Made with Love in [Pepro Dev. Group](https://pepro.dev/). *( Pepro Dev is a registered trademark of [Pepro Co](https://pepro.co/) )*
 
 == Installation ==
 
@@ -71,8 +70,13 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Changelog ==
 
-= 1.4 =
+= 1.5.0 (2022-01-11/1400-10-21) =
+- 🔥 Multiple Gateways Receipt acceptance
+- 😍 New UI at front-end (using toast instead of alert)
+- 😍 New UI at back-end (added more tools, changes styles)
+- 😍 Show prev. uploaded receipts in Order Metabox
 
+= 1.4.0 =
 - Added Settings page: wp-admin/admin.php?page=wc-settings&tab=checkout&section=upload_receipt
 - Added Settings page link in plugins meta row
 - Added Size Limit Option
@@ -85,18 +89,15 @@ You can help us improve our works by committing/requesting your changes to Pepro
 - DEV: added hook: `pepro_upload_receipt_max_upload_size`
 
 
-= 1.3 =
-
+= 1.3.0 =
 - WP-5.6 compatible
 - Error handling during upload fix
 - text-domain change
 
 = 1.2.1 =
-
 - Fixed Translation and some small errors
 
-= 1.0 =
-
+= 1.0.0 =
 - Initial release
 
 == About Us ==
@@ -105,8 +106,14 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
-= 1.4 =
+= 1.5.0 (2022-01-11/1400-10-21) =
+- 🔥 Multiple Gateways Receipt acceptance
+- 😍 New UI at front-end (using toast instead of alert)
+- 😍 New UI at back-end (added more tools, changes styles)
+- 😍 Show prev. uploaded receipts in Order Metabox
+- Change name to: PeproDev WooCommerce Receipt Uploader
 
+= 1.4.0 =
 - Added Settings page: wp-admin/admin.php?page=wc-settings&tab=checkout&section=upload_receipt
 - Added Settings page link in plugins meta row
 - Added Size Limit Option
@@ -117,17 +124,3 @@ You can help us improve our works by committing/requesting your changes to Pepro
 - Changed text-domain to `receipt-upload`
 - DEV: added hook: `pepro_upload_receipt_allowed_file_mimes`
 - DEV: added hook: `pepro_upload_receipt_max_upload_size`
-
-= 1.3 =
-
-- WP-5.6 compatible
-- Error handling during upload fix
-- text-domain change
-
-= 1.2.1 =
-
-- Fixed Translation and some small errors
-
-= 1.0 =
-
-- Initial release

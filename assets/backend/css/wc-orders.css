@@ -1,55 +1,54 @@
 /**
- * @Author: Amirhosseinhpv
- * @Date:   2020/10/07 18:58:16
- * @Email:  its@hpv.im
  * @Last modified by:   Amirhosseinhpv
- * @Last modified time: 2021/07/09 17:27:54
- * @License: GPLv2
- * @Copyright: Copyright © Amirhosseinhpv (https://hpv.im), all rights reserved.
+ * @Last modified time: 2022/01/11 18:21:01
  */
 
-
-#receipt_upload_status.pending,
-#receipt_upload_status option[value="pending"]{
+#receipt_upload_status option[value="pending"],
+#receipt_upload_status.pending {
   color: orange;
 }
-#receipt_upload_status.approved,
-#receipt_upload_status option[value="approved"]{
+
+#receipt_upload_status option[value="approved"],
+#receipt_upload_status.approved {
   color: green;
 }
-#receipt_upload_status.rejected,
-#receipt_upload_status option[value="rejected"]{
+
+#receipt_upload_status option[value="rejected"],
+#receipt_upload_status.rejected {
   color: red;
 }
 
 .wp-core-ui select.pending,
 .wp-core-ui select.pending:focus {
-	border-color: orange;
-	color: orange;
-	box-shadow: 0 0 0 1px orange;
+  border-color: orange;
+  color: orange;
+  box-shadow: 0 0 0 1px orange;
 }
+
 .wp-core-ui select.approved,
 .wp-core-ui select.approved:focus {
-	border-color: green;
-	color: green;
-	box-shadow: 0 0 0 1px green;
+  border-color: green;
+  color: green;
+  box-shadow: 0 0 0 1px green;
 }
+
 .wp-core-ui select.rejected,
 .wp-core-ui select.rejected:focus {
-	border-color: red;
-	color: red;
-	box-shadow: 0 0 0 1px red;
+  border-color: red;
+  color: red;
+  box-shadow: 0 0 0 1px red;
 }
 
 #receipt_upload-receipt-upload input,
 #receipt_upload-receipt-upload select,
-#receipt_upload-receipt-upload textarea{
+#receipt_upload-receipt-upload textarea {
   width: 100%;
 }
 
-#change_receipt_attachment_id{
+#change_receipt_attachment_id {
   cursor: pointer;
 }
+
 #receipt_upload-receipt-upload p label {
   margin-bottom: 0.3rem;
   display: block;
@@ -57,5 +56,35 @@
 }
 
 .wcuploadrcp.column-wcuploadrcp > * {
-	border-radius: 2px;
+  border-radius: 2px;
+}
+
+#receipt_upload-receipt-upload .prev-items-uploaded > div {
+  padding: 2px;
+  border: 1px solid #ccc;
+  margin: 2px;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+#receipt_upload-receipt-upload .prev-items-uploaded {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#receipt_upload-receipt-upload .prev-uploaded-item a {
+  display: block;
+}
+
+#receipt_upload-receipt-upload date {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: bidi-override;
+}
+
+#receipt_upload-receipt-upload .widebutton {
+  display: block !important;
+  width: 100%;
+  margin-bottom: 0.5rem !important;
+  line-height: 2 !important;
 }
