@@ -33,7 +33,7 @@ Upload Receipt for Any Payment method in WooCommerce
 
 ---
 
-#### Made with Love in [Pepro Dev. Group](https://pepro.dev/). *( Pepro Dev is a registered trademark of [Pepro Co](https://pepro.co/) )*
+#### Made with Love in [Pepro Dev. Group](https://pepro.dev/)
 
 == Installation ==
 
@@ -70,6 +70,20 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Changelog ==
 
+= 1.6.0 (2022-01-15/1400-10-25) =
+- Added new Order status, Awaiting Upload
+- Added Setting Link to WooCommerce menu
+- DEV: Deprecated Hook `woocommerce_customer_purchased_bacs_order`
+- DEV: Deprecated Hook `woocommerce_customer_uploaded_receipt`
+- DEV: Deprecated Hook `woocommerce_admin_saved_receipt_approval`
+- DEV: Deprecated Hook `woocommerce_admin_changed_receipt_approval_status`
+- DEV: Added Hook `peprodev_uploadreceipt_order_placed`
+- DEV: Added Hook `peprodev_uploadreceipt_save_receipt`
+- DEV: Added Hook `peprodev_uploadreceipt_receipt_rejected`
+- DEV: Added Hook `peprodev_uploadreceipt_receipt_status_changed`
+- DEV: Added Hook `peprodev_uploadreceipt_receipt_attached_note`
+- DEV: Added Hook `peprodev_uploadreceipt_customer_uploaded_receipt`
+
 = 1.5.0 (2022-01-11/1400-10-21) =
 - 🔥 Multiple Gateways Receipt acceptance
 - 😍 New UI at front-end (using toast instead of alert)
@@ -105,6 +119,20 @@ You can help us improve our works by committing/requesting your changes to Pepro
 ***PEPRO DEV*** is a premium supplier of quality WordPress plugins, services and support. Join us at [https://pepro.dev/](https://pepro.dev/) and also don't forget to check our [free plugins](http://profiles.wordpress.org/peprodev/), we hope you enjoy them!
 
 == Upgrade Notice ==
+
+= 1.6.0 (2022-01-15/1400-10-25) =
+- Added new Order status, Awaiting Upload
+- Added Setting Link to WooCommerce menu
+- DEV: Deprecated Hook `woocommerce_customer_purchased_bacs_order`
+- DEV: Deprecated Hook `woocommerce_customer_uploaded_receipt`
+- DEV: Deprecated Hook `woocommerce_admin_saved_receipt_approval`
+- DEV: Deprecated Hook `woocommerce_admin_changed_receipt_approval_status`
+- DEV: Added Hook `peprodev_uploadreceipt_order_placed`
+- DEV: Added Hook `peprodev_uploadreceipt_save_receipt`
+- DEV: Added Hook `peprodev_uploadreceipt_receipt_rejected`
+- DEV: Added Hook `peprodev_uploadreceipt_receipt_status_changed`
+- DEV: Added Hook `peprodev_uploadreceipt_receipt_attached_note`
+- DEV: Added Hook `peprodev_uploadreceipt_customer_uploaded_receipt`
 
 = 1.5.0 (2022-01-11/1400-10-21) =
 - 🔥 Multiple Gateways Receipt acceptance

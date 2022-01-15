@@ -22,4 +22,4 @@
 
 ### **Developed by** [Perpro Development Group](https://pepro.dev/) for WooCommerce
 
-*Current Version: 1.5.0* \| *Lead Developer:* [Amirhosseinhpv](https://hpv.im/)
+*Current Version: 1.6.0* \| *Lead Developer:* [Amirhosseinhpv](https://hpv.im/)
