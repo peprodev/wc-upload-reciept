@@ -4,7 +4,7 @@ Donate link: https://pepro.dev/donate
 Tags: functionality, woocommmerce, payment, bacs, transfer money, upload receipt, receipt upload
 Requires at least: 5.0
 Tested up to: 5.8.3
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 Requires PHP: 5.6
 WC requires at least: 4.0
 WC tested up to: 6.0.0
@@ -21,7 +21,8 @@ Upload Receipt for Any Payment method in WooCommerce
 
 - 🔥 Since v.1.5 ~> Multiple Gateways Receipt acceptance
 - ✅ Hook for Developers to run actions on receipt upload by user
-- ✅ Hook for Developers to run actions on receipt got Approved / Rejected by admin
+- ✅ Hook for Developers to run actions on receipt status change
+- ✅ Optional: Redirect to an Address on Success Receipt upload
 - ✅ Admin can change Receipt acceptant Gateways
 - ✅ Admin can change Receipt Upload size limit
 - ✅ Admin can change Receipt File types (e.g. to accept PDF ~> add application/pdf)
@@ -70,6 +71,13 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Changelog ==
 
+= 1.7.0 (2022-01-19/1400-10-29) =
+- Added Option to redirect to an address on success upload
+- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_prevented`
+- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_success`
+- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_failed`
+- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_completed`
+
 = 1.6.0 (2022-01-15/1400-10-25) =
 - Added new Order status, Awaiting Upload
 - Added Setting Link to WooCommerce menu
@@ -102,7 +110,6 @@ You can help us improve our works by committing/requesting your changes to Pepro
 - DEV: added hook: `pepro_upload_receipt_allowed_file_mimes`
 - DEV: added hook: `pepro_upload_receipt_max_upload_size`
 
-
 = 1.3.0 =
 - WP-5.6 compatible
 - Error handling during upload fix
@@ -119,6 +126,13 @@ You can help us improve our works by committing/requesting your changes to Pepro
 ***PEPRO DEV*** is a premium supplier of quality WordPress plugins, services and support. Join us at [https://pepro.dev/](https://pepro.dev/) and also don't forget to check our [free plugins](http://profiles.wordpress.org/peprodev/), we hope you enjoy them!
 
 == Upgrade Notice ==
+
+= 1.7.0 (2022-01-19/1400-10-29) =
+- ✅ Added Option: Redirect to an Address on Success Receipt upload
+- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_prevented`
+- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_success`
+- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_failed`
+- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_completed`
 
 = 1.6.0 (2022-01-15/1400-10-25) =
 - Added new Order status, Awaiting Upload

@@ -1,6 +1,6 @@
 /**
  * @Last modified by:   Amirhosseinhpv
- * @Last modified time: 2022/01/11 18:21:01
+ * @Last modified time: 2022/01/19 10:34:37
  */
 
 #receipt_upload_status option[value="pending"],
@@ -16,6 +16,11 @@
 #receipt_upload_status option[value="rejected"],
 #receipt_upload_status.rejected {
   color: red;
+}
+
+#receipt_upload_status option[value="upload"],
+#receipt_upload_status.upload {
+  color: #0056a1;
 }
 
 .wp-core-ui select.pending,

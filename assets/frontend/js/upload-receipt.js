@@ -1,13 +1,13 @@
 /**
  * @Last modified by:   Amirhosseinhpv
- * @Last modified time: 2022/01/11 18:20:45
+ * @Last modified time: 2022/01/19 10:30:46
  */
 
 (function($) {
   $(document).ready(function() {
     var $success_color = "rgba(21, 139, 2, 0.8)";
-    var $error_color = "rgba(139, 2, 2, 0.8)";
-    var $info_color = "rgba(2, 133, 139, 0.8)";
+    var $error_color   = "rgba(139, 2, 2, 0.8)";
+    var $info_color    = "rgba(2, 133, 139, 0.8)";
     $(document.body).append($("<toast>"));
     $(document).on("change", "#receipt-file", function(e) {
       e.preventDefault();
@@ -15,6 +15,7 @@
       if (size > _upload_receipt.max_size) {
         show_toast(_upload_receipt.max_alert.replace("##", _upload_receipt.max_size), $error_color);
         $("#receipt-file").val("");
+        $(document).trigger("peprodev_receipt_uploader_ajax_prevented");
         return false;
       }
     });
@@ -22,6 +23,7 @@
       var file_data = $("#receipt-file").prop("files")[0];
       if (!file_data) {
         show_toast(_upload_receipt.select_file, $error_color);
+        $(document).trigger("peprodev_receipt_uploader_ajax_prevented");
         return false;
       }
       var form_data = new FormData();
@@ -30,9 +32,7 @@
       form_data.append("order", _upload_receipt.order_id);
       form_data.append("nonce", $("input[name=uniqnonce]").val());
       $(".receipt_uploading-loader").css("display", "inline-block");
-      $(
-        "#uploadreceiptfileimage input, #uploadreceiptfileimage button, #uploadreceiptfileimage"
-      ).prop("disabled", true);
+      $("#uploadreceiptfileimage input, #uploadreceiptfileimage button, #uploadreceiptfileimage").prop("disabled", true);
       show_toast(_upload_receipt.loading, $info_color);
       $.ajax({
         url: _upload_receipt.ajax_url,
@@ -44,17 +44,26 @@
           if (response.success) {
             show_toast(response.data.msg, $success_color);
             handle_succ(response);
+            if ($.trim(_upload_receipt.redirect_url) !== ""){
+              setTimeout(function () {
+                window.location.assign($.trim(_upload_receipt.redirect_url));
+              }, 1000);
+            }
+            $(document).trigger("peprodev_receipt_uploader_ajax_success");
           } else {
             handle_err(response);
+            $(document).trigger("peprodev_receipt_uploader_ajax_failed");
           }
         },
         error: function(response) {
           show_toast(_upload_receipt.unknown_error, $error_color);
+          $(document).trigger("peprodev_receipt_uploader_ajax_failed");
           $("#receipt-file").val("");
         },
         complete: function() {
           $(".receipt_uploading-loader").hide();
           $("#uploadreceiptfileimage input, #uploadreceiptfileimage button, #uploadreceiptfileimage").prop("disabled", false);
+          $(document).trigger("peprodev_receipt_uploader_ajax_completed");
         },
       });
     });

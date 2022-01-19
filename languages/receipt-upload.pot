@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WooCommerce Upload Receipt\n"
-"POT-Creation-Date: 2022-01-15 11:57+0330\n"
+"POT-Creation-Date: 2022-01-15 12:03+0330\n"
 "PO-Revision-Date: 2021-07-09 15:19+0430\n"
 "Last-Translator: Amirhosseinhpv <its@hpv.im>\n"
 "Language-Team: Amirhosseinhpv <its@hpv.im>\n"
@@ -30,260 +30,261 @@ msgstr ""
 msgid "%2$s ver. %1$s"
 msgstr ""
 
-#: wc-upload-reciept.php:98 wc-upload-reciept.php:281 wc-upload-reciept.php:463
+#: wc-upload-reciept.php:98 wc-upload-reciept.php:102 wc-upload-reciept.php:285
+#: wc-upload-reciept.php:467
 msgid "Upload Receipt"
 msgstr ""
 
-#: wc-upload-reciept.php:108
+#: wc-upload-reciept.php:112
 msgid "BACS (direct bank/wire transfer)"
 msgstr ""
 
-#: wc-upload-reciept.php:123
+#: wc-upload-reciept.php:127
 msgid "Payment methods"
 msgstr ""
 
-#: wc-upload-reciept.php:124
+#: wc-upload-reciept.php:128
 msgid "Select Payment methods you wish to activate receipt uploading feature"
 msgstr ""
 
-#: wc-upload-reciept.php:138
+#: wc-upload-reciept.php:142
 msgid "Allowed File Types"
 msgstr ""
 
-#: wc-upload-reciept.php:139
+#: wc-upload-reciept.php:143
 #, php-format
 msgid ""
 "Set Allowed file MIME-Types, one per each line, e.g. add application/pdf to "
 "support PDF file. %s"
 msgstr ""
 
-#: wc-upload-reciept.php:139
+#: wc-upload-reciept.php:143
 msgid "Learn more"
 msgstr ""
 
-#: wc-upload-reciept.php:150
+#: wc-upload-reciept.php:154
 msgid "Maximum file size (MB)"
 msgstr ""
 
-#: wc-upload-reciept.php:151
+#: wc-upload-reciept.php:155
 msgid "Maximum allowed file size in Megabytes (MB)"
 msgstr ""
 
-#: wc-upload-reciept.php:186
+#: wc-upload-reciept.php:190
 msgid "Payment Receipt Approval"
 msgstr ""
 
-#: wc-upload-reciept.php:229 wc-upload-reciept.php:314
-#: wc-upload-reciept.php:383 wc-upload-reciept.php:500
+#: wc-upload-reciept.php:233 wc-upload-reciept.php:318
+#: wc-upload-reciept.php:387 wc-upload-reciept.php:504
 msgid "Awaiting Upload"
 msgstr ""
 
-#: wc-upload-reciept.php:297
+#: wc-upload-reciept.php:301
 msgid "Click to change"
 msgstr ""
 
-#: wc-upload-reciept.php:298
+#: wc-upload-reciept.php:302
 msgid "Receipt Attachment ID"
 msgstr ""
 
-#: wc-upload-reciept.php:301
+#: wc-upload-reciept.php:305
 msgid "Uploaded at:"
 msgstr ""
 
-#: wc-upload-reciept.php:304
+#: wc-upload-reciept.php:308
 msgid "Change Receipt Image"
 msgstr ""
 
-#: wc-upload-reciept.php:305
+#: wc-upload-reciept.php:309
 msgid "Unlink Receipt Image"
 msgstr ""
 
-#: wc-upload-reciept.php:306
+#: wc-upload-reciept.php:310
 msgid "Change Upload Date"
 msgstr ""
 
-#: wc-upload-reciept.php:312
+#: wc-upload-reciept.php:316
 msgid "Receipt Approval Status"
 msgstr ""
 
-#: wc-upload-reciept.php:315
+#: wc-upload-reciept.php:319
 msgid "Pending"
 msgstr ""
 
-#: wc-upload-reciept.php:316
+#: wc-upload-reciept.php:320
 msgid "Approved"
 msgstr ""
 
-#: wc-upload-reciept.php:317
+#: wc-upload-reciept.php:321
 msgid "Rejected"
 msgstr ""
 
-#: wc-upload-reciept.php:321
+#: wc-upload-reciept.php:325
 msgid "Admin Note"
 msgstr ""
 
-#: wc-upload-reciept.php:327
+#: wc-upload-reciept.php:331
 msgid "Previously Uploaded Receipts"
 msgstr ""
 
-#: wc-upload-reciept.php:341
+#: wc-upload-reciept.php:345
 msgid "Change Upload Receipt Plugin Setting"
 msgstr ""
 
-#: wc-upload-reciept.php:386
+#: wc-upload-reciept.php:390
 msgid "Pending Approval"
 msgstr ""
 
-#: wc-upload-reciept.php:389
+#: wc-upload-reciept.php:393
 msgid "Receipt Approved"
 msgstr ""
 
-#: wc-upload-reciept.php:392
+#: wc-upload-reciept.php:396
 msgid "Receipt Rejected"
 msgstr ""
 
-#: wc-upload-reciept.php:395
+#: wc-upload-reciept.php:399
 msgid "Unknown Status"
 msgstr ""
 
 #. translators: ## is file size in MB
-#: wc-upload-reciept.php:422
+#: wc-upload-reciept.php:426
 msgctxt "js-translate"
 msgid "Error! File size should be less than ## MB"
 msgstr ""
 
-#: wc-upload-reciept.php:423
+#: wc-upload-reciept.php:427
 msgctxt "js-translate"
 msgid "Please wait ..."
 msgstr ""
 
-#: wc-upload-reciept.php:424
+#: wc-upload-reciept.php:428
 msgctxt "js-translate"
 msgid "Error! You should choose a file first."
 msgstr ""
 
-#: wc-upload-reciept.php:425
+#: wc-upload-reciept.php:429
 msgctxt "js-translate"
 msgid "Unknown Server Error Occured! Try again."
 msgstr ""
 
-#: wc-upload-reciept.php:428
+#: wc-upload-reciept.php:432
 msgid "Upload receipt"
 msgstr ""
 
-#: wc-upload-reciept.php:442
+#: wc-upload-reciept.php:446
 msgid "Current receipt: "
 msgstr ""
 
-#: wc-upload-reciept.php:458
+#: wc-upload-reciept.php:462
 msgid "Upload Receipt: "
 msgstr ""
 
-#: wc-upload-reciept.php:476
+#: wc-upload-reciept.php:480
 msgid "Date Uploaded: "
 msgstr ""
 
-#: wc-upload-reciept.php:485
+#: wc-upload-reciept.php:489
 msgid "Admin Note: "
 msgstr ""
 
-#: wc-upload-reciept.php:505
+#: wc-upload-reciept.php:509
 #, php-format
 msgid "Awaiting Receipt Upload (%s)"
 msgid_plural "Awaiting Receipts Upload (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: wc-upload-reciept.php:511
+#: wc-upload-reciept.php:515
 msgid "Awaiting Approval"
 msgstr ""
 
-#: wc-upload-reciept.php:516
+#: wc-upload-reciept.php:520
 #, php-format
 msgid "Awaiting Receipt Approval (%s)"
 msgid_plural "Awaiting Receipts Approval (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: wc-upload-reciept.php:522 wc-upload-reciept.php:539
+#: wc-upload-reciept.php:526 wc-upload-reciept.php:543
 msgctxt "pst"
 msgid "Receipt Rejected"
 msgstr ""
 
-#: wc-upload-reciept.php:527
+#: wc-upload-reciept.php:531
 #, php-format
 msgid "Receipt Rejected (%s)"
 msgid_plural "Receipt Rejected (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: wc-upload-reciept.php:537
+#: wc-upload-reciept.php:541
 msgctxt "pst"
 msgid "Awaiting Receipt Upload"
 msgstr ""
 
-#: wc-upload-reciept.php:538
+#: wc-upload-reciept.php:542
 msgctxt "pst"
 msgid "Awaiting Receipt Approval"
 msgstr ""
 
-#: wc-upload-reciept.php:563
+#: wc-upload-reciept.php:567
 msgid "Setting"
 msgstr ""
 
-#: wc-upload-reciept.php:564
+#: wc-upload-reciept.php:568
 msgid "Upload Setting"
 msgstr ""
 
-#: wc-upload-reciept.php:569 wc-upload-reciept.php:570
+#: wc-upload-reciept.php:573 wc-upload-reciept.php:574
 msgid "Support"
 msgstr ""
 
-#: wc-upload-reciept.php:584
+#: wc-upload-reciept.php:588
 #, php-format
 msgctxt "footer-copyright"
 msgid "Thanks for using %s products"
 msgstr ""
 
-#: wc-upload-reciept.php:584
+#: wc-upload-reciept.php:588
 msgid "Pepro Dev"
 msgstr ""
 
-#: wc-upload-reciept.php:586
+#: wc-upload-reciept.php:590
 #, php-format
 msgctxt "footer-copyright"
 msgid "%s — Version %s"
 msgstr ""
 
-#: wc-upload-reciept.php:592
+#: wc-upload-reciept.php:596
 msgid "Unauthorized Access!"
 msgstr ""
 
-#: wc-upload-reciept.php:617
+#: wc-upload-reciept.php:621
 #, php-format
 msgid "Customer uploaded payment receipt image. %s"
 msgstr ""
 
-#: wc-upload-reciept.php:621
+#: wc-upload-reciept.php:625
 msgid "Upload completed successfully."
 msgstr ""
 
-#: wc-upload-reciept.php:637
+#: wc-upload-reciept.php:641
 msgid ""
 "There was an error uploading your file. Please check file type and size."
 msgstr ""
 
-#: wc-upload-reciept.php:646
+#: wc-upload-reciept.php:650
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: wc-upload-reciept.php:659
+#: wc-upload-reciept.php:663
 #, php-format
 msgctxt "required-plugin"
 msgid "%1$s needs %2$s in order to function"
 msgstr ""
 
-#: wc-upload-reciept.php:662
+#: wc-upload-reciept.php:666
 msgctxt "required-plugin"
 msgid "WooCommerce"
 msgstr ""

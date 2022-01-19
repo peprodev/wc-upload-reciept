@@ -9,8 +9,8 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 1.5.0
-Stable tag: 1.5.0
+Version: 1.6.0
+Stable tag: 1.6.0
 Requires at least: 5.0
 Tested up to: 5.8.3
 Requires PHP: 5.6
@@ -23,7 +23,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 # @Last modified by:   Amirhosseinhpv
-# @Last modified time: 2022/01/15 12:00:16
+# @Last modified time: 2022/01/19 10:35:41
 
 if (!class_exists("peproDev_UploadReceiptWC")) {
   class peproDev_UploadReceiptWC
@@ -61,7 +61,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_basename = plugin_basename(__FILE__);
       $this->url             = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
       $this->plugin_file     = __FILE__;
-      $this->version         = "1.4.0";
+      $this->version         = "1.6.0";
       $this->deactivateURI   = null;
       $this->deactivateICON  = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
       $this->versionICON     = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -163,6 +163,18 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             ),
           ),
           array(
+            'type'              => 'text',
+            'id'                => 'peprobacsru_redirect_after_upload',
+            'title'             => __("Redirect After Upload", $this->td),
+            'desc'              => __("Redirect to given URL and successfull upload, leave empty to disable", $this->td),
+            'default'           => "",
+            'custom_attributes' => array(
+              'dir'             => 'ltr',
+              'lang'            => 'en_US',
+              'type'            => 'url',
+            ),
+          ),
+          array(
             'type'              => 'sectionend',
             'id'                => 'upload_receipt_settings_section',
           ),
@@ -219,10 +231,10 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         </style>
         ';
         $attachment_id = $this->get_meta('receipt_uplaoded_attachment_id', $order->get_id());
-        $status = $this->get_meta('receipt_upload_status', $order->get_id());
-        $statustxt = $this->get_status($status);
-        $src = $this->defaultImg;
-        $src_org = false;
+        $status        = $this->get_meta('receipt_upload_status', $order->get_id());
+        $statustxt     = $this->get_status($status);
+        $src           = $this->defaultImg;
+        $src_org       = false;
         if ($attachment_id) {
           $src_org = wp_get_attachment_image_src($this->receipt_upload_get_meta('receipt_uplaoded_attachment_id'));
           $src = $src_org ? $src_org[0] : $this->defaultImg;
@@ -288,7 +300,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     {
       wp_nonce_field('_receipt_upload_nonce', 'receipt_upload_nonce');
       wp_enqueue_media(); add_thickbox();
-      wp_enqueue_style("wc-orders.css", "{$this->assets_url}/backend/css/wc-orders.css");
+      wp_enqueue_style("wc-orders.css", "{$this->assets_url}/backend/css/wc-orders.css", array(), current_time("timestamp"));
       wp_enqueue_script("wc-orders.js", "{$this->assets_url}/backend/js/wc-orders.js", array("jquery"), current_time("timestamp"));
       $src = $this->defaultImg;
       $uploaded_id = $this->receipt_upload_get_meta('receipt_uplaoded_attachment_id');
@@ -416,8 +428,8 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         }
       }
       if ("woocommerce_thankyou" !== current_filter() && $this->is_payment_methode_allowed($order->get_payment_method())) {
-        wp_enqueue_style("wc-recipt.css",       "$this->assets_url/frontend/css/wc-recipt.css");
-        wp_register_script("upload-receipt.js", "$this->assets_url/frontend/js/upload-receipt.js", array("jquery"));
+        wp_enqueue_style("wc-recipt.css",       "$this->assets_url/frontend/css/wc-recipt.css", array(), current_time("timestamp"));
+        wp_register_script("upload-receipt.js", "$this->assets_url/frontend/js/upload-receipt.js", array("jquery"), current_time("timestamp"));
         wp_localize_script("upload-receipt.js", "_upload_receipt", array(
           "ajax_url"      => admin_url("admin-ajax.php"),
           "order_id"      => $order->get_id(),
@@ -426,6 +438,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
           "max_alert"     => _x("Error! File size should be less than ## MB", "js-translate", $this->td),
           "loading"       => _x("Please wait ...", "js-translate", $this->td),
           "select_file"   => _x("Error! You should choose a file first.", "js-translate", $this->td),
+          "redirect_url"  => get_option("peprobacsru_redirect_after_upload", ""),
           "unknown_error" => _x("Unknown Server Error Occured! Try again.", "js-translate", $this->td),
         ));
         wp_enqueue_script("upload-receipt.js");
