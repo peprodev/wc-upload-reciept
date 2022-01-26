@@ -3,7 +3,7 @@ Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
 Tags: functionality, woocommmerce, payment, bacs, transfer money, upload receipt, receipt upload
 Requires at least: 5.0
-Tested up to: 5.8.3
+Tested up to: 5.9
 Stable tag: 1.6.0
 Requires PHP: 5.6
 WC requires at least: 4.0
