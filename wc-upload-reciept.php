@@ -9,16 +9,16 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 1.6.0
-Stable tag: 1.6.0
+Version: 1.8.0
+Stable tag: 1.8.0
 Requires at least: 5.0
-Tested up to: 5.9
+Tested up to: 5.9.2
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 6.0
+WC tested up to: 6.3
 Text Domain: receipt-upload
 Domain Path: /languages
-Copyright: (c) 2020 Pepro Dev. Group, All rights reserved.
+Copyright: (c) 2022 Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -61,7 +61,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_basename = plugin_basename(__FILE__);
       $this->url             = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
       $this->plugin_file     = __FILE__;
-      $this->version         = "1.6.0";
+      $this->version         = "1.7.0";
       $this->deactivateURI   = null;
       $this->deactivateICON  = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
       $this->versionICON     = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -104,15 +104,10 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     }
     public function get_wc_gateways()
     {
-      $wc_gateways      = new WC_Payment_Gateways();
-      $all_gateways     = $wc_gateways->payment_gateways();
-      $payment_gateways = $wc_gateways->get_available_payment_gateways();
-      $gateways         = array();
-      $gateways_list    = array();
-      $gateways["bacs"] = __("BACS (direct bank/wire transfer)",$this->td);
-      foreach( $payment_gateways as $gateway_id => $gateway )
-        $method_title = $gateway->get_method_title() ? $gateway->get_method_title() : $gateway->get_title();
-        $gateways[$gateway_id] = wp_kses_post( $method_title );
+      $all_gateways = WC()->payment_gateways->payment_gateways();
+      $gateways     = array();
+      foreach( $all_gateways as $gateway_id => $gateway )
+        $gateways[$gateway_id] = wp_kses_post($gateway->method_title);
       return $gateways;
     }
     public function add_my_products_settings( $settings, $current_section )

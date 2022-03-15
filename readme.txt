@@ -3,11 +3,11 @@ Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
 Tags: functionality, woocommmerce, payment, bacs, transfer money, upload receipt, receipt upload
 Requires at least: 5.0
-Tested up to: 5.9
-Stable tag: 1.6.0
+Tested up to: 5.9.2
+Stable tag: 1.8.0
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 6.0.0
+WC tested up to: 6.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,10 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Changelog ==
 
+= 1.8.0 (2022-03-15/1400-12-24) =
+- Fixed not showing all gateways
+- Fixed only select two gateways
+
 = 1.7.0 (2022-01-19/1400-10-29) =
 - Added Option to redirect to an address on success upload
 - DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_prevented`
@@ -127,42 +131,13 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
+= 1.8.0 (2022-03-15/1400-12-24) =
+- Fixed not showing all gateways
+- Fixed only select two gateways
+
 = 1.7.0 (2022-01-19/1400-10-29) =
 - ✅ Added Option: Redirect to an Address on Success Receipt upload
 - DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_prevented`
 - DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_success`
 - DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_failed`
 - DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_completed`
-
-= 1.6.0 (2022-01-15/1400-10-25) =
-- Added new Order status, Awaiting Upload
-- Added Setting Link to WooCommerce menu
-- DEV: Deprecated Hook `woocommerce_customer_purchased_bacs_order`
-- DEV: Deprecated Hook `woocommerce_customer_uploaded_receipt`
-- DEV: Deprecated Hook `woocommerce_admin_saved_receipt_approval`
-- DEV: Deprecated Hook `woocommerce_admin_changed_receipt_approval_status`
-- DEV: Added Hook `peprodev_uploadreceipt_order_placed`
-- DEV: Added Hook `peprodev_uploadreceipt_save_receipt`
-- DEV: Added Hook `peprodev_uploadreceipt_receipt_rejected`
-- DEV: Added Hook `peprodev_uploadreceipt_receipt_status_changed`
-- DEV: Added Hook `peprodev_uploadreceipt_receipt_attached_note`
-- DEV: Added Hook `peprodev_uploadreceipt_customer_uploaded_receipt`
-
-= 1.5.0 (2022-01-11/1400-10-21) =
-- 🔥 Multiple Gateways Receipt acceptance
-- 😍 New UI at front-end (using toast instead of alert)
-- 😍 New UI at back-end (added more tools, changes styles)
-- 😍 Show prev. uploaded receipts in Order Metabox
-- Change name to: PeproDev WooCommerce Receipt Uploader
-
-= 1.4.0 =
-- Added Settings page: wp-admin/admin.php?page=wc-settings&tab=checkout&section=upload_receipt
-- Added Settings page link in plugins meta row
-- Added Size Limit Option
-- Added File Type Option (can use PDF as receipt, just add application/pdf as Mimes)
-- Changed UI in Admin Side, minimal style
-- General Bug Fixes and Improvements
-- Changed Class name to `Pepro_Upload_Receipt_WooCommerce`
-- Changed text-domain to `receipt-upload`
-- DEV: added hook: `pepro_upload_receipt_allowed_file_mimes`
-- DEV: added hook: `pepro_upload_receipt_max_upload_size`
