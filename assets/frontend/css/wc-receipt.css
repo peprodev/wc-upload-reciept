@@ -1,6 +1,6 @@
 /**
- * @Last modified by:   Amirhosseinhpv
- * @Last modified time: 2022/01/11 18:20:51
+ * @Last modified by:   amirhp-com <its@amirhp.com>
+ * @Last modified time: 2022/08/15 15:42:15
  */
 toast {
   display: block;
@@ -39,6 +39,10 @@ toast.active {
   border-radius: 4px;
 }
 
+.woocommerce-table--upload-receipt tr.hide {
+  display: none;
+}
+
 .receipt-preview.approved {
   box-shadow: 0 0 0 3px green;
 }
@@ -50,8 +54,6 @@ toast.active {
 .receipt-preview.rejected {
   box-shadow: 0 0 0 3px red;
 }
-
-.receipt_uploading-loader {}
 @-webkit-keyframes ldio-0r9ic9wjpqu {
   0% {
     transform: rotate(0deg);

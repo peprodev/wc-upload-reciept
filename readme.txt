@@ -3,11 +3,11 @@ Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
 Tags: functionality, woocommmerce, payment, bacs, transfer money, upload receipt, receipt upload
 Requires at least: 5.0
-Tested up to: 5.9.2
-Stable tag: 1.8.0
+Tested up to: 6.0.1
+Stable tag: 2.0.0
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 6.3
+WC tested up to: 6.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,6 +18,13 @@ Upload Receipt for Any Payment method in WooCommerce
 ## ⚠️ No Configuration Required! Install and Use 😍
 
 ### **Upload Receipt for Any Payment method in WooCommerce. Customers will Upload the receipt and Shop Managers will approve/reject it manually.**
+
+- ❤️ v2.0, a Mega-update released 🤩
+- 😍 Integration with WooCommerce Email Notifications
+- 😍 Send Email on Receipt Upload, Approve and Reject to Admin and Customer
+- 😍 Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
+- 😍 Added Shortcode to Display Uploaded Receipt `[receipt-preview order_id=2095]`
+- 😍 Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
 
 - 🔥 Since v.1.5 ~> Multiple Gateways Receipt acceptance
 - ✅ Hook for Developers to run actions on receipt upload by user
@@ -70,6 +77,13 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 
 == Changelog ==
+
+- ❤️ v2.0, a Mega-update released 🤩 (2022-08-15/1401-05-24)
+- 😍 Integration with WooCommerce Email Notifications
+- 😍 Send Email on Receipt Upload, Approve and Reject to Admin and Customer
+- 😍 Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
+- 😍 Added Shortcode to Display Uploaded Receipt `[receipt-preview order_id=2095]`
+- 😍 Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
 
 = 1.8.0 (2022-03-15/1400-12-24) =
 - Fixed not showing all gateways
@@ -131,9 +145,12 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
-= 1.8.0 (2022-03-15/1400-12-24) =
-- Fixed not showing all gateways
-- Fixed only select two gateways
+- ❤️ v2.0, a Mega-update released 🤩 (2022-08-15/1401-05-24)
+- 😍 Integration with WooCommerce Email Notifications
+- 😍 Send Email on Receipt Upload, Approve and Reject to Admin and Customer
+- 😍 Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
+- 😍 Added Shortcode to Display Uploaded Receipt `[receipt-preview order_id=2095]`
+- 😍 Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
 
 = 1.7.0 (2022-01-19/1400-10-29) =
 - ✅ Added Option: Redirect to an Address on Success Receipt upload

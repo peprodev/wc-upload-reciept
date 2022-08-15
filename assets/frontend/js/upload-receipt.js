@@ -1,6 +1,6 @@
 /**
- * @Last modified by:   Amirhosseinhpv
- * @Last modified time: 2022/01/19 10:30:46
+ * @Last modified by:   amirhp-com <its@amirhp.com>
+ * @Last modified time: 2022/08/15 15:43:10
  */
 
 (function($) {
@@ -82,7 +82,8 @@
         .text(e.data.statustx)
         .removeClass("pending approved rejected")
         .addClass(e.data.status);
-      $("td.receipt-uplaod-date>span").text(e.data.date);
+      $(".woocommerce-table--upload-receipt tr.date-uploaded").removeClass("hide");
+      $("td.receipt-uplaod-date").html(`<bdi dir="ltr">${e.data.date}</bdi>`);
       $(".receipt-img-upload").parents("tr").first().remove();
       $(".receipt-admin-note").parents("tr").first().remove();
     }

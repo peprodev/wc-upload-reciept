@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WooCommerce Upload Receipt\n"
-"POT-Creation-Date: 2022-01-19 10:36+0330\n"
+"POT-Creation-Date: 2022-08-15 18:35+0430\n"
 "PO-Revision-Date: 2021-07-09 15:19+0430\n"
 "Last-Translator: Amirhosseinhpv <its@hpv.im>\n"
 "Language-Team: Amirhosseinhpv <its@hpv.im>\n"
@@ -16,289 +16,523 @@ msgstr ""
 "X-Poedit-WPHeader: wc-upload-reciept.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: wc-upload-reciept.php:71
+#: include/class-wc-email-admin-approved.php:26
+msgid "Approved Receipt to Admin"
+msgstr ""
+
+#: include/class-wc-email-admin-approved.php:27
+msgid "An email sent to the Admin when a receipt is approved."
+msgstr ""
+
+#: include/class-wc-email-admin-approved.php:28
+#: include/class-wc-email-customer-approved.php:29 wc-upload-reciept.php:740
+msgid "Receipt Approved"
+msgstr ""
+
+#: include/class-wc-email-admin-approved.php:29
+#, php-format
+msgctxt "receipt-approved-admin-subject"
+msgid "[%s] Receipt Approved"
+msgstr ""
+
+#: include/class-wc-email-admin-rejected.php:26
+msgid "Rejected Receipt to Admin"
+msgstr ""
+
+#: include/class-wc-email-admin-rejected.php:27
+msgid "An email sent to the Admin when a receipt is rejected."
+msgstr ""
+
+#: include/class-wc-email-admin-rejected.php:28
+#: include/class-wc-email-customer-rejected.php:29 wc-upload-reciept.php:743
+msgid "Receipt Rejected"
+msgstr ""
+
+#: include/class-wc-email-admin-rejected.php:29
+#, php-format
+msgctxt "receipt-rejected-admin-subject"
+msgid "[%s] Receipt Rejected"
+msgstr ""
+
+#: include/class-wc-email-admin-uploaded.php:26
+msgid "Uploaded Receipt to Admin"
+msgstr ""
+
+#: include/class-wc-email-admin-uploaded.php:27
+msgid "An email sent to the Admin when a receipt is uploaded."
+msgstr ""
+
+#: include/class-wc-email-admin-uploaded.php:28
+#: include/class-wc-email-customer-uploaded.php:29
+msgid "Receipt Uploaded"
+msgstr ""
+
+#: include/class-wc-email-admin-uploaded.php:29
+#, php-format
+msgctxt "receipt-uploaded-admin-subject"
+msgid "[%s] Receipt Uploaded"
+msgstr ""
+
+#: include/class-wc-email-customer-approved.php:27
+msgid "Approved Receipt to Customer"
+msgstr ""
+
+#: include/class-wc-email-customer-approved.php:28
+msgid "An email sent to the customer when a receipt is approved."
+msgstr ""
+
+#: include/class-wc-email-customer-approved.php:30
+#, php-format
+msgctxt "receipt-approved-customer-subject"
+msgid "[%s] Receipt Approved"
+msgstr ""
+
+#: include/class-wc-email-customer-rejected.php:27
+msgid "Rejected Receipt to Customer"
+msgstr ""
+
+#: include/class-wc-email-customer-rejected.php:28
+msgid "An email sent to the customer when a receipt is rejected."
+msgstr ""
+
+#: include/class-wc-email-customer-rejected.php:30
+#, php-format
+msgctxt "receipt-rejected-customer-subject"
+msgid "[%s] Receipt Rejected"
+msgstr ""
+
+#: include/class-wc-email-customer-uploaded.php:27
+msgid "Uploaded Receipt to Customer"
+msgstr ""
+
+#: include/class-wc-email-customer-uploaded.php:28
+msgid "An email sent to the customer when a receipt is uploaded."
+msgstr ""
+
+#: include/class-wc-email-customer-uploaded.php:30
+#, php-format
+msgctxt "receipt-uploaded-customer-subject"
+msgid "[%s] Receipt Uploaded"
+msgstr ""
+
+#. translators: %s: Customer billing full name
+#: templates/admin-approved-receipt-template-plain.php:24
+#: templates/admin-approved-receipt-template.php:21
+#: templates/customer-approved-receipt-template-plain.php:24
+#: templates/customer-approved-receipt-template.php:21
+#, php-format
+msgid "The order #%d uploaded receipt has been approved."
+msgstr ""
+
+#. translators: %s: Customer billing full name
+#: templates/admin-rejected-receipt-template-plain.php:24
+#: templates/admin-rejected-receipt-template.php:21
+#: templates/customer-rejected-receipt-template-plain.php:24
+#: templates/customer-rejected-receipt-template.php:21
+#, php-format
+msgid "The order #%d uploaded receipt has been rejected."
+msgstr ""
+
+#. translators: %s: Customer billing full name
+#: templates/admin-uploaded-receipt-template-plain.php:24
+#: templates/admin-uploaded-receipt-template.php:21
+#: templates/customer-uploaded-receipt-template-plain.php:24
+#: templates/customer-uploaded-receipt-template.php:21
+#, php-format
+msgid "The order #%d receipt has been uploaded."
+msgstr ""
+
+#: wc-upload-reciept.php:73
 msgid "WooCommerce Upload Receipt"
 msgstr ""
 
-#: wc-upload-reciept.php:72
+#: wc-upload-reciept.php:74
 #, php-format
 msgid "%2$s ver. %1$s"
 msgstr ""
 
-#: wc-upload-reciept.php:98 wc-upload-reciept.php:102 wc-upload-reciept.php:297
-#: wc-upload-reciept.php:480
-msgid "Upload Receipt"
-msgstr ""
-
-#: wc-upload-reciept.php:112
-msgid "BACS (direct bank/wire transfer)"
-msgstr ""
-
-#: wc-upload-reciept.php:127
-msgid "Payment methods"
-msgstr ""
-
-#: wc-upload-reciept.php:128
-msgid "Select Payment methods you wish to activate receipt uploading feature"
-msgstr ""
-
-#: wc-upload-reciept.php:142
-msgid "Allowed File Types"
-msgstr ""
-
-#: wc-upload-reciept.php:143
+#: wc-upload-reciept.php:153 wc-upload-reciept.php:196
 #, php-format
-msgid ""
-"Set Allowed file MIME-Types, one per each line, e.g. add application/pdf to "
-"support PDF file. %s"
+msgid "Wrong ORDER_ID, Order #%s not found!"
 msgstr ""
 
-#: wc-upload-reciept.php:143
-msgid "Learn more"
+#: wc-upload-reciept.php:174
+msgid "View Order Details"
 msgstr ""
 
-#: wc-upload-reciept.php:154
-msgid "Maximum file size (MB)"
+#: wc-upload-reciept.php:177 wc-upload-reciept.php:265
+msgid "Date Uploaded: "
 msgstr ""
 
-#: wc-upload-reciept.php:155
-msgid "Maximum allowed file size in Megabytes (MB)"
-msgstr ""
-
-#: wc-upload-reciept.php:168
-msgid "Redirect After Upload"
-msgstr ""
-
-#: wc-upload-reciept.php:169
-msgid "Redirect to given URL and successfull upload, leave empty to disable"
-msgstr ""
-
-#: wc-upload-reciept.php:202
-msgid "Payment Receipt Approval"
-msgstr ""
-
-#: wc-upload-reciept.php:245 wc-upload-reciept.php:330
-#: wc-upload-reciept.php:399 wc-upload-reciept.php:517
-msgid "Awaiting Upload"
-msgstr ""
-
-#: wc-upload-reciept.php:313
-msgid "Click to change"
-msgstr ""
-
-#: wc-upload-reciept.php:314
-msgid "Receipt Attachment ID"
-msgstr ""
-
-#: wc-upload-reciept.php:317
-msgid "Uploaded at:"
-msgstr ""
-
-#: wc-upload-reciept.php:320
-msgid "Change Receipt Image"
-msgstr ""
-
-#: wc-upload-reciept.php:321
-msgid "Unlink Receipt Image"
-msgstr ""
-
-#: wc-upload-reciept.php:322
-msgid "Change Upload Date"
-msgstr ""
-
-#: wc-upload-reciept.php:328
-msgid "Receipt Approval Status"
-msgstr ""
-
-#: wc-upload-reciept.php:331
-msgid "Pending"
-msgstr ""
-
-#: wc-upload-reciept.php:332
-msgid "Approved"
-msgstr ""
-
-#: wc-upload-reciept.php:333
-msgid "Rejected"
-msgstr ""
-
-#: wc-upload-reciept.php:337
-msgid "Admin Note"
-msgstr ""
-
-#: wc-upload-reciept.php:343
-msgid "Previously Uploaded Receipts"
-msgstr ""
-
-#: wc-upload-reciept.php:357
-msgid "Change Upload Receipt Plugin Setting"
-msgstr ""
-
-#: wc-upload-reciept.php:402
-msgid "Pending Approval"
-msgstr ""
-
-#: wc-upload-reciept.php:405
-msgid "Receipt Approved"
-msgstr ""
-
-#: wc-upload-reciept.php:408
-msgid "Receipt Rejected"
-msgstr ""
-
-#: wc-upload-reciept.php:411
-msgid "Unknown Status"
+#: wc-upload-reciept.php:180 wc-upload-reciept.php:279
+msgid "Admin Note: "
 msgstr ""
 
 #. translators: ## is file size in MB
-#: wc-upload-reciept.php:438
+#: wc-upload-reciept.php:213
 msgctxt "js-translate"
 msgid "Error! File size should be less than ## MB"
 msgstr ""
 
-#: wc-upload-reciept.php:439
+#: wc-upload-reciept.php:214
 msgctxt "js-translate"
 msgid "Please wait ..."
 msgstr ""
 
-#: wc-upload-reciept.php:440
+#: wc-upload-reciept.php:215
 msgctxt "js-translate"
 msgid "Error! You should choose a file first."
 msgstr ""
 
-#: wc-upload-reciept.php:442
+#: wc-upload-reciept.php:217
 msgctxt "js-translate"
 msgid "Unknown Server Error Occured! Try again."
 msgstr ""
 
-#: wc-upload-reciept.php:445
+#: wc-upload-reciept.php:220
 msgid "Upload receipt"
 msgstr ""
 
-#: wc-upload-reciept.php:459
+#: wc-upload-reciept.php:225
 msgid "Current receipt: "
 msgstr ""
 
-#: wc-upload-reciept.php:475
+#: wc-upload-reciept.php:242
 msgid "Upload Receipt: "
 msgstr ""
 
+#: wc-upload-reciept.php:247 wc-upload-reciept.php:310
+#: wc-upload-reciept.php:336 wc-upload-reciept.php:613
+msgid "Upload Receipt"
+msgstr ""
+
+#: wc-upload-reciept.php:350
+msgid "Disabled (do nothing)"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: wc-upload-reciept.php:378
+msgid "PeproDev WooCommerce Receipt Uploader"
+msgstr ""
+
+#: wc-upload-reciept.php:381
+msgid "Payment methods"
+msgstr ""
+
+#: wc-upload-reciept.php:382
+msgid "Select Payment methods you wish to activate receipt uploading feature"
+msgstr ""
+
+#: wc-upload-reciept.php:396
+msgid "Allowed File MIME-Types"
+msgstr ""
+
+#: wc-upload-reciept.php:397
+#, php-format
+msgid ""
+"Enter file MIME-Types per Each Line, e.g. add application/pdf to support "
+"uploading PDF files.<br>%s"
+msgstr ""
+
+#: wc-upload-reciept.php:397 wc-upload-reciept.php:398
+msgid "Learn more"
+msgstr ""
+
+#: wc-upload-reciept.php:409
+msgid "Maximum file size (MB)"
+msgstr ""
+
+#: wc-upload-reciept.php:410
+msgid "Maximum allowed uploading size in Megabytes (MB)"
+msgstr ""
+
+#: wc-upload-reciept.php:423
+msgid "Redirect After Upload"
+msgstr ""
+
+#: wc-upload-reciept.php:424
+msgid "Redirect to given URL after Successfull Upload, leave empty to disable"
+msgstr ""
+
+#: wc-upload-reciept.php:439
+msgid "Auto-Change Order Status"
+msgstr ""
+
+#: wc-upload-reciept.php:444
+msgid "When Order Placed"
+msgstr ""
+
+#: wc-upload-reciept.php:445
+msgid ""
+"Auto-Change Order Status After Order Placed (this will overwrite default "
+"WooCommerce behavior)"
+msgstr ""
+
+#: wc-upload-reciept.php:452
+msgid "On Awaiting Receipt Upload"
+msgstr ""
+
+#: wc-upload-reciept.php:453
+msgid "Change Order Status when Order Awaits for Receipt Upload by Customer"
+msgstr ""
+
+#: wc-upload-reciept.php:460
+msgid "On Awaiting Receipt Approval"
+msgstr ""
+
+#: wc-upload-reciept.php:461
+msgid ""
+"Change Order Status when Receipt is Uploaded and Pending Approval by Admin"
+msgstr ""
+
+#: wc-upload-reciept.php:468
+msgid "On Receipt Rejected"
+msgstr ""
+
+#: wc-upload-reciept.php:469
+msgid "Change Order Status When Admin Rejected Receipt and Did not Approve it"
+msgstr ""
+
+#: wc-upload-reciept.php:480
+msgid "Miscellaneous"
+msgstr ""
+
+#: wc-upload-reciept.php:481
+msgid "Shortcodes"
+msgstr ""
+
+#: wc-upload-reciept.php:485
+msgid "Show Receipt Preview for Order ID #15"
+msgstr ""
+
+#: wc-upload-reciept.php:489
+msgid "Show Upload Receipt Form for Order ID #15"
+msgstr ""
+
+#: wc-upload-reciept.php:492
+msgid "Notification"
+msgstr ""
+
+#: wc-upload-reciept.php:492
+#, php-format
+msgid ""
+"Since version 1.9, We added new Emails in WooCommerce Setting to support "
+"sending notifications using built-in WooCommerce feature. You can manage "
+"WooCommere Emails %s, if you need to Customize Emails see %s."
+msgstr ""
+
 #: wc-upload-reciept.php:493
-msgid "Date Uploaded: "
+msgctxt "link"
+msgid "here"
 msgstr ""
 
-#: wc-upload-reciept.php:502
-msgid "Admin Note: "
+#: wc-upload-reciept.php:494
+msgctxt "link"
+msgid "this guide"
 msgstr ""
 
-#: wc-upload-reciept.php:522
+#: wc-upload-reciept.php:495
+msgid "Useful Resources"
+msgstr ""
+
+#: wc-upload-reciept.php:496
+msgctxt "link"
+msgid "Rate 5-star"
+msgstr ""
+
+#: wc-upload-reciept.php:497
+msgctxt "link"
+msgid "Changelog"
+msgstr ""
+
+#: wc-upload-reciept.php:498
+msgctxt "link"
+msgid "Developer Site"
+msgstr ""
+
+#: wc-upload-reciept.php:499
+msgctxt "link"
+msgid "Contribute"
+msgstr ""
+
+#: wc-upload-reciept.php:500
+msgctxt "link"
+msgid "Report Bug"
+msgstr ""
+
+#: wc-upload-reciept.php:527
+msgid "Payment Receipt"
+msgstr ""
+
+#: wc-upload-reciept.php:570 wc-upload-reciept.php:646
+#: wc-upload-reciept.php:734 wc-upload-reciept.php:774
+msgid "Awaiting Upload"
+msgstr ""
+
+#: wc-upload-reciept.php:629
+msgid "Click to change"
+msgstr ""
+
+#: wc-upload-reciept.php:630
+msgid "Receipt Attachment ID"
+msgstr ""
+
+#: wc-upload-reciept.php:633
+msgid "Uploaded at:"
+msgstr ""
+
+#: wc-upload-reciept.php:636
+msgid "Change Receipt Image"
+msgstr ""
+
+#: wc-upload-reciept.php:637
+msgid "Unlink Receipt Image"
+msgstr ""
+
+#: wc-upload-reciept.php:638
+msgid "Change Upload Date"
+msgstr ""
+
+#: wc-upload-reciept.php:644
+msgid "Receipt Approval Status"
+msgstr ""
+
+#: wc-upload-reciept.php:647
+msgid "Pending"
+msgstr ""
+
+#: wc-upload-reciept.php:648
+msgid "Approved"
+msgstr ""
+
+#: wc-upload-reciept.php:649
+msgid "Rejected"
+msgstr ""
+
+#: wc-upload-reciept.php:653
+msgid "Admin Note"
+msgstr ""
+
+#: wc-upload-reciept.php:659
+msgid "Previously Uploaded Receipts"
+msgstr ""
+
+#: wc-upload-reciept.php:673
+msgid "Change Upload Receipt Plugin Setting"
+msgstr ""
+
+#: wc-upload-reciept.php:737
+msgid "Pending Approval"
+msgstr ""
+
+#: wc-upload-reciept.php:746
+msgid "Unknown Status"
+msgstr ""
+
+#: wc-upload-reciept.php:779
 #, php-format
 msgid "Awaiting Receipt Upload (%s)"
 msgid_plural "Awaiting Receipts Upload (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: wc-upload-reciept.php:528
+#: wc-upload-reciept.php:784
 msgid "Awaiting Approval"
 msgstr ""
 
-#: wc-upload-reciept.php:533
+#: wc-upload-reciept.php:789
 #, php-format
 msgid "Awaiting Receipt Approval (%s)"
 msgid_plural "Awaiting Receipts Approval (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: wc-upload-reciept.php:539 wc-upload-reciept.php:556
+#: wc-upload-reciept.php:794 wc-upload-reciept.php:811
 msgctxt "pst"
 msgid "Receipt Rejected"
 msgstr ""
 
-#: wc-upload-reciept.php:544
+#: wc-upload-reciept.php:799
 #, php-format
 msgid "Receipt Rejected (%s)"
 msgid_plural "Receipt Rejected (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: wc-upload-reciept.php:554
+#: wc-upload-reciept.php:809
 msgctxt "pst"
 msgid "Awaiting Receipt Upload"
 msgstr ""
 
-#: wc-upload-reciept.php:555
+#: wc-upload-reciept.php:810
 msgctxt "pst"
 msgid "Awaiting Receipt Approval"
 msgstr ""
 
-#: wc-upload-reciept.php:580
+#: wc-upload-reciept.php:835
 msgid "Setting"
 msgstr ""
 
-#: wc-upload-reciept.php:581
+#: wc-upload-reciept.php:836
 msgid "Upload Setting"
 msgstr ""
 
-#: wc-upload-reciept.php:586 wc-upload-reciept.php:587
+#: wc-upload-reciept.php:841 wc-upload-reciept.php:842
 msgid "Support"
 msgstr ""
 
-#: wc-upload-reciept.php:601
+#: wc-upload-reciept.php:856
 #, php-format
 msgctxt "footer-copyright"
 msgid "Thanks for using %s products"
 msgstr ""
 
-#: wc-upload-reciept.php:601
+#: wc-upload-reciept.php:856
 msgid "Pepro Dev"
 msgstr ""
 
-#: wc-upload-reciept.php:603
+#: wc-upload-reciept.php:858
 #, php-format
 msgctxt "footer-copyright"
 msgid "%s — Version %s"
 msgstr ""
 
-#: wc-upload-reciept.php:609
+#: wc-upload-reciept.php:864
 msgid "Unauthorized Access!"
 msgstr ""
 
-#: wc-upload-reciept.php:634
+#: wc-upload-reciept.php:887
 #, php-format
 msgid "Customer uploaded payment receipt image. %s"
 msgstr ""
 
-#: wc-upload-reciept.php:638
+#: wc-upload-reciept.php:892
 msgid "Upload completed successfully."
 msgstr ""
 
-#: wc-upload-reciept.php:654
+#: wc-upload-reciept.php:908
 msgid ""
 "There was an error uploading your file. Please check file type and size."
 msgstr ""
 
-#: wc-upload-reciept.php:663
+#: wc-upload-reciept.php:917
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: wc-upload-reciept.php:676
+#: wc-upload-reciept.php:930
 #, php-format
 msgctxt "required-plugin"
 msgid "%1$s needs %2$s in order to function"
 msgstr ""
 
-#: wc-upload-reciept.php:679
+#: wc-upload-reciept.php:933
 msgctxt "required-plugin"
 msgid "WooCommerce"
-msgstr ""
-
-#. Plugin Name of the plugin/theme
-msgid "PeproDev WooCommerce Receipt Uploader"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
