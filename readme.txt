@@ -65,14 +65,14 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Screenshots ==
 
-1. WooCommerce Orders List and BACS Receipt Status
+1. v2.0, a Mega-update released
 2. WooCommerce Order Screen and Receipt Settings
 3. Customer Orders list and receipt status
 4. Customer receipt upload form in order details page
 5. Customer receipt uploaded in order details page
 6. Customer receipt rejected and admin commented in order details page
 7. Customer receipt approved in order details page
-8. Options page (added since version 1.4)
+8. WooCommerce Orders List and BACS Receipt Status
 
 
 
