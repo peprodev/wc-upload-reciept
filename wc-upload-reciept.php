@@ -9,8 +9,8 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.0.0
-Stable tag: 2.0.0
+Version: 2.1.0
+Stable tag: 2.1.0
 Requires at least: 5.0
 Tested up to: 6.0.1
 Requires PHP: 5.6
@@ -23,7 +23,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 # @Last modified by:   amirhp-com <its@amirhp.com>
-# @Last modified time: 2022/08/15 19:53:36
+# @Last modified time: 2022/08/22 12:54:57
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
 
@@ -47,9 +47,9 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     private $versionICON;
     private $authorICON;
     private $settingICON;
-    private $db_table = null;
+    private $db_table     = null;
+    private $meta_links   = array();
     private $manage_links = array();
-    private $meta_links = array();
     public function __construct()
     {
       global $wpdb;
@@ -63,7 +63,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_basename = plugin_basename(__FILE__);
       $this->url             = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
       $this->plugin_file     = __FILE__;
-      $this->version         = "1.7.0";
+      $this->version         = "2.1.0";
       $this->deactivateURI   = null;
       $this->deactivateICON  = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
       $this->versionICON     = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -81,17 +81,9 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->defaultImg    = "{$this->assets_url}backend/images/NoImageLarge.png";
       $this->defaultImgDir = "{$this->plugin_url}\assets\backend\images\NoImageLarge.png";
 
-      add_action("init",                                  array( $this, "init_plugin"));
-      add_filter("wc_order_statuses",                     array( $this, "add_wc_order_statuses"), 10000, 1);
+      add_action("init",              array( $this, "init_plugin"));
+      add_filter("wc_order_statuses", array( $this, "add_wc_order_statuses"), 10000, 1);
 
-    }
-    function attachment_url_to_path( $url )
-    {
-      $parsed_url = parse_url( $url );
-      if(empty($parsed_url['path'])) return false;
-      $file = ABSPATH . ltrim( $parsed_url['path'], '/');
-      if (file_exists( $file)) return $file;
-      return false;
     }
     public function init_plugin()
     {
@@ -101,7 +93,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       add_action( "plugin_row_meta",                              array( $this, "plugin_row_meta"), 10, 2);
       add_action( "admin_init",                                   array( $this, "admin_init"));
       add_action( "woocommerce_thankyou",                         array( $this, "woocommerce_thankyou"), -1);
-      add_action( "woocommerce_order_details_before_order_table", array( $this, "woocommerce_thankyou"), -1000);
+      add_action( "woocommerce_order_details_before_order_table", array( $this, "order_details_before_order_table"), -1000);
       add_action( "add_meta_boxes",                               array( $this, "receipt_upload_add_meta_box"));
       add_action( "admin_menu",                                   array( $this, "admin_menu"), 1000);
       add_action( "save_post",                                    array( $this, "receipt_upload_save"));
@@ -109,6 +101,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       add_action( "manage_shop_order_posts_custom_column",        array( $this, "column_content"));
       add_filter( "woocommerce_get_sections_checkout",            array( $this, "add_wc_section"));
       add_filter( "woocommerce_get_settings_checkout",            array( $this, "add_wc_settings"), 10, 2 );
+      add_filter( "woocommerce_valid_order_statuses_for_payment", array( $this, "valid_order_statuses_for_payment"), 10, 2 );
       add_action( "admin_enqueue_scripts",                        array( $this, "admin_enqueue_scripts"));
       add_filter( "woocommerce_email_classes",                    array( $this, "register_email"), 1, 1 );
       add_action( "woocommerce_receipt_uploaded_notification",    array( $this, "trigger_receipt_uploaded_notification" ));
@@ -142,6 +135,21 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         exit;
       }
 
+    }
+    public function valid_order_statuses_for_payment($status)
+    {
+      $status[] = "receipt-upload";
+      $status[] = "receipt-approval";
+      $status[] = "receipt-rejected";
+      return $status;
+    }
+    public function attachment_url_to_path( $url )
+    {
+      $parsed_url = parse_url( $url );
+      if(empty($parsed_url['path'])) return false;
+      $file = ABSPATH . ltrim( $parsed_url['path'], '/');
+      if (file_exists( $file)) return $file;
+      return false;
     }
     public function trigger_receipt_uploaded_notification($order_id)
     {
@@ -704,11 +712,12 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       if (isset($_POST['receipt_uplaoded_attachment_id'])) { update_post_meta($post_id, 'receipt_uplaoded_attachment_id', sanitize_text_field($_POST['receipt_uplaoded_attachment_id'])); }
       if (isset($_POST['receipt_upload_date_uploaded'])) { update_post_meta($post_id, 'receipt_upload_date_uploaded', sanitize_text_field($_POST['receipt_upload_date_uploaded'])); }
       $order = wc_get_order($post_id);
-      do_action("peprodev_uploadreceipt_save_receipt", $post_id, $order, $_POST);
       if (isset($_POST['receipt_upload_status'])) {
+        do_action("peprodev_uploadreceipt_save_receipt", $post_id, $order, $_POST);
         $prev = $this->get_meta("receipt_upload_status", $post_id);
         $new  = sanitize_text_field($_POST['receipt_upload_status']);
         do_action("peprodev_uploadreceipt_{$prev}_to_{$new}", $order->get_id(), $order, $_POST);
+
         if ($new !== $prev) {
           update_post_meta($post_id, 'receipt_upload_last_change', current_time("Y-m-d H:i:s"));
           do_action("peprodev_uploadreceipt_receipt_status_changed", $order->get_id(), $order, $prev, $new);
@@ -742,6 +751,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
               break;
           }
         }
+        do_action("woocommerce_order_edit_status", $order->get_id(), sanitize_text_field( $_POST["order_status"] ) );
       }
       if (isset($_POST['receipt_upload_admin_note'])) {
         update_post_meta($post_id, 'receipt_upload_admin_note', sanitize_text_field($_POST['receipt_upload_admin_note']));
@@ -771,22 +781,22 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     public function woocommerce_thankyou($order)
     {
       if (! $order) { return; }
-      if ("woocommerce_thankyou" == current_filter()) {
-        $order = wc_get_order($order);
-        if ($this->is_payment_methode_allowed($order->get_payment_method())) {
-          $ran_before = get_post_meta($order->get_id(), "receipt_upload_status", true);
-          if ((!$ran_before || empty($ran_before)) && "yes" !== $ran_before) {
-            $order->update_status($this->status_order_placed);
-            update_post_meta($order->get_id(), "receipt_upload_status", "upload");
-            update_post_meta($order->get_id(), "peprodev_uploadreceipt_action_run_once", "yes");
-            do_action("peprodev_uploadreceipt_order_placed", $order);
-          }
+      $order = wc_get_order($order);
+      if ($this->is_payment_methode_allowed($order->get_payment_method())) {
+        $ran_before = get_post_meta($order->get_id(), "receipt_upload_status", true);
+        if ((!$ran_before || empty($ran_before)) && "yes" !== $ran_before) {
+          $order->update_status($this->status_order_placed);
+          update_post_meta($order->get_id(), "receipt_upload_status", "upload");
+          update_post_meta($order->get_id(), "peprodev_uploadreceipt_action_run_once", "yes");
+          do_action("peprodev_uploadreceipt_order_placed", $order);
         }
       }
-      if ("woocommerce_thankyou" !== current_filter()) {
-        $orderid = $order->get_id();
-        echo do_shortcode( "[receipt-form order_id=$orderid]");
-      }
+    }
+    public function order_details_before_order_table($order)
+    {
+      if (! $order) { return; }
+      $orderid = $order->get_id();
+      echo do_shortcode( "[receipt-form order_id=$orderid]");
     }
     public function add_wc_prebuy_status()
     {

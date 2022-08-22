@@ -8,7 +8,18 @@
 
 &nbsp;
 
-- 🔥 Since v.1.5 ~> Multiple Gateways Receipt acceptance
+##### ❤️ v2.0, email notifications, shortcodes and secure src
+- 😍 Integration with WooCommerce Email Notifications
+- 😍 Send Email on Receipt Upload, Approve and Reject to Admin and Customer
+- 😍 Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
+- 😍 Added Shortcode to Display Uploaded Receipt `[receipt-preview order_id=2095]`
+- 😍 Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
+- 😍 Added Secure Image Display! (Hide uploaded receipt URL)
+- 😍 Compatible with [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/)
+
+&nbsp;
+
+##### 🔥 v.1.5, multiple gateways upload receipt acceptance
 - ✅ Hook for Developers to run actions on receipt upload by user
 - ✅ Hook for Developers to run actions on receipt status change
 - ✅ Optional: Redirect to an Address on Success Receipt upload
