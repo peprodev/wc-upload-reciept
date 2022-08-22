@@ -77,7 +77,7 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Changelog ==
 
-= v2.1.0 (2022-08-22/1401-05-31)
+= v2.1.0 (2022-08-22/1401-05-31) =
 - Now Compatible with [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/)
 
 = ❤️ v2.0, a Mega-update released 🤩 (2022-08-15/1401-05-24) =
@@ -148,7 +148,10 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
-- ❤️ v2.0, a Mega-update released 🤩 (2022-08-15/1401-05-24)
+= v2.1.0 (2022-08-22/1401-05-31) =
+- Now Compatible with [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/)
+
+= ❤️ v2.0, a Mega-update released 🤩 (2022-08-15/1401-05-24) =
 - 😍 Integration with WooCommerce Email Notifications
 - 😍 Send Email on Receipt Upload, Approve and Reject to Admin and Customer
 - 😍 Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
