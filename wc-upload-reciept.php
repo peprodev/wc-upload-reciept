@@ -2,28 +2,28 @@
 /*
 Plugin Name: PeproDev WooCommerce Receipt Uploader
 Description: Upload Receipt for Any Payment method in WooCommerce. Customers will Upload the receipt (image/pdf) and Shop Managers will approve/reject it manually
-Contributors: amirhosseinhpv, peprodev
-Tags: functionality, woocommmerce, payment, transfer money, upload receipt, receipt upload, BACS Payment
+Contributors: peprodev, amirhpcom
+Tags: WooCommmerce, Upload Receipt, eCommerce solution
 Author: Pepro Dev. Group
-Developer: Amirhosseinhpv
+Developer: amirhp.com
+Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
-Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.1.0
-Stable tag: 2.1.0
+Version: 2.2.0
+Stable tag: 2.2.0
 Requires at least: 5.0
-Tested up to: 6.0.1
+Tested up to: 6.0.2
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 6.8
+WC tested up to: 6.8.2
 Text Domain: receipt-upload
 Domain Path: /languages
-Copyright: (c) 2022 Pepro Dev. Group, All rights reserved.
+Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 # @Last modified by:   amirhp-com <its@amirhp.com>
-# @Last modified time: 2022/08/22 12:54:57
+# @Last modified time: 2022/09/11 00:33:43
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
 
@@ -63,7 +63,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_basename = plugin_basename(__FILE__);
       $this->url             = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
       $this->plugin_file     = __FILE__;
-      $this->version         = "2.1.0";
+      $this->version         = "2.2.0";
       $this->deactivateURI   = null;
       $this->deactivateICON  = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
       $this->versionICON     = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -77,6 +77,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->status_receipt_awaiting_upload   = get_option("peprobacsru_status_on_receipt_awaiting_upload", "none");
       $this->status_receipt_awaiting_approval = get_option("peprobacsru_status_on_receipt_awaiting_approval", "none");
       $this->status_receipt_rejected          = get_option("peprobacsru_status_on_receipt_rejected", "none");
+      $this->use_secure_link                  = "yes" === (string) get_option("peprobacsru_use_secure_link", "no");
 
       $this->defaultImg    = "{$this->assets_url}backend/images/NoImageLarge.png";
       $this->defaultImgDir = "{$this->plugin_url}\assets\backend\images\NoImageLarge.png";
@@ -320,19 +321,22 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       ob_end_clean();
       return $htmloutput;
     }
-    public function generate_secure_preview_src($id=0, $order, $email=false)
+    public function generate_secure_preview_src($id=0, $order=false, $email=false)
     {
       $url = $this->defaultImg;
-      if ($email) {
+      if ($email || false == $this->use_secure_link ) {
         if (!empty($id)) {
           $url = wp_get_attachment_image_src($id, 'full');
           $url = $url ? $url[0] : "";
         }
         return $url;
       }
-      $uid = $order->get_customer_id();
-      $secureWallet = ($uid*$id) . "," . ($order->get_id()*($id*$id)). "," . ($id*$id) ;
-      return home_url("?secure_preview=$secureWallet");
+      if ($order && $order !== false && method_exists($order, "get_customer_id") ) {
+        $uid = $order->get_customer_id();
+        if (!$uid || $uid < 1 ) $uid = 1;
+        $secureWallet = ($uid*$id) . "," . ($order->get_id()*($id*$id)). "," . ($id*$id) ;
+        return home_url("?secure_preview=$secureWallet");
+      }
     }
     public function admin_menu()
     {
@@ -459,6 +463,14 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             ),
           ),
           array(
+            'type'              => "checkbox",
+            'id'                => "peprobacsru_use_secure_link",
+            'title'             => __("Use Secure Link", $this->td),
+            'desc'              => __("Use Secure Link", $this->td),
+            'desc_tip'          => __("Output uploaded receipt by a secure link (not in emails)", $this->td),
+            'default'           => "no",
+          ),
+          array(
             'type'              => 'sectionend',
             'id'                => 'upload_receipt_1',
           ),
@@ -507,7 +519,9 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             'type'              => 'title',
             'id'                => 'peprobacsru_heading_3',
             'title'             => __("Miscellaneous", $this->td),
-            'desc'              => "<h4>".__("Shortcodes", $this->td)."</h4>
+            'desc'              => "
+
+            <h4>".__("Shortcodes", $this->td)."</h4>
             <table>
               <tr>
                 <td><code>[receipt-preview order_id=15]</code></td>
@@ -517,16 +531,22 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
                 <td><code>[receipt-form order_id=15]</code></td>
                 <td>".__("Show Upload Receipt Form for Order ID #15", $this->td)."</td>
               </tr>
-            </table><hr>
-            <h4>".__("Notification", $this->td)."</h4>" . sprintf( __("Since version 1.9, We added new Emails in WooCommerce Setting to support sending notifications using built-in WooCommerce feature. You can manage WooCommere Emails %s, if you need to Customize Emails see %s.", $this->td),
+            </table>
+            <hr>
+
+            <h4>".__("Notification", $this->td)."</h4>" .
+            sprintf( __("Since version 1.9, We added new Emails in WooCommerce Setting to support sending notifications using built-in WooCommerce feature. You can manage WooCommere Emails %s, if you need to Customize Emails see %s.", $this->td),
               "<a href='".admin_url("admin.php?page=wc-settings&tab=email")."' target='_blank'>"._x("here","link",$this->td)."</a>",
-              "<a href='https://woocommerce.com/posts/how-to-customize-emails-in-woocommerce/' target='_blank'>"._x("this guide","link",$this->td)."</a>",
-            ) . "<hr><h4>".__("Useful Resources", $this->td)."</h4>
+              "<a href='https://woocommerce.com/posts/how-to-customize-emails-in-woocommerce/' target='_blank'>"._x("this guide","link",$this->td)."</a>"
+            ) . "
+
+            <hr>
+            <h4>".__("Useful Resources", $this->td)."</h4>
             <a href='https://wordpress.org/support/plugin/pepro-bacs-receipt-upload-for-woocommerce/reviews/#new-post' target='_blank'>"._x("Rate 5-star","link",$this->td)."</a>&nbsp;/&nbsp;" .
             "<a href='https://wordpress.org/plugins/pepro-bacs-receipt-upload-for-woocommerce/#developers' target='_blank'>"._x("Changelog","link",$this->td)."</a>&nbsp;/&nbsp;" .
             "<a href='https://pepro.dev/' target='_blank'>"._x("Developer Site","link",$this->td)."</a>&nbsp;/&nbsp;" .
             "<a href='https://github.com/peprodev/wc-upload-reciept' target='_blank'>"._x("Contribute","link",$this->td)."</a>&nbsp;/&nbsp;" .
-            "<a href='mailto:support@pepro.dev?subject={$this->title}' target='_blank'>"._x("Report Bug","link",$this->td)."</a>",
+            "<a href='mailto:support@pepro.dev?subject={$this->title}' target='_blank'>"._x("Report Bug","link",$this->td)."</a>"
           ),
           array(
             'type'              => 'sectionend',

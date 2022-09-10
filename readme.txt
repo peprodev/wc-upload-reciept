@@ -1,13 +1,13 @@
 === PeproDev WooCommerce Receipt Uploader ===
-Contributors: peprodev,amirhosseinhpv
+Contributors: peprodev, amirhpcom
 Donate link: https://pepro.dev/donate
-Tags: functionality, woocommmerce, payment, bacs, transfer money, upload receipt, receipt upload
+Tags: WooCommmerce, Upload Receipt, eCommerce solution
 Requires at least: 5.0
-Tested up to: 6.0.1
-Stable tag: 2.1.0
+Tested up to: 6.0.2
+Stable tag: 2.2.0
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 6.8
+WC tested up to: 6.8.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,7 +75,25 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 
 
+== Upgrade Notice ==
+
+= v2.2.0 (2022-08-22/1401-05-31) =
+- Option to Enable/Disable Secure Link for Showing Uploaded Receipts
+
+= v2.1.0 (2022-08-22/1401-05-31) =
+- Now Compatible with [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/)
+
+= ❤️ v2.0, a Mega-update released 🤩 (2022-08-15/1401-05-24) =
+- 😍 Integration with WooCommerce Email Notifications
+- 😍 Send Email on Receipt Upload, Approve and Reject to Admin and Customer
+- 😍 Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
+- 😍 Added Shortcode to Display Uploaded Receipt `[receipt-preview order_id=2095]`
+- 😍 Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
+
 == Changelog ==
+
+= v2.2.0 (2022-08-22/1401-05-31) =
+- Option to Enable/Disable Secure Link for Showing Uploaded Receipts
 
 = v2.1.0 (2022-08-22/1401-05-31) =
 - Now Compatible with [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/)
@@ -145,22 +163,3 @@ You can help us improve our works by committing/requesting your changes to Pepro
 == About Us ==
 
 ***PEPRO DEV*** is a premium supplier of quality WordPress plugins, services and support. Join us at [https://pepro.dev/](https://pepro.dev/) and also don't forget to check our [free plugins](http://profiles.wordpress.org/peprodev/), we hope you enjoy them!
-
-== Upgrade Notice ==
-
-= v2.1.0 (2022-08-22/1401-05-31) =
-- Now Compatible with [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/)
-
-= ❤️ v2.0, a Mega-update released 🤩 (2022-08-15/1401-05-24) =
-- 😍 Integration with WooCommerce Email Notifications
-- 😍 Send Email on Receipt Upload, Approve and Reject to Admin and Customer
-- 😍 Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
-- 😍 Added Shortcode to Display Uploaded Receipt `[receipt-preview order_id=2095]`
-- 😍 Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
-
-= 1.7.0 (2022-01-19/1400-10-29) =
-- ✅ Added Option: Redirect to an Address on Success Receipt upload
-- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_prevented`
-- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_success`
-- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_failed`
-- DEV: added jQuery hook on $(document) ~> `peprodev_receipt_uploader_ajax_completed`

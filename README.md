@@ -1,9 +1,6 @@
 **PeproDev WooCommerce Receipt Uploader**
 ==========================
 
-
-## ⚠️ No Configuration Required! Install and Use 😍
-
 ### **Upload Receipt for Any Payment method in WooCommerce. Customers will Upload the receipt and Shop Managers will approve/reject it manually.**
 
 &nbsp;
@@ -16,6 +13,8 @@
 - 😍 Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
 - 😍 Added Secure Image Display! (Hide uploaded receipt URL)
 - 😍 Compatible with [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/)
+- 😍 Option to Enable/Disable Secure Link for Showing Uploaded Receipts
+- 😍 Now Compatible with [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/)
 
 &nbsp;
 
@@ -34,4 +33,4 @@
 
 ### **Developed by** [Perpro Development Group](https://pepro.dev/) for WooCommerce
 
-*Current Version: 1.8.0* \| *Lead Developer:* [Amirhosseinhpv](https://hpv.im/)
+*Current Version: 2.2.0* \| *Lead Developer:* [amirhp.com](https://amirhp.com)
