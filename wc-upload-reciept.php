@@ -9,8 +9,8 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.2.0
-Stable tag: 2.2.0
+Version: 2.2.1
+Stable tag: 2.2.1
 Requires at least: 5.0
 Tested up to: 6.0.2
 Requires PHP: 5.6
@@ -23,7 +23,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 # @Last modified by:   amirhp-com <its@amirhp.com>
-# @Last modified time: 2022/09/11 00:33:43
+# @Last modified time: 2022/11/20 14:27:30
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
 
@@ -63,7 +63,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_basename = plugin_basename(__FILE__);
       $this->url             = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
       $this->plugin_file     = __FILE__;
-      $this->version         = "2.2.0";
+      $this->version         = "2.2.1";
       $this->deactivateURI   = null;
       $this->deactivateICON  = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
       $this->versionICON     = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -732,12 +732,12 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       if (isset($_POST['receipt_uplaoded_attachment_id'])) { update_post_meta($post_id, 'receipt_uplaoded_attachment_id', sanitize_text_field($_POST['receipt_uplaoded_attachment_id'])); }
       if (isset($_POST['receipt_upload_date_uploaded'])) { update_post_meta($post_id, 'receipt_upload_date_uploaded', sanitize_text_field($_POST['receipt_upload_date_uploaded'])); }
       $order = wc_get_order($post_id);
+      if (!$order) return;
       if (isset($_POST['receipt_upload_status'])) {
         do_action("peprodev_uploadreceipt_save_receipt", $post_id, $order, $_POST);
         $prev = $this->get_meta("receipt_upload_status", $post_id);
         $new  = sanitize_text_field($_POST['receipt_upload_status']);
         do_action("peprodev_uploadreceipt_{$prev}_to_{$new}", $order->get_id(), $order, $_POST);
-
         if ($new !== $prev) {
           update_post_meta($post_id, 'receipt_upload_last_change', current_time("Y-m-d H:i:s"));
           do_action("peprodev_uploadreceipt_receipt_status_changed", $order->get_id(), $order, $prev, $new);
