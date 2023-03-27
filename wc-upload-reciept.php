@@ -2,28 +2,28 @@
 /*
 Plugin Name: PeproDev WooCommerce Receipt Uploader
 Description: Upload Receipt for Any Payment method in WooCommerce. Customers will Upload the receipt (image/pdf) and Shop Managers will approve/reject it manually
-Contributors: peprodev, amirhpcom
+Contributors: peprodev, amirhpcom, blackswanlab
 Tags: WooCommmerce, Upload Receipt, eCommerce solution
 Author: Pepro Dev. Group
 Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.2.1
-Stable tag: 2.2.1
+Version: 2.2.2
+Stable tag: 2.2.2
 Requires at least: 5.0
-Tested up to: 6.0.2
+Tested up to: 6.1
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 6.8.2
+WC tested up to: 7.1
 Text Domain: receipt-upload
 Domain Path: /languages
 Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-*/
-# @Last modified by:   amirhp-com <its@amirhp.com>
-# @Last modified time: 2022/11/20 14:27:30
+ * @Last modified by: amirhp-com <its@amirhp.com>
+ * @Last modified time: 2023/03/27 17:45:29
+ */
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
 
@@ -41,6 +41,15 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     private $plugin_url;
     private $assets_url;
     private $plugin_basename;
+    private $settingURL;
+    private $submitionURL;
+    private $status_order_placed;
+    private $status_receipt_awaiting_upload;
+    private $status_receipt_awaiting_approval;
+    private $status_receipt_rejected;
+    private $use_secure_link;
+    private $defaultImg;
+    private $defaultImgDir;
     private $plugin_file;
     private $deactivateURI;
     private $deactivateICON;
@@ -63,7 +72,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_basename = plugin_basename(__FILE__);
       $this->url             = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
       $this->plugin_file     = __FILE__;
-      $this->version         = "2.2.1";
+      $this->version         = "2.2.2";
       $this->deactivateURI   = null;
       $this->deactivateICON  = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
       $this->versionICON     = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -88,8 +97,8 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     }
     public function init_plugin()
     {
-      define( "CUSTOM_WC_EMAIL_PATH",                             plugin_dir_path( __FILE__ ));
-      load_plugin_textdomain("receipt-upload",                    false, dirname(plugin_basename(__FILE__))."/languages/");
+      define( "CUSTOM_WC_EMAIL_PATH", plugin_dir_path( __FILE__ ));
+      load_plugin_textdomain("receipt-upload", false, dirname(plugin_basename(__FILE__))."/languages/");
       $this->add_wc_prebuy_status();
       add_action( "plugin_row_meta",                              array( $this, "plugin_row_meta"), 10, 2);
       add_action( "admin_init",                                   array( $this, "admin_init"));
@@ -217,10 +226,12 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     }
     public function receipt_form_shortcode($atts=array(), $content="")
     {
-      global $post;
+      global $post, $wp;
       $atts = extract(shortcode_atts(array( "order_id" => "", "email" => "", ),$atts));
       $is_email = "yes" == strtolower($email) ? true : false;
-      if (empty($order_id)) $order_id = $post->ID;
+      if (empty($order_id) && isset($wp->query_vars['order-received']) ) {$order_id = absint($wp->query_vars['order-received']);}
+	  if (empty($order_id)) $order_id = $post->ID;
+	  
       $order_id = (int) sanitize_text_field( $order_id );
       $order = wc_get_order( $order_id );
       if (!$order) return sprintf(__("Wrong ORDER_ID, Order #%s not found!",$this->td), $order_id);
@@ -321,7 +332,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       ob_end_clean();
       return $htmloutput;
     }
-    public function generate_secure_preview_src($id=0, $order=false, $email=false)
+    public function generate_secure_preview_src($id=0, $order, $email=false)
     {
       $url = $this->defaultImg;
       if ($email || false == $this->use_secure_link ) {
@@ -943,7 +954,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
                   "date"     => date_i18n("Y-m-d l H:i:s", $datetime),
                   "status"   => $status,
                   "statustx" => $statustxt,
-                  "url"      => $this->generate_secure_preview_src($attachment_id, $order),
+                  "url"      => $this->generate_secure_preview_src($attachment_id, $order, false),
                 )
               );
             }

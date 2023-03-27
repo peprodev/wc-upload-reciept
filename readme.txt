@@ -1,13 +1,13 @@
 === PeproDev WooCommerce Receipt Uploader ===
-Contributors: peprodev, amirhpcom
+Contributors: peprodev, amirhpcom, blackswanlab
 Donate link: https://pepro.dev/donate
 Tags: WooCommmerce, Upload Receipt, eCommerce solution
 Requires at least: 5.0
 Tested up to: 6.1
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 6.8.2
+WC tested up to: 7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,10 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
+= v2.2.2 (2023-03-27/1402-01-07) =
+- Shortcode [receipt-form] now works on Thankyou page (no order_id argument is needed)
+- Updated some translations
+
 = v2.2.1 (2022-11-20/1401-08-29) =
 - Fixed Error on Save Order (Uncaught Error: Call to a member function get_id() on bool)
 
@@ -94,6 +98,10 @@ You can help us improve our works by committing/requesting your changes to Pepro
 - 😍 Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
 
 == Changelog ==
+
+= v2.2.2 (2023-03-27/1402-01-07) =
+- Shortcode [receipt-form] now works on Thankyou page (no order_id argument is needed)
+- Updated some translations
 
 = v2.2.0 (2022-08-22/1401-05-31) =
 - Option to Enable/Disable Secure Link for Showing Uploaded Receipts
