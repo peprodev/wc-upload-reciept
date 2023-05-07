@@ -1,15 +1,13 @@
 <?php
+/*
+ * @Author: Amirhossein Hosseinpour <https://amirhp.com>
+ * @Date Created: 2022/08/15 21:03:32
+ * @Last modified by: amirhp-com <its@amirhp.com>
+ * @Last modified time: 2023/05/07 11:31:35
+ */
 
-# @Author: amirhp-com
-# @Email:  its@amirhp.com
-# @Last modified time: 2022/08/15 18:32:13
-
-if (! defined('ABSPATH')) {
-	exit;
-}
-if (! class_exists('WC_Email')) {
-	return;
-}
+if (! defined('ABSPATH')) { exit; }
+if (! class_exists('WC_Email')) { return; }
 
 class WC_peproDev_ApprovedReceipt_Customer extends WC_Email
 {
@@ -30,12 +28,12 @@ class WC_peproDev_ApprovedReceipt_Customer extends WC_Email
 		$this->subject        = sprintf(_x('[%s] Receipt Approved', 'receipt-approved-customer-subject', 'receipt-upload'), '{blogname}');
 
 		// // Template paths.
-		$this->template_base  = CUSTOM_WC_EMAIL_PATH . 'templates/';
+		$this->template_base  = PEPRODEV_RECEIPT_UPLOAD_EMAIL_PATH . 'templates/';
 		$this->template_html  = 'customer-approved-receipt-template.php';
 		$this->template_plain = 'customer-approved-receipt-template-plain.php';
 
 		// Action to which we hook onto to send the email.
-		add_action('woocommerce_receipt_approved_notification', array( $this, 'trigger' ));
+		// add_action('woocommerce_receipt_approved_notification', array( $this, 'trigger' ));
 
 		parent::__construct();
 	}
@@ -48,17 +46,15 @@ class WC_peproDev_ApprovedReceipt_Customer extends WC_Email
 	*/
 	public function trigger($order_id)
 	{
-		$this->object         = wc_get_order($order_id);
+		$this->object = wc_get_order($order_id);
 		if (version_compare('3.0.0', WC()->version, '>')) {
-			$order_email      = $this->object->billing_email;
+			$order_email = $this->object->billing_email;
 		} else {
-			$order_email      = $this->object->get_billing_email();
+			$order_email = $this->object->get_billing_email();
 		}
-		$this->recipient      = $order_email;
+		$this->recipient = $order_email;
 
-		if (! $this->is_enabled() || ! $this->get_recipient()) {
-			return;
-		}
+		if (! $this->is_enabled() || ! $this->get_recipient()) { return; }
 		$this->send($this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments());
 	}
 	/**
@@ -71,6 +67,7 @@ class WC_peproDev_ApprovedReceipt_Customer extends WC_Email
 	{
 		return wc_get_template_html($this->template_html, array(
 			'order'         => $this->object,
+			'additional_content' => $this->get_additional_content(),
 			'email_heading' => $this->get_heading(),
 			'sent_to_admin' => false,
 			'plain_text'    => false,
@@ -87,6 +84,7 @@ class WC_peproDev_ApprovedReceipt_Customer extends WC_Email
 	{
 		return wc_get_template_html($this->template_plain, array(
 			'order'         => $this->object,
+			'additional_content' => $this->get_additional_content(),
 			'email_heading' => $this->get_heading(),
 			'sent_to_admin' => false,
 			'plain_text'    => true,
