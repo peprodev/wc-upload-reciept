@@ -22,7 +22,7 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2023/05/07 11:46:45
+ * @Last modified time: 2023/05/07 11:55:51
  */
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
@@ -73,7 +73,6 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       define("PEPRODEV_RECEIPT_UPLOAD_EMAIL_PATH", plugin_dir_path(__FILE__));
       load_plugin_textdomain("receipt-upload", false, dirname(plugin_basename(__FILE__)) . "/languages/");
       $this->add_wc_prebuy_status();
-      add_action("plugin_row_meta"                             , array($this, "plugin_row_meta"), 10, 2);
       add_action("admin_init"                                  , array($this, "admin_init"));
       add_action("woocommerce_thankyou"                        , array($this, "woocommerce_thankyou"), -1);
       add_action("woocommerce_order_details_before_order_table", array($this, "order_details_before_order_table"), -1000);
@@ -122,7 +121,8 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     }
     public function plugin_action_links($actions, $plugin_file) {
       if (plugin_basename(__FILE__) == $plugin_file) {
-        $actions[$this->db_slug] = "<a href='$this->url'>" . __("Settings", $this->td) . "</a>";
+        $actions["{$this->db_slug}_1"] = "<a href='$this->url'>" . __("Setting", $this->td) . "</a>";
+        $actions["{$this->db_slug}_2"] = "<a href='".admin_url("admin.php?page=wc-settings&tab=email")."'>" . __("WC Emails", $this->td) . "</a>";
       }
       return $actions;
     }

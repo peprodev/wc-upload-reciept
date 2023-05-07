@@ -2,7 +2,7 @@
  * @Author: Amirhossein Hosseinpour <https://amirhp.com>
  * @Date Created: 2022/08/15 21:03:32
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2023/05/07 11:06:13
+ * @Last modified time: 2023/05/07 12:10:28
  */
 
 (function ($) {
@@ -73,7 +73,7 @@
               percentComplete = parseInt(percentComplete * 100);
               $("toast").html(_upload_receipt.precent.replace("##", percentComplete));
               if (percentComplete === 100) {
-                $("toast").html(_upload_receipt.done);
+                // $("toast").html(_upload_receipt.done);
               }
             }
           }, false);
