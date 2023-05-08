@@ -9,8 +9,8 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.4.0
-Stable tag: 2.4.0
+Version: 2.4.1
+Stable tag: 2.4.1
 Requires at least: 5.0
 Tested up to: 6.2
 Requires PHP: 5.6
@@ -22,7 +22,7 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2023/05/07 11:55:51
+ * @Last modified time: 2023/05/08 11:00:30
  */
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
@@ -49,7 +49,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.4.0";
+      $this->version                          = "2.4.1";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->status_order_placed              = get_option("peprobacsru_auto_change_status", "none");
@@ -361,7 +361,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     public function admin_menu() {
       add_submenu_page("woocommerce", $this->title, __("Upload Receipt", $this->td), "manage_options", $this->url);
       $v230 = get_option("peprobacsru_allowed_gatewawys", null);
-      if (trim($v230) !== "" && $v230 !== null) {
+      if ( $v230 !== "" && $v230 !== null && !empty($v230) ) {
         update_option("peprobacsru_allowed_gateways", $v230);
         delete_option("peprobacsru_allowed_gatewawys");
       }

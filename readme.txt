@@ -4,7 +4,7 @@ Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
 Requires at least: 5.0
 Tested up to: 6.2
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 Requires PHP: 5.6
 WC requires at least: 4.0
 WC tested up to: 7.6.1
@@ -77,6 +77,9 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
+= v2.4.1 =
+- Fixed Upgrading from v2.2.2 to 2.4.0 cause Fatal Error
+
 = v2.4.0 (2023-05-07/1402-02-17) =
 - Added Recipient for Admin Emails
 - Added Additional Content for Emails
@@ -107,6 +110,9 @@ You can help us improve our works by committing/requesting your changes to Pepro
 - 😍 Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
 
 == Changelog ==
+
+= v2.4.1 =
+- Fixed Upgrading from v2.2.2 to 2.4.0 cause Fatal Error
 
 = v2.4.0 (2023-05-07/1402-02-17) =
 - Added Recipient for Admin Emails
