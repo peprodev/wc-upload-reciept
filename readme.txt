@@ -4,7 +4,7 @@ Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
 Requires at least: 5.0
 Tested up to: 6.2
-Stable tag: 2.4.1
+Stable tag: 2.4.2
 Requires PHP: 5.6
 WC requires at least: 4.0
 WC tested up to: 7.6.1
@@ -77,6 +77,11 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
+= v2.4.2 (2023-05-10/1402-02-20) =
+- Added Option to change Order Status when Receipt Status is Approved
+- Fixed Wrong Order Status when Receipt is Rejected (thanks to Alex Perez)
+- Added View Button to Uploaded Receipts Metabox to Open Full-Resolution file in new tab
+
 = v2.4.1 =
 - Fixed Upgrading from v2.2.2 to 2.4.0 cause Fatal Error
 
@@ -89,27 +94,12 @@ You can help us improve our works by committing/requesting your changes to Pepro
 - Changed Plugin row-meta to WordPress default style
 - Updated some translations
 
-= v2.2.2 (2023-03-27/1402-01-07) =
-- Shortcode [receipt-form] now works on Thankyou page (no order_id argument is needed)
-- Updated some translations
-
-= v2.2.1 (2022-11-20/1401-08-29) =
-- Fixed Error on Save Order (Uncaught Error: Call to a member function get_id() on bool)
-
-= v2.2.0 (2022-08-22/1401-05-31) =
-- Option to Enable/Disable Secure Link for Showing Uploaded Receipts
-
-= v2.1.0 (2022-08-22/1401-05-31) =
-- Now Compatible with [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/)
-
-= ❤️ v2.0, a Mega-update released 🤩 (2022-08-15/1401-05-24) =
-- 😍 Integration with WooCommerce Email Notifications
-- 😍 Send Email on Receipt Upload, Approve and Reject to Admin and Customer
-- 😍 Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
-- 😍 Added Shortcode to Display Uploaded Receipt `[receipt-preview order_id=2095]`
-- 😍 Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
-
 == Changelog ==
+
+= v2.4.2 (2023-05-10/1402-02-20) =
+- Added Option to change Order Status when Receipt Status is Approved
+- Fixed Wrong Order Status when Receipt is Rejected (thanks to Alex Perez)
+- Added View Button to Uploaded Receipts Metabox to Open Full-Resolution file in new tab
 
 = v2.4.1 =
 - Fixed Upgrading from v2.2.2 to 2.4.0 cause Fatal Error

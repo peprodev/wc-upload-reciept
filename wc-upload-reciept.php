@@ -9,8 +9,8 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.4.1
-Stable tag: 2.4.1
+Version: 2.4.2
+Stable tag: 2.4.2
 Requires at least: 5.0
 Tested up to: 6.2
 Requires PHP: 5.6
@@ -22,7 +22,7 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2023/05/08 11:00:30
+ * @Last modified time: 2023/05/10 09:01:53
  */
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
@@ -41,6 +41,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     private $status_receipt_awaiting_upload;
     private $status_receipt_awaiting_approval;
     private $status_receipt_rejected;
+    private $status_receipt_approved;
     private $use_secure_link;
     private $defaultImg;
     public function __construct() {
@@ -49,13 +50,14 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.4.1";
+      $this->version                          = "2.4.2";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->status_order_placed              = get_option("peprobacsru_auto_change_status", "none");
       $this->status_receipt_awaiting_upload   = get_option("peprobacsru_status_on_receipt_awaiting_upload", "none");
       $this->status_receipt_awaiting_approval = get_option("peprobacsru_status_on_receipt_awaiting_approval", "none");
       $this->status_receipt_rejected          = get_option("peprobacsru_status_on_receipt_rejected", "none");
+      $this->status_receipt_approved          = get_option("peprobacsru_status_on_receipt_approved", "none");
       $this->use_secure_link                  = "yes" === (string) get_option("peprobacsru_use_secure_link", "no");
       $this->defaultImg                       = "{$this->assets_url}backend/images/NoImageLarge.png";
 
@@ -532,6 +534,14 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             'options'           => $order_statuses,
           ),
           array(
+            'type'              => 'select',
+            'id'                => 'peprobacsru_status_on_receipt_approved',
+            'title'             => __("On Receipt Approved", $this->td),
+            'desc_tip'          => __("Change Order Status When Admin Approved Receipt", $this->td),
+            'default'           => "none",
+            'options'           => $order_statuses,
+          ),
+          array(
             'type'              => 'sectionend',
             'id'                => 'upload_receipt_3',
           ),
@@ -727,8 +737,14 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         <?php
         foreach ($all_previous as $attached) {
           $src = wp_get_attachment_image_src($attached->ID, 'thumbnail');
+          $src_full = wp_get_attachment_image_src($attached->ID, 'full');
+          $url = admin_url("upload.php?item={$attached->ID}");
           $src = isset($src[0]) ? $src[0] : $this->defaultImg;
-          echo "<div class='prev-uploaded-item'><a href='" . admin_url("upload.php?item={$attached->ID}") . "' target='_blank'><img src='$src' width='75' /></a></div>";
+          $src_full = isset($src_full[0]) ? $src_full[0] : $this->defaultImg;
+          echo "<div class='prev-uploaded-item'>
+                    <a href='$url' target='_blank'><img src='$src' width='75' /></a>
+                    <a href='$src_full' target='_blank' class='button button-small' style='margin-top: 0.5rem;'><span class='dashicons dashicons-external' style='margin: 2px 0;'></span> ".__("View", $this->td)."</a>
+                </div>";
         }
         ?>
       </div>
@@ -758,38 +774,36 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $order = wc_get_order($post_id);
       if (!$order) return;
       if (isset($_POST['receipt_upload_status'])) {
-        // do_action("peprodev_uploadreceipt_save_receipt", $post_id, $order, $_POST);
+        do_action("peprodev_uploadreceipt_save_receipt", $post_id, $order, $_POST);
         $prev = $this->get_meta("receipt_upload_status", $post_id);
         $new  = sanitize_text_field($_POST['receipt_upload_status']);
-        // do_action("peprodev_uploadreceipt_{$prev}_to_{$new}", $order->get_id(), $order, $_POST);
-
+        do_action("peprodev_uploadreceipt_{$prev}_to_{$new}", $order->get_id(), $order, $_POST);
         update_post_meta($post_id, 'receipt_upload_status', $new);
-
 
         if ($new !== $prev) {
           update_post_meta($post_id, 'receipt_upload_last_change', current_time("Y-m-d H:i:s"));
-          // do_action("peprodev_uploadreceipt_receipt_status_changed", $order->get_id(), $order, $prev, $new);
+          do_action("peprodev_uploadreceipt_receipt_status_changed", $order->get_id(), $order, $prev, $new);
         }
 
         if ("approved" == $new) {
-          $order->update_status($this->status_receipt_rejected);
+          $order->update_status($this->status_receipt_approved);
           do_action("woocommerce_receipt_approved_notification", $order->get_id());
-          // do_action("peprodev_uploadreceipt_receipt_rejected", $order->get_id(), $order, $prev, $new);
+          do_action("peprodev_uploadreceipt_receipt_approved", $order->get_id(), $order, $prev, $new);
         }
         if ("rejected" == $new) {
           $order->update_status($this->status_receipt_rejected);
           do_action("woocommerce_receipt_rejected_notification", $order->get_id());
-          // do_action("peprodev_uploadreceipt_receipt_rejected", $order->get_id(), $order, $prev, $new);
+          do_action("peprodev_uploadreceipt_receipt_rejected", $order->get_id(), $order, $prev, $new);
         }
         if ("upload" == $new && "upload" !== $prev) {
           $order->update_status($this->status_receipt_awaiting_upload);
           do_action("woocommerce_receipt_await_upload_notification", $order->get_id());
-          // do_action("peprodev_uploadreceipt_receipt_awaiting_upload", $order->get_id(), $order, $prev, $new);
+          do_action("peprodev_uploadreceipt_receipt_awaiting_upload", $order->get_id(), $order, $prev, $new);
         }
         if ("pending" == $new && "pending" !== $prev) {
           $order->update_status($this->status_receipt_awaiting_approval);
           do_action("woocommerce_receipt_pending_approval_notification", $order->get_id());
-          // do_action("peprodev_uploadreceipt_receipt_awaiting_approval", $order->get_id(), $order, $prev, $new);
+          do_action("peprodev_uploadreceipt_receipt_awaiting_approval", $order->get_id(), $order, $prev, $new);
         }
 
         // do_action("woocommerce_order_edit_status", $order->get_id(), sanitize_text_field( $_POST["order_status"] ) );
@@ -797,7 +811,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       }
       if (isset($_POST['receipt_upload_admin_note'])) {
         update_post_meta($post_id, 'receipt_upload_admin_note', sanitize_text_field($_POST['receipt_upload_admin_note']));
-        // do_action("peprodev_uploadreceipt_receipt_attached_note", $order->get_id(), $order, $prev, $new);
+        do_action("peprodev_uploadreceipt_receipt_attached_note", $order->get_id(), $order, $prev, $new);
       }
     }
     public function get_status($status) {

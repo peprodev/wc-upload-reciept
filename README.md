@@ -33,4 +33,4 @@
 
 ### **Developed by** [Perpro Development Group](https://pepro.dev/) for WooCommerce
 
-*Current Version: 2.2.0* \| *Lead Developer:* [amirhp.com](https://amirhp.com)
+*Current Version: 2.4.2* \| *Lead Developer:* [amirhp.com](https://amirhp.com)
