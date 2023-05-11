@@ -4,7 +4,7 @@ Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
 Requires at least: 5.0
 Tested up to: 6.2
-Stable tag: 2.4.2
+Stable tag: 2.4.3
 Requires PHP: 5.6
 WC requires at least: 4.0
 WC tested up to: 7.6.1
@@ -77,6 +77,9 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
+= v2.4.3 (2023-05-11/1402-02-21) =
+- Fixed change order status on change receipt status
+
 = v2.4.2 (2023-05-10/1402-02-20) =
 - Added Option to change Order Status when Receipt Status is Approved
 - Fixed Wrong Order Status when Receipt is Rejected (thanks to Alex Perez)
@@ -95,6 +98,9 @@ You can help us improve our works by committing/requesting your changes to Pepro
 - Updated some translations
 
 == Changelog ==
+
+= v2.4.3 (2023-05-11/1402-02-21) =
+- Fixed change order status on change receipt status
 
 = v2.4.2 (2023-05-10/1402-02-20) =
 - Added Option to change Order Status when Receipt Status is Approved

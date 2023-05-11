@@ -9,8 +9,8 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.4.2
-Stable tag: 2.4.2
+Version: 2.4.3
+Stable tag: 2.4.3
 Requires at least: 5.0
 Tested up to: 6.2
 Requires PHP: 5.6
@@ -22,7 +22,7 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2023/05/10 09:01:53
+ * @Last modified time: 2023/05/11 11:23:25
  */
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
@@ -50,7 +50,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.4.2";
+      $this->version                          = "2.4.3";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->status_order_placed              = get_option("peprobacsru_auto_change_status", "none");
@@ -786,22 +786,30 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         }
 
         if ("approved" == $new) {
-          $order->update_status($this->status_receipt_approved);
+          if ("none" != $this->status_receipt_approved) {
+            $order->update_status($this->status_receipt_approved);
+          }
           do_action("woocommerce_receipt_approved_notification", $order->get_id());
           do_action("peprodev_uploadreceipt_receipt_approved", $order->get_id(), $order, $prev, $new);
         }
         if ("rejected" == $new) {
-          $order->update_status($this->status_receipt_rejected);
+          if ("none" != $this->status_receipt_rejected) {
+            $order->update_status($this->status_receipt_rejected);
+          }
           do_action("woocommerce_receipt_rejected_notification", $order->get_id());
           do_action("peprodev_uploadreceipt_receipt_rejected", $order->get_id(), $order, $prev, $new);
         }
         if ("upload" == $new && "upload" !== $prev) {
-          $order->update_status($this->status_receipt_awaiting_upload);
+          if ("none" != $this->status_receipt_awaiting_upload) {
+            $order->update_status($this->status_receipt_awaiting_upload);
+          }
           do_action("woocommerce_receipt_await_upload_notification", $order->get_id());
           do_action("peprodev_uploadreceipt_receipt_awaiting_upload", $order->get_id(), $order, $prev, $new);
         }
         if ("pending" == $new && "pending" !== $prev) {
-          $order->update_status($this->status_receipt_awaiting_approval);
+          if ("none" != $this->status_receipt_awaiting_approval) {
+            $order->update_status($this->status_receipt_awaiting_approval);
+          }
           do_action("woocommerce_receipt_pending_approval_notification", $order->get_id());
           do_action("peprodev_uploadreceipt_receipt_awaiting_approval", $order->get_id(), $order, $prev, $new);
         }
