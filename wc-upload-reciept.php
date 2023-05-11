@@ -9,8 +9,8 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.4.3
-Stable tag: 2.4.3
+Version: 2.4.4
+Stable tag: 2.4.4
 Requires at least: 5.0
 Tested up to: 6.2
 Requires PHP: 5.6
@@ -22,7 +22,7 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2023/05/11 11:23:25
+ * @Last modified time: 2023/05/11 11:42:44
  */
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
@@ -42,6 +42,8 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     private $status_receipt_awaiting_approval;
     private $status_receipt_rejected;
     private $status_receipt_approved;
+    private $html_before;
+    private $html_after;
     private $use_secure_link;
     private $defaultImg;
     public function __construct() {
@@ -50,7 +52,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.4.3";
+      $this->version                          = "2.4.4";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->status_order_placed              = get_option("peprobacsru_auto_change_status", "none");
@@ -58,6 +60,8 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->status_receipt_awaiting_approval = get_option("peprobacsru_status_on_receipt_awaiting_approval", "none");
       $this->status_receipt_rejected          = get_option("peprobacsru_status_on_receipt_rejected", "none");
       $this->status_receipt_approved          = get_option("peprobacsru_status_on_receipt_approved", "none");
+      $this->html_before                      = get_option("peprobacsru_html_before_form", "");
+      $this->html_after                       = get_option("peprobacsru_html_after_form", "");
       $this->use_secure_link                  = "yes" === (string) get_option("peprobacsru_use_secure_link", "no");
       $this->defaultImg                       = "{$this->assets_url}backend/images/NoImageLarge.png";
 
@@ -274,6 +278,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
           ));
           wp_enqueue_script("upload-receipt.js");
           echo "<h2 class='woocommerce-order-details__title upload_receipt'>" . __("Upload receipt", $this->td) . "</h2>";
+          echo $is_email ? "" : do_shortcode($this->html_before);
           ?>
           <table class="woocommerce-table woocommerce-table--upload-receipt upload_receipt" style="width: 100%;background: #f5f5f5;position: relative;">
             <tbody>
@@ -337,6 +342,9 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
               ?>
             </tfoot>
           </table>
+          <?php 
+          echo $is_email ? "" : do_shortcode($this->html_after);
+          ?>
         </div>
         <?php
       }
@@ -540,6 +548,30 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             'desc_tip'          => __("Change Order Status When Admin Approved Receipt", $this->td),
             'default'           => "none",
             'options'           => $order_statuses,
+          ),
+          array(
+            'type'              => 'textarea',
+            'id'                => 'peprobacsru_html_before_form',
+            'title'             => __("Content Before Form (HTML)", $this->td),
+            'desc_tip'          => __("Enter content to be shown Before Form (Accepts HTML and Shortcodes)", $this->td),
+            'default'           => "",
+            'custom_attributes' => array(
+              'dir'             => 'ltr',
+              'lang'            => 'en_US',
+              'rows'            => '5',
+            ),
+          ),
+          array(
+            'type'              => 'textarea',
+            'id'                => 'peprobacsru_html_after_form',
+            'title'             => __("Content After Form (HTML)", $this->td),
+            'desc_tip'          => __("Enter content to be shown After Form (Accepts HTML and Shortcodes)", $this->td),
+            'default'           => "",
+            'custom_attributes' => array(
+              'dir'             => 'ltr',
+              'lang'            => 'en_US',
+              'rows'            => '5',
+            ),
           ),
           array(
             'type'              => 'sectionend',
