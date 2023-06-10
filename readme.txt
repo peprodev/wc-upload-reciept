@@ -4,10 +4,10 @@ Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
 Requires at least: 5.0
 Tested up to: 6.2
-Stable tag: 2.4.4
+Stable tag: 2.4.5
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 7.6.1
+WC tested up to: 7.7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,9 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
+= v2.4.5 (2023-06-10/1402-03-20) =
+- Fixed Fatal Error on Sending Mail because of not declaring constant PEPRODEV_RECEIPT_UPLOAD_EMAIL_PATH earlier
+
 = v2.4.4 (2023-05-11/1402-02-21) =
 - Fixed change order status on change receipt status
 - Added Option to Add Custom Content Before/After Form (Accepts HTML & Shortcode)
@@ -99,6 +102,9 @@ You can help us improve our works by committing/requesting your changes to Pepro
 - Updated some translations
 
 == Changelog ==
+
+= v2.4.5 (2023-06-10/1402-03-20) =
+- Fixed Fatal Error on Sending Mail because of not declaring constant PEPRODEV_RECEIPT_UPLOAD_EMAIL_PATH earlier
 
 = v2.4.3 (2023-05-11/1402-02-21) =
 - Fixed change order status on change receipt status

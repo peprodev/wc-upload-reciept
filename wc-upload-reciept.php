@@ -9,20 +9,20 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.4.4
-Stable tag: 2.4.4
+Version: 2.4.5
+Stable tag: 2.4.5
 Requires at least: 5.0
 Tested up to: 6.2
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 7.6.1
+WC tested up to: 7.7.2
 Text Domain: receipt-upload
 Domain Path: /languages
 Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2023/05/11 11:42:44
+ * @Last modified time: 2023/06/10 12:48:23
  */
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
@@ -52,7 +52,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.4.4";
+      $this->version                          = "2.4.5";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->status_order_placed              = get_option("peprobacsru_auto_change_status", "none");
@@ -64,7 +64,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->html_after                       = get_option("peprobacsru_html_after_form", "");
       $this->use_secure_link                  = "yes" === (string) get_option("peprobacsru_use_secure_link", "no");
       $this->defaultImg                       = "{$this->assets_url}backend/images/NoImageLarge.png";
-
+      define("PEPRODEV_RECEIPT_UPLOAD_EMAIL_PATH", plugin_dir_path(__FILE__));
       add_action("init", array($this, "init_plugin"));
       add_filter("woocommerce_email_classes", array($this, "register_email"), 1, 1);
       add_action("woocommerce_receipt_uploaded_notification", array($this, "trigger_receipt_uploaded_notification"));
@@ -76,7 +76,6 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       add_filter("plugin_action_links", array($this, "plugin_action_links"), 10, 2);
     }
     public function init_plugin() {
-      define("PEPRODEV_RECEIPT_UPLOAD_EMAIL_PATH", plugin_dir_path(__FILE__));
       load_plugin_textdomain("receipt-upload", false, dirname(plugin_basename(__FILE__)) . "/languages/");
       $this->add_wc_prebuy_status();
       add_action("admin_init"                                  , array($this, "admin_init"));
