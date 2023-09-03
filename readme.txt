@@ -3,11 +3,11 @@ Contributors: peprodev, amirhpcom, blackswanlab
 Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
 Requires at least: 5.0
-Tested up to: 6.2
-Stable tag: 2.4.5
+Tested up to: 6.3
+Stable tag: 2.5.0
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 7.7.2
+WC tested up to: 8.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,31 +77,18 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
-= v2.4.5 (2023-06-10/1402-03-20) =
-- Fixed Fatal Error on Sending Mail because of not declaring constant PEPRODEV_RECEIPT_UPLOAD_EMAIL_PATH earlier
+= v2.5.0 (2023-09-03/1402-06-12) =
+- Added Option to set which Order Statuses you want to show upload form
+- Fixed Re-sending Notification Email on order update
+- Fixed Showing upload form on Completed/Canceled Orders
 
-= v2.4.4 (2023-05-11/1402-02-21) =
-- Fixed change order status on change receipt status
-- Added Option to Add Custom Content Before/After Form (Accepts HTML & Shortcode)
-
-= v2.4.2 (2023-05-10/1402-02-20) =
-- Added Option to change Order Status when Receipt Status is Approved
-- Fixed Wrong Order Status when Receipt is Rejected (thanks to Alex Perez)
-- Added View Button to Uploaded Receipts Metabox to Open Full-Resolution file in new tab
-
-= v2.4.1 =
-- Fixed Upgrading from v2.2.2 to 2.4.0 cause Fatal Error
-
-= v2.4.0 (2023-05-07/1402-02-17) =
-- Added Recipient for Admin Emails
-- Added Additional Content for Emails
-- Enhanced Triggering Emails
-- Fixed Emails not Sending on Status Change
-- Added Uploading Percentage to Toast message
-- Changed Plugin row-meta to WordPress default style
-- Updated some translations
 
 == Changelog ==
+
+= v2.5.0 (2023-09-03/1402-06-12) =
+- Added Option to set which Order Statuses you want to show upload form
+- Fixed Re-sending Notification Email on order update
+- Fixed Showing upload form on Completed/Canceled Orders
 
 = v2.4.5 (2023-06-10/1402-03-20) =
 - Fixed Fatal Error on Sending Mail because of not declaring constant PEPRODEV_RECEIPT_UPLOAD_EMAIL_PATH earlier

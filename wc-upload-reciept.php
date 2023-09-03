@@ -9,20 +9,20 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.4.5
-Stable tag: 2.4.5
+Version: 2.5.0
+Stable tag: 2.5.0
 Requires at least: 5.0
-Tested up to: 6.2
+Tested up to: 6.3
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 7.7.2
+WC tested up to: 8.2
 Text Domain: receipt-upload
 Domain Path: /languages
 Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2023/06/10 12:48:23
+ * @Last modified time: 2023/09/03 11:16:36
  */
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
@@ -52,7 +52,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.4.5";
+      $this->version                          = "2.5.0";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->status_order_placed              = get_option("peprobacsru_auto_change_status", "none");
@@ -71,6 +71,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       add_action("woocommerce_receipt_approved_notification", array($this, "trigger_receipt_approved_notification"));
       add_action("woocommerce_receipt_rejected_notification", array($this, "trigger_receipt_rejected_notification"));
       add_action("woocommerce_receipt_await_upload_notification", array($this, "trigger_receipt_await_upload_notification"));
+      add_filter("woocommerce_admin_field_textarea2", array($this, "render_wc_field_textarea"));
       add_filter("wc_order_statuses", array($this, "add_wc_order_statuses"), 10000, 1);
       add_action("plugin_row_meta", array($this, "plugin_row_meta"), 10, 4);
       add_filter("plugin_action_links", array($this, "plugin_action_links"), 10, 2);
@@ -351,7 +352,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       ob_end_clean();
       return $htmloutput;
     }
-    public function generate_secure_preview_src($id = 0, $order, $email = false) {
+    public function generate_secure_preview_src($id = 0, $order=null, $email = false) {
       $url = $this->defaultImg;
       if ($email || false == $this->use_secure_link) {
         if (!empty($id)) {
@@ -453,10 +454,19 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             ),
           ),
           array(
-            'type'              => 'textarea',
+            'type'              => 'multiselect',
+            'class'             => "wc-enhanced-select",
+            'id'                => 'peprobacsru_show_on_statuses',
+            'title'             => __("Show on Statuses", $this->td),
+            'desc'          => __("Select Statues you wish to show Upload Receipt form", $this->td),
+            'default'           => array("wc-pending", "wc-processing", "wc-receipt-upload", "wc-receipt-approval", "wc-receipt-rejected"),
+            'options'           => $order_statuses,
+          ),
+          array(
+            'type'              => 'textarea2',
             'id'                => 'peprobacsru_allowed_file_types',
             'title'             => __("Allowed File MIME-Types", $this->td),
-            'desc_tip'          => sprintf(__("Enter file MIME-Types per Each Line, e.g. add application/pdf to support uploading PDF files.<br>%s", $this->td), "(<a href='https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types' target='_blank'>" . __("Learn more", $this->td) . "</a>)"),
+            'desc_tip'          => sprintf(__("Enter file MIME-Types per Each Line, e.g. add application/pdf to support uploading PDF files.<br>%s", $this->td), ""),
             'desc'              => "<a href='https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types' target='_blank'>" . __("Learn more", $this->td) . "</a>",
             'default'           => "image/jpeg" . PHP_EOL . "image/png" . PHP_EOL . "application/pdf",
             'custom_attributes' => array(
@@ -508,11 +518,12 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             'id'                => 'peprobacsru_heading_1',
             'title'             => __("Auto-Change Order Status", $this->td),
           ),
+
           array(
             'type'              => 'select',
             'id'                => 'peprobacsru_auto_change_status',
             'title'             => __("When Order Placed", $this->td),
-            'desc_tip'          => __("Auto-Change Order Status After Order Placed (this will overwrite default WooCommerce behavior)", $this->td),
+            'desc'          => __("Auto-Change Order Status After Order Placed (this will overwrite default WooCommerce behavior)", $this->td),
             'default'           => "none",
             'options'           => $order_statuses,
           ),
@@ -520,7 +531,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             'type'              => 'select',
             'id'                => 'peprobacsru_status_on_receipt_awaiting_upload',
             'title'             => __("On Awaiting Receipt Upload", $this->td),
-            'desc_tip'          => __("Change Order Status when Order Awaits for Receipt Upload by Customer", $this->td),
+            'desc'          => __("Change Order Status when Order Awaits for Receipt Upload by Customer", $this->td),
             'default'           => "wc-receipt-upload",
             'options'           => $order_statuses,
           ),
@@ -528,7 +539,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             'type'              => 'select',
             'id'                => 'peprobacsru_status_on_receipt_awaiting_approval',
             'title'             => __("On Awaiting Receipt Approval", $this->td),
-            'desc_tip'          => __("Change Order Status when Receipt is Uploaded and Pending Approval by Admin", $this->td),
+            'desc'          => __("Change Order Status when Receipt is Uploaded and Pending Approval by Admin", $this->td),
             'default'           => "wc-receipt-approval",
             'options'           => $order_statuses,
           ),
@@ -536,7 +547,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             'type'              => 'select',
             'id'                => 'peprobacsru_status_on_receipt_rejected',
             'title'             => __("On Receipt Rejected", $this->td),
-            'desc_tip'          => __("Change Order Status When Admin Rejected Receipt and Did not Approve it", $this->td),
+            'desc'          => __("Change Order Status When Admin Rejected Receipt and Did not Approve it", $this->td),
             'default'           => "wc-receipt-rejected",
             'options'           => $order_statuses,
           ),
@@ -544,15 +555,15 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             'type'              => 'select',
             'id'                => 'peprobacsru_status_on_receipt_approved',
             'title'             => __("On Receipt Approved", $this->td),
-            'desc_tip'          => __("Change Order Status When Admin Approved Receipt", $this->td),
+            'desc'          => __("Change Order Status When Admin Approved Receipt", $this->td),
             'default'           => "none",
             'options'           => $order_statuses,
           ),
           array(
-            'type'              => 'textarea',
+            'type'              => 'textarea2',
             'id'                => 'peprobacsru_html_before_form',
             'title'             => __("Content Before Form (HTML)", $this->td),
-            'desc_tip'          => __("Enter content to be shown Before Form (Accepts HTML and Shortcodes)", $this->td),
+            'desc'          => __("Enter content to be shown Before Form (Accepts HTML and Shortcodes)", $this->td),
             'default'           => "",
             'custom_attributes' => array(
               'dir'             => 'ltr',
@@ -561,10 +572,10 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             ),
           ),
           array(
-            'type'              => 'textarea',
+            'type'              => 'textarea2',
             'id'                => 'peprobacsru_html_after_form',
             'title'             => __("Content After Form (HTML)", $this->td),
-            'desc_tip'          => __("Enter content to be shown After Form (Accepts HTML and Shortcodes)", $this->td),
+            'desc'          => __("Enter content to be shown After Form (Accepts HTML and Shortcodes)", $this->td),
             'default'           => "",
             'custom_attributes' => array(
               'dir'             => 'ltr',
@@ -617,6 +628,35 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         );
       }
       return $settings;
+    }
+    public function render_wc_field_textarea($value){
+      $option_value = $value['value'];
+      // Custom attribute handling.
+      $custom_attributes = array();
+      
+      if ( ! empty( $value['custom_attributes'] ) && is_array( $value['custom_attributes'] ) ) {
+        foreach ( $value['custom_attributes'] as $attribute => $attribute_value ) {
+          $custom_attributes[] = esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '"';
+        }
+      }
+      ?>
+      <tr valign="top">
+        <th scope="row" class="titledesc">
+          <label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?></label>
+        </th>
+        <td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+          <textarea
+            name="<?php echo esc_attr( $value['field_name'] ); ?>"
+            id="<?php echo esc_attr( $value['id'] ); ?>"
+            style="<?php echo esc_attr( $value['css'] ); ?>"
+            class="<?php echo esc_attr( $value['class'] ); ?>"
+            placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
+            <?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
+            ><?php echo esc_textarea( $option_value ); // WPCS: XSS ok. ?></textarea>
+          <p><?php echo $value['desc']; // WPCS: XSS ok. ?></p>
+        </td>
+      </tr>
+      <?php
     }
     public function admin_enqueue_scripts($hook) {
       if (isset($_GET["page"]) && "wc-settings" == $_GET["page"] && isset($_GET["section"]) && "upload_receipt" == $_GET["section"]) {
@@ -816,28 +856,28 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
           do_action("peprodev_uploadreceipt_receipt_status_changed", $order->get_id(), $order, $prev, $new);
         }
 
-        if ("approved" == $new) {
+        if ("approved" == $new && $new != $prev) {
           if ("none" != $this->status_receipt_approved) {
             $order->update_status($this->status_receipt_approved);
           }
           do_action("woocommerce_receipt_approved_notification", $order->get_id());
           do_action("peprodev_uploadreceipt_receipt_approved", $order->get_id(), $order, $prev, $new);
         }
-        if ("rejected" == $new) {
+        if ("rejected" == $new && $new != $prev) {
           if ("none" != $this->status_receipt_rejected) {
             $order->update_status($this->status_receipt_rejected);
           }
           do_action("woocommerce_receipt_rejected_notification", $order->get_id());
           do_action("peprodev_uploadreceipt_receipt_rejected", $order->get_id(), $order, $prev, $new);
         }
-        if ("upload" == $new && "upload" !== $prev) {
+        if ("upload" == $new && $new != $prev) {
           if ("none" != $this->status_receipt_awaiting_upload) {
             $order->update_status($this->status_receipt_awaiting_upload);
           }
           do_action("woocommerce_receipt_await_upload_notification", $order->get_id());
           do_action("peprodev_uploadreceipt_receipt_awaiting_upload", $order->get_id(), $order, $prev, $new);
         }
-        if ("pending" == $new && "pending" !== $prev) {
+        if ("pending" == $new && $new != $prev) {
           if ("none" != $this->status_receipt_awaiting_approval) {
             $order->update_status($this->status_receipt_awaiting_approval);
           }
@@ -887,10 +927,14 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         }
       }
     }
-    public function order_details_before_order_table($order) {
+    public function order_details_before_order_table(\WC_Order $order) {
       if (!$order) { return; }
       $order_id = $order->get_id();
-      echo do_shortcode("[receipt-form order_id=$order_id]");
+      $array    = (array) get_option("peprobacsru_show_on_statuses");
+      $array    = array_map(function($i){return str_replace("wc-", "", $i); }, $array);
+      if ($order->has_status($array)) {
+        echo do_shortcode("[receipt-form order_id=$order_id]");
+      }
     }
     public function add_wc_prebuy_status() {
       register_post_status(
