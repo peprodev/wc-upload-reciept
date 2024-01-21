@@ -2,12 +2,13 @@
 Contributors: peprodev, amirhpcom, blackswanlab
 Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
-Requires at least: 5.0
-Tested up to: 6.3
-Stable tag: 2.5.0
+Version: 2.6.0
+Stable tag: 2.6.0
 Requires PHP: 5.6
+Tested up to: 6.4.2
+WC tested up to: 8.5.1
+Requires at least: 5.0
 WC requires at least: 4.0
-WC tested up to: 8.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +18,16 @@ Upload Receipt for Any Payment method in WooCommerce
 
 ### **Upload Receipt for Any Payment method in WooCommerce. Customers will Upload the receipt and Shop Managers will approve/reject it manually.**
 
-- ❤️ v2.0, a Mega-update released 🤩
+
+- 🔥 v2.6 [2024 🎉 release] Finally Upload to different directory is here!
+- 😍 Upload Receipts to different directory (wp-content/uploads/receipt_upload) -- Thanks to (Yok Morales)
+- ✅ Added compatibility with WooCommerce High-Performance Order Storage
+- ✅ Auto-add an .htaccess file into upload directory to prevent listing
+- ✅ Added filter to media list mode to show Only Receipts or Filter Receipts by Order ID
+- ✅ Added Receipts file size column in media screen, listing view
+- ✅ Fixed trimming New Lines while Saving custom html content (before/after upload form)
+
+- 🔥 v2.0, a Mega-update released 🤩
 - 😍 Integration with WooCommerce Email Notifications
 - 😍 Send Email on Receipt Upload, Approve and Reject to Admin and Customer
 - 😍 Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
@@ -74,8 +84,15 @@ You can help us improve our works by committing/requesting your changes to Pepro
 8. WooCommerce Orders List and BACS Receipt Status
 
 
-
 == Upgrade Notice ==
+
+= 🔥 v2.6.0 (2024-01-21/1402-11-01) Finally Upload to different directory is here! =
+- Now Upload Receipts to different directory (wp-content/uploads/receipt_upload) -- Thanks to (Yok Morales)
+- Auto-add an .htaccess file into upload directory to prevent listing
+- Added compatibility with WooCommerce High-Performance Order Storage
+- Added filter to media list mode to show Only Receipts or Filter Receipts by Order ID
+- Added Receipts file size column in media screen, listing view
+- Fixed trimming New Lines while Saving custom html content (before/after upload form)
 
 = v2.5.0 (2023-09-03/1402-06-12) =
 - Added Option to set which Order Statuses you want to show upload form
@@ -84,6 +101,14 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 
 == Changelog ==
+
+= v2.6.0 [2024 🎉] (2024-01-21/1402-11-01) =
+- Now Upload Receipts to different directory (wp-content/uploads/receipt_upload) -- Thanks to (Yok Morales)
+- Auto-add an .htaccess file into upload directory to prevent listing
+- Added compatibility with WooCommerce High-Performance Order Storage
+- Added filter to media list mode to show Only Receipts or Filter Receipts by Order ID
+- Added Receipts file size column in media screen, listing view
+- Fixed trimming New Lines while Saving custom html content (before/after upload form)
 
 = v2.5.0 (2023-09-03/1402-06-12) =
 - Added Option to set which Order Statuses you want to show upload form
@@ -124,13 +149,13 @@ You can help us improve our works by committing/requesting your changes to Pepro
 = v2.1.0 (2022-08-22/1401-05-31) =
 - Now Compatible with [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/)
 
-= ❤️ v2.0, a Mega-update released 🤩 (2022-08-15/1401-05-24) =
-- 😍 Integration with WooCommerce Email Notifications
-- 😍 Send Email on Receipt Upload, Approve and Reject to Admin and Customer
-- 😍 Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
-- 😍 Added Shortcode to Display Uploaded Receipt `[receipt-preview order_id=2095]`
-- 😍 Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
-- 😍 Added Secure Image Display! (Hide uploaded receipt URL)
+= v2.0, a Mega-update released 🤩 (2022-08-15/1401-05-24) =
+- Integration with WooCommerce Email Notifications
+- Send Email on Receipt Upload, Approve and Reject to Admin and Customer
+- Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
+- Added Shortcode to Display Uploaded Receipt `[receipt-preview order_id=2095]`
+- Added Shortcode to Display Upload Receipt Form `[receipt-form order_id=2095]`
+- Added Secure Image Display! (Hide uploaded receipt URL)
 
 = 1.8.0 (2022-03-15/1400-12-24) =
 - Fixed not showing all gateways
