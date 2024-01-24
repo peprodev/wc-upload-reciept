@@ -2,8 +2,8 @@
 Contributors: peprodev, amirhpcom, blackswanlab
 Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
-Version: 2.6.0
-Stable tag: 2.6.0
+Version: 2.6.1
+Stable tag: 2.6.1
 Requires PHP: 5.6
 Tested up to: 6.4.2
 WC tested up to: 8.5.1

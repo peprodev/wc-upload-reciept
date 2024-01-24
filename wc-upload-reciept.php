@@ -9,8 +9,8 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.6.0
-Stable tag: 2.6.0
+Version: 2.6.1
+Stable tag: 2.6.1
 Requires at least: 5.0
 Tested up to: 6.4.2
 Requires PHP: 5.6
@@ -22,7 +22,7 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/01/21 22:07:42
+ * @Last modified time: 2024/01/24 15:32:53
 */
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
@@ -53,7 +53,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.6.0";
+      $this->version                          = "2.6.1";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->folder_name                      = apply_filters("pepro_upload_receipt_folder_name", "receipt_upload");
@@ -76,6 +76,14 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       add_filter("wc_order_statuses", array($this, "add_wc_order_statuses"), 10000, 1);
       add_action("plugin_row_meta", array($this, "plugin_row_meta"), 10, 4);
       add_filter("plugin_action_links", array($this, "plugin_action_links"), 10, 2);
+      /**
+      * add compatibility with new woocommerce hpos
+      */
+      add_action("before_woocommerce_init", function(){
+        if (class_exists(\Automattic\WooCommerce\Utilities\FeaturesUtil::class)) {
+          \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+        }
+      });
     }
     public function init_plugin() {
       load_plugin_textdomain("receipt-upload", false, dirname(plugin_basename(__FILE__)) . "/languages/");
