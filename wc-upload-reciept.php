@@ -9,8 +9,8 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.6.2
-Stable tag: 2.6.2
+Version: 2.6.3
+Stable tag: 2.6.3
 Requires at least: 5.0
 Tested up to: 6.4.2
 Requires PHP: 5.6
@@ -22,8 +22,11 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/02/04 10:35:03
+ * @Last modified time: 2024/02/05 01:52:13
 */
+
+use Automattic\WooCommerce\Utilities\OrderUtil;
+use Automattic\WooCommerce\Internal\DataStores\Orders\CustomOrdersTableController;
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
 
@@ -53,7 +56,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.6.2";
+      $this->version                          = "2.6.3";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->folder_name                      = apply_filters("pepro_upload_receipt_folder_name", "receipt_upload");
@@ -97,8 +100,17 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       add_action("woocommerce_order_details_before_order_table", array($this, "order_details_before_order_table"), -1000);
       add_action("add_meta_boxes", array($this, "receipt_upload_add_meta_box"));
       add_action("admin_menu", array($this, "admin_menu"), 1000);
-      add_filter("manage_edit-shop_order_columns", array($this, "column_header"), 20);
-      add_action("manage_shop_order_posts_custom_column", array($this, "column_content"));
+
+      if (OrderUtil::custom_orders_table_usage_is_enabled()) {
+        // HPOS usage is enabled.
+        add_filter("manage_woocommerce_page_wc-orders_columns", array($this, "column_header"));
+        add_action("manage_woocommerce_page_wc-orders_custom_column", array($this, "column_content"), 20, 2);
+      } else {
+        // Traditional CPT-based orders are in use.
+        add_filter("manage_edit-shop_order_columns", array($this, "column_header"));
+        add_action("manage_shop_order_posts_custom_column", array($this, "column_content"), 20, 2);
+      }
+
       add_filter("woocommerce_get_sections_checkout", array($this, "add_wc_section"));
       add_filter("woocommerce_get_settings_checkout", array($this, "add_wc_settings"), 10, 2);
       add_filter("woocommerce_valid_order_statuses_for_payment", array($this, "valid_order_statuses_for_payment"), 10, 2);
@@ -700,14 +712,17 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
           $new_columns['wcuploadrcp'] = __('Payment Receipt', $this->td);
         }
       }
+      if (!isset($new_columns['wcuploadrcp'])) {
+        $new_columns['wcuploadrcp'] = __('Payment Receipt', $this->td);
+      }
       return $new_columns;
     }
-    public function column_content($column) {
+    public function column_content($column, $order_id) {
       global $post;
       if ('wcuploadrcp' !== $column) {
         return;
       }
-      $order = wc_get_order($post->ID);
+      $order = wc_get_order($order_id);
       if ($this->is_payment_method_allowed($order->get_payment_method())) {
         echo '
         <style>
@@ -780,7 +795,10 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       }
     }
     public function receipt_upload_add_meta_box() {
-      add_meta_box('receipt_upload-receipt-upload', __('Upload Receipt', $this->td), array($this, 'receipt_upload_html'), 'shop_order', 'side', 'high');
+      $screen = class_exists( '\Automattic\WooCommerce\Internal\DataStores\Orders\CustomOrdersTableController' ) && wc_get_container()->get( CustomOrdersTableController::class )->custom_orders_table_usage_is_enabled()
+      ? wc_get_page_screen_id( 'shop-order' )
+      : 'shop_order';
+      add_meta_box('receipt_upload-receipt-upload', __('Upload Receipt', $this->td), array($this, 'receipt_upload_html'), $screen, 'side', 'high');
     }
     public function receipt_upload_html($post) {
       wp_nonce_field('_receipt_upload_nonce', 'receipt_upload_nonce');
