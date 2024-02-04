@@ -9,8 +9,8 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.6.1
-Stable tag: 2.6.1
+Version: 2.6.2
+Stable tag: 2.6.2
 Requires at least: 5.0
 Tested up to: 6.4.2
 Requires PHP: 5.6
@@ -22,7 +22,7 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/01/24 15:32:53
+ * @Last modified time: 2024/02/04 10:35:03
 */
 
 defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooCommerce Receipt Uploader :: Developed by Pepro Dev. Group (<a href='https://pepro.dev/'>https://pepro.dev/</a>)</small>");
@@ -53,7 +53,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.6.1";
+      $this->version                          = "2.6.2";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->folder_name                      = apply_filters("pepro_upload_receipt_folder_name", "receipt_upload");
@@ -269,7 +269,10 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         if ($is_email) {
           echo "<br>";
         }
-        $attachment_id = $this->get_meta('receipt_uplaoded_attachment_id', $order->get_id());
+        $attachment_id = $this->get_meta('receipt_uploaded_attachment_id', $order->get_id());
+        if (!$attachment_id) {
+          $attachment_id = $this->get_meta('receipt_uplaoded_attachment_id', $order->get_id());
+        }
         $status        = $this->get_meta('receipt_upload_status', $order->get_id());
         $url           = $this->defaultImg;
         $date_uploaded = $this->get_meta('receipt_upload_date_uploaded', $order->get_id());
@@ -317,7 +320,10 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         ?>
         <div class="peprodev_woocommerce_receipt_uploader shortcode_wrapper">
           <?php
-          $attachment_id = $this->get_meta('receipt_uplaoded_attachment_id', $order->get_id());
+          $attachment_id = $this->get_meta('receipt_uploaded_attachment_id', $order->get_id());
+          if (!$attachment_id) {
+            $attachment_id = $this->get_meta('receipt_uplaoded_attachment_id', $order->get_id());
+          }
           $status        = $this->get_meta('receipt_upload_status', $order->get_id());
           $status_text   = $this->get_status($status);
           wp_enqueue_style("upload-receipt.css",  "$this->assets_url/frontend/css/wc-receipt.css", array(), time());
@@ -721,13 +727,16 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         }
         </style>
         ';
-        $attachment_id = $this->get_meta('receipt_uplaoded_attachment_id', $order->get_id());
+        $attachment_id = $this->get_meta('receipt_uploaded_attachment_id', $order->get_id());
+        if (!$attachment_id) {
+          $attachment_id = $this->get_meta('receipt_uplaoded_attachment_id', $order->get_id());
+        }
         $status        = $this->get_meta('receipt_upload_status', $order->get_id());
         $status_text     = $this->get_status($status);
         $src           = $this->defaultImg;
         $src_org       = false;
         if ($attachment_id) {
-          $src_org = wp_get_attachment_image_src($this->get_meta('receipt_uplaoded_attachment_id'));
+          $src_org = wp_get_attachment_image_src($attachment_id);
           $src = $src_org ? $src_org[0] : $this->defaultImg;
         }
         if ($src_org) {
@@ -780,15 +789,18 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       wp_enqueue_style("wc-orders.css", "{$this->assets_url}/backend/css/wc-orders.css", array(), current_time("timestamp"));
       wp_enqueue_script("wc-orders.js", "{$this->assets_url}/backend/js/wc-orders.js", array("jquery"), current_time("timestamp"));
       $src = $this->defaultImg;
-      $uploaded_id = $this->get_meta('receipt_uplaoded_attachment_id');
-      if ($uploaded_id) {
-        $src = wp_get_attachment_image_src($uploaded_id, 'full');
+      $attachment_id = $this->get_meta('receipt_uploaded_attachment_id');
+      if (!$attachment_id) {
+        $attachment_id = $this->get_meta('receipt_uplaoded_attachment_id');
+      }
+      if ($attachment_id) {
+        $src = wp_get_attachment_image_src($attachment_id, 'full');
         $src = $src ? $src[0] : $this->defaultImg;
       }
       ?>
       <div style="display: flex;flex-direction: column;width: 100%;">
         <img data-def="<?= $this->defaultImg; ?>" id="change_receipt_attachment_id" title="<?= esc_attr__("Click to change", $this->td); ?>" src="<?= $src ?>" style="width: 100%;min-height: 90px;border-radius: 4px;border: 1px solid #ccc;">
-        <p class="hidden"><input title="<?= esc_attr__("Receipt Attachment ID", $this->td); ?>" type="text" name="receipt_uplaoded_attachment_id" id="receipt_uplaoded_attachment_id" value="<?= esc_attr($uploaded_id); ?>"></p>
+        <p class="hidden"><input title="<?= esc_attr__("Receipt Attachment ID", $this->td); ?>" type="text" name="receipt_uploaded_attachment_id" id="receipt_uploaded_attachment_id" value="<?= esc_attr($attachment_id); ?>"></p>
       </div>
       <p>
         <span><?php _e('Uploaded at:', $this->td); ?> <date><?= $this->get_meta('receipt_upload_date_uploaded'); ?></date></span>
@@ -852,8 +864,8 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       if (!current_user_can('edit_post', $post_id)) {
         return;
       }
-      if (isset($_POST['receipt_uplaoded_attachment_id'])) {
-        update_post_meta($post_id, 'receipt_uplaoded_attachment_id', sanitize_text_field($_POST['receipt_uplaoded_attachment_id']));
+      if (isset($_POST['receipt_uploaded_attachment_id'])) {
+        update_post_meta($post_id, 'receipt_uploaded_attachment_id', sanitize_text_field($_POST['receipt_uploaded_attachment_id']));
       }
       if (isset($_POST['receipt_upload_date_uploaded'])) {
         update_post_meta($post_id, 'receipt_upload_date_uploaded', sanitize_text_field($_POST['receipt_upload_date_uploaded']));

@@ -1,8 +1,8 @@
-/**
- * @Last modified by:   Amirhosseinhpv
- * @Last modified time: 2022/01/11 18:20:56
+/*
+ * @Date Created: 2022/08/15 21:03:32
+ * @Last modified by: amirhp-com <its@amirhp.com>
+ * @Last modified time: 2024/02/04 10:33:40
  */
-
 
 (function($) {
   $(document).ready(function() {
@@ -24,7 +24,7 @@
     });
     $(document).on("click tap", ".removefile", function(e) {
       e.preventDefault();
-      $("#receipt_uplaoded_attachment_id").val("").trigger("change");
+      $("#receipt_uploaded_attachment_id").val("").trigger("change");
       $("#change_receipt_attachment_id").attr("src", $("#change_receipt_attachment_id").data("def"));
     });
     $(document).on("click tap", ".changedate", function(e) {
@@ -46,14 +46,14 @@
       image_frame.on('select', function() {
         if (image_frame.state().get('selection').first()) {
           var selection = image_frame.state().get('selection').first().toJSON();
-          $("#receipt_uplaoded_attachment_id").val(selection.id).trigger("change");
+          $("#receipt_uploaded_attachment_id").val(selection.id).trigger("change");
           $("#change_receipt_attachment_id").attr("src", `${selection.sizes.thumbnail.url}`);
           console.log(selection);
         }
       });
       image_frame.on('open', function() {
         var selection = image_frame.state().get('selection');
-        var id = $("#receipt_uplaoded_attachment_id").val();
+        var id = $("#receipt_uploaded_attachment_id").val();
         var attachment = wp.media.attachment(id);
         attachment.fetch();
         selection.add(attachment ? [attachment] : []);

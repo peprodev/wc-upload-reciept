@@ -2,8 +2,8 @@
 Contributors: peprodev, amirhpcom, blackswanlab
 Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
-Version: 2.6.1
-Stable tag: 2.6.1
+Version: 2.6.2
+Stable tag: 2.6.2
 Requires PHP: 5.6
 Tested up to: 6.4.2
 WC tested up to: 8.5.1
@@ -85,6 +85,9 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 
 == Upgrade Notice ==
+
+= v2.6.2 (2024-02-04/1402-11-15) =
+- Fix not showing uploaded receipt image
 
 = 🔥 v2.6.0 (2024-01-21/1402-11-01) Finally Upload to different directory is here! =
 - Now Upload Receipts to different directory (wp-content/uploads/receipt_upload) -- Thanks to (Yok Morales)
