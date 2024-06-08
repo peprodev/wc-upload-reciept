@@ -2,11 +2,11 @@
 Contributors: peprodev, amirhpcom, blackswanlab
 Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
-Version: 2.6.3
-Stable tag: 2.6.3
+Version: 2.6.4
+Stable tag: 2.6.4
 Requires PHP: 5.6
-Tested up to: 6.4.2
-WC tested up to: 8.5.1
+Tested up to: 6.5.4
+WC tested up to: 8.9.2
 Requires at least: 5.0
 WC requires at least: 4.0
 License: GPLv2 or later
@@ -89,27 +89,14 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
-= v2.6.3 (2024-02-05/1402-11-16) =
-- Fix not showing uploaded receipt image
-- Fix compatibility with High-Performance Order Storage
-- Fix HPOS Orders screen column not showing
-- Fix HPOS Order screen metabox not showing
-
-= 🔥 v2.6.0 (2024-01-21/1402-11-01) Finally Upload to different directory is here! =
-- Now Upload Receipts to different directory (wp-content/uploads/receipt_upload) -- Thanks to (Yok Morales)
-- Auto-add an .htaccess file into upload directory to prevent listing
-- Added compatibility with WooCommerce High-Performance Order Storage
-- Added filter to media list mode to show Only Receipts or Filter Receipts by Order ID
-- Added Receipts file size column in media screen, listing view
-- Fixed trimming New Lines while Saving custom html content (before/after upload form)
-
-= v2.5.0 (2023-09-03/1402-06-12) =
-- Added Option to set which Order Statuses you want to show upload form
-- Fixed Re-sending Notification Email on order update
-- Fixed Showing upload form on Completed/Canceled Orders
+= v2.6.4 (2024-06-08/1403-03-19) =
+- Fix error on not getting Order ID
 
 
 == Changelog ==
+
+= v2.6.4 (2024-06-08/1403-03-19) =
+- Fix error on not getting Order ID
 
 = v2.6.3 (2024-02-05/1402-11-16) =
 - Fix not showing uploaded receipt image

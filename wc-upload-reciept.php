@@ -9,20 +9,20 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.6.3
-Stable tag: 2.6.3
+Version: 2.6.4
+Stable tag: 2.6.4
 Requires at least: 5.0
-Tested up to: 6.4.2
+Tested up to: 6.5.4
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 8.5.1
+WC tested up to: 8.9.2
 Text Domain: receipt-upload
 Domain Path: /languages
 Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/02/05 01:52:13
+ * @Last modified time: 2024/06/08 13:44:02
 */
 
 use Automattic\WooCommerce\Utilities\OrderUtil;
@@ -973,10 +973,9 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         }
       }
     }
-    public function order_details_before_order_table(\WC_Order $order) {
-      if (!$order) {
-        return;
-      }
+    public function order_details_before_order_table($order) {
+      $order = wc_get_order( $order );
+      if (!$order) { return; }
       $order_id = $order->get_id();
       $array    = (array) get_option("peprobacsru_show_on_statuses");
       $array    = array_map(function ($i) {
