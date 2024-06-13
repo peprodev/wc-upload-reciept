@@ -9,7 +9,7 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.6.4
+Version: 2.6.5
 Stable tag: 2.6.4
 Requires at least: 5.0
 Tested up to: 6.5.4
@@ -22,7 +22,7 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/06/08 13:44:02
+ * @Last modified time: 2024/06/13 03:50:43
 */
 
 use Automattic\WooCommerce\Utilities\OrderUtil;
@@ -56,7 +56,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.6.3";
+      $this->version                          = "2.6.5";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->folder_name                      = apply_filters("pepro_upload_receipt_folder_name", "receipt_upload");
@@ -786,8 +786,12 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     }
     public function get_meta($meta = "", $post_id = false) {
       global $post;
-      if (!$post_id) $post_id = $post->ID;
-      $field = get_post_meta($post_id, $meta, true);
+      if (!$post_id) $post_id = $post ? $post->ID : false;
+      if ($post_id && $order = wc_get_order( $post_id )) {
+        $field = $order->get_meta($meta, true);
+      }else{
+        $field = get_post_meta($post_id, $meta, true);
+      }
       if (!empty($field)) {
         return is_array($field) ? stripslashes_deep($field) : stripslashes(wp_kses_decode_entities($field));
       } else {
@@ -807,9 +811,14 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       wp_enqueue_style("wc-orders.css", "{$this->assets_url}/backend/css/wc-orders.css", array(), current_time("timestamp"));
       wp_enqueue_script("wc-orders.js", "{$this->assets_url}/backend/js/wc-orders.js", array("jquery"), current_time("timestamp"));
       $src = $this->defaultImg;
-      $attachment_id = $this->get_meta('receipt_uploaded_attachment_id');
+      if (OrderUtil::is_order($post, wc_get_order_types() )) {
+        $order_id = $post->get_id();
+      }else{
+        $order_id = isset($post->ID) ? $post->ID : $post;
+      }
+      $attachment_id = $this->get_meta('receipt_uploaded_attachment_id', $order_id);
       if (!$attachment_id) {
-        $attachment_id = $this->get_meta('receipt_uplaoded_attachment_id');
+        $attachment_id = $this->get_meta('receipt_uplaoded_attachment_id', $order_id);
       }
       if ($attachment_id) {
         $src = wp_get_attachment_image_src($attachment_id, 'full');
@@ -821,7 +830,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         <p class="hidden"><input title="<?= esc_attr__("Receipt Attachment ID", $this->td); ?>" type="text" name="receipt_uploaded_attachment_id" id="receipt_uploaded_attachment_id" value="<?= esc_attr($attachment_id); ?>"></p>
       </div>
       <p>
-        <span><?php _e('Uploaded at:', $this->td); ?> <date><?= $this->get_meta('receipt_upload_date_uploaded'); ?></date></span>
+        <span><?php _e('Uploaded at:', $this->td); ?> <date><?= $this->get_meta('receipt_upload_date_uploaded', $order_id); ?></date></span>
       </p>
       <p>
         <a href="#" class="button button-secondary widebutton changefile"><span style="margin: 4px;" class="dashicons dashicons-format-image"></span> <?= esc_attr__("Change Receipt Image", $this->td); ?></a>
@@ -829,20 +838,20 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         <a href="#" class="button button-secondary widebutton changedate" id="receipt_upload_date_btn"><span style="margin: 4px;" class="dashicons dashicons-calendar-alt"></span> <?= esc_attr__("Change Upload Date", $this->td); ?></a>
       </p>
       <p>
-        <input type="text" dir="ltr" style="display: none;" autocomplete="off" name="receipt_upload_date_uploaded" id="receipt_upload_date_uploaded" value="<?php echo $this->get_meta('receipt_upload_date_uploaded'); ?>">
+        <input type="text" dir="ltr" style="display: none;" autocomplete="off" name="receipt_upload_date_uploaded" id="receipt_upload_date_uploaded" value="<?php echo $this->get_meta('receipt_upload_date_uploaded',$order_id); ?>">
       </p>
       <p>
         <label for="receipt_upload_status"><?php _e('Receipt Approval Status', $this->td); ?></label>
         <select autocomplete="off" id="receipt_upload_status" name="receipt_upload_status">
-          <option value="upload" <?php selected($this->get_meta('receipt_upload_status'), "upload", 1); ?>><?= __("Awaiting Upload", $this->td) ?></option>
-          <option value="pending" <?php selected($this->get_meta('receipt_upload_status'), "pending", 1); ?>><?= __("Pending", $this->td) ?></option>
-          <option value="approved" <?php selected($this->get_meta('receipt_upload_status'), "approved", 1); ?>><?= __("Approved", $this->td) ?></option>
-          <option value="rejected" <?php selected($this->get_meta('receipt_upload_status'), "rejected", 1); ?>><?= __("Rejected", $this->td) ?></option>
+          <option value="upload" <?php selected($this->get_meta('receipt_upload_status', $order_id), "upload", 1); ?>><?= __("Awaiting Upload", $this->td) ?></option>
+          <option value="pending" <?php selected($this->get_meta('receipt_upload_status', $order_id), "pending", 1); ?>><?= __("Pending", $this->td) ?></option>
+          <option value="approved" <?php selected($this->get_meta('receipt_upload_status', $order_id), "approved", 1); ?>><?= __("Approved", $this->td) ?></option>
+          <option value="rejected" <?php selected($this->get_meta('receipt_upload_status', $order_id), "rejected", 1); ?>><?= __("Rejected", $this->td) ?></option>
         </select>
       </p>
       <p>
         <label for="receipt_upload_admin_note"><?php _e('Admin Note', $this->td); ?></label>
-        <textarea rows="5" autocomplete="off" name="receipt_upload_admin_note" id="receipt_upload_admin_note"><?php echo $this->get_meta('receipt_upload_admin_note'); ?></textarea>
+        <textarea rows="5" autocomplete="off" name="receipt_upload_admin_note" id="receipt_upload_admin_note"><?php echo $this->get_meta('receipt_upload_admin_note',$order_id); ?></textarea>
       </p>
       <?php
       $all_previous = (array) get_attached_media("");
