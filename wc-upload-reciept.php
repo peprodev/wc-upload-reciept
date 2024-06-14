@@ -9,8 +9,8 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.6.5
-Stable tag: 2.6.4
+Version: 2.6.6
+Stable tag: 2.6.6
 Requires at least: 5.0
 Tested up to: 6.5.4
 Requires PHP: 5.6
@@ -22,7 +22,7 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/06/13 03:50:43
+ * @Last modified time: 2024/06/14 10:15:27
 */
 
 use Automattic\WooCommerce\Utilities\OrderUtil;
@@ -811,7 +811,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       wp_enqueue_style("wc-orders.css", "{$this->assets_url}/backend/css/wc-orders.css", array(), current_time("timestamp"));
       wp_enqueue_script("wc-orders.js", "{$this->assets_url}/backend/js/wc-orders.js", array("jquery"), current_time("timestamp"));
       $src = $this->defaultImg;
-      if (OrderUtil::is_order($post, wc_get_order_types() )) {
+      if (OrderUtil::is_order($post, wc_get_order_types() ) && is_a($post, "WC_Order")) {
         $order_id = $post->get_id();
       }else{
         $order_id = isset($post->ID) ? $post->ID : $post;

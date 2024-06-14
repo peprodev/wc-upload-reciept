@@ -2,8 +2,8 @@
 Contributors: peprodev, amirhpcom, blackswanlab
 Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
-Version: 2.6.5
-Stable tag: 2.6.4
+Version: 2.6.6
+Stable tag: 2.6.6
 Requires PHP: 5.6
 Tested up to: 6.5.4
 WC tested up to: 8.9.2
@@ -88,6 +88,9 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 
 == Upgrade Notice ==
+
+= v2.6.6 (2024-06-14/1403-03-25) =
+- Fixed `Uncaught Error: Call to undefined method WP Post:get_id()`
 
 = v2.6.5 (2024-06-13/1403-03-24) =
 - Fix HPOS error of incompatibility
