@@ -100,6 +100,9 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Changelog ==
 
+= v2.6.6 (2024-06-14/1403-03-25) =
+- Fixed `Uncaught Error: Call to undefined method WP Post:get_id()`
+
 = v2.6.5 (2024-06-13/1403-03-24) =
 - Fix HPOS error of incompatibility
 
