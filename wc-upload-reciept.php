@@ -9,20 +9,20 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.6.6
-Stable tag: 2.6.6
+Version: 2.6.7
+Stable tag: 2.6.7
 Requires at least: 5.0
 Tested up to: 6.5.4
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 8.9.2
+WC tested up to: 9.1.0
 Text Domain: receipt-upload
 Domain Path: /languages
 Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/06/14 10:15:27
+ * @Last modified time: 2024/07/22 16:01:09
 */
 
 use Automattic\WooCommerce\Utilities\OrderUtil;
@@ -56,7 +56,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.6.5";
+      $this->version                          = "2.6.7";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->folder_name                      = apply_filters("pepro_upload_receipt_folder_name", "receipt_upload");
@@ -101,7 +101,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       add_action("add_meta_boxes", array($this, "receipt_upload_add_meta_box"));
       add_action("admin_menu", array($this, "admin_menu"), 1000);
 
-      if (OrderUtil::custom_orders_table_usage_is_enabled()) {
+      if ( class_exists("\Automattic\WooCommerce\Utilities\OrderUtil") && OrderUtil::custom_orders_table_usage_is_enabled()) {
         // HPOS usage is enabled.
         add_filter("manage_woocommerce_page_wc-orders_columns", array($this, "column_header"));
         add_action("manage_woocommerce_page_wc-orders_custom_column", array($this, "column_content"), 20, 2);
