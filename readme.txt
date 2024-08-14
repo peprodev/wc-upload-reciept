@@ -2,11 +2,11 @@
 Contributors: peprodev, amirhpcom, blackswanlab
 Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
-Version: 2.6.7
-Stable tag: 2.6.7
+Version: 2.6.9
+Stable tag: 2.6.9
 Requires PHP: 5.6
-Tested up to: 6.5.4
-WC tested up to: 9.1.0
+Tested up to: 6.6.2
+WC tested up to: 9.2.0
 Requires at least: 5.0
 WC requires at least: 4.0
 License: GPLv2 or later
@@ -89,11 +89,13 @@ You can help us improve our works by committing/requesting your changes to Pepro
 
 == Upgrade Notice ==
 
-= v2.6.7 (2024-07-22/1403-05-01) =
-- Minor fix for new WooCommerce
-
+= v2.6.9 (2024-08-14/1403-05-24) =
+- HPOS Full Compatibility
 
 == Changelog ==
+
+= v2.6.9 (2024-08-14/1403-05-24) =
+- HPOS Full Compatibility
 
 = v2.6.7 (2024-07-22/1403-05-01) =
 - Minor fix for new WooCommerce
