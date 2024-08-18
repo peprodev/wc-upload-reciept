@@ -12,7 +12,7 @@ Plugin URI: https://pepro.dev/receipt-upload
 Version: 2.6.9
 Stable tag: 2.6.8
 Requires at least: 5.0
-Tested up to: 6.5.4
+Tested up to: 6.6.2
 Requires PHP: 5.6
 WC requires at least: 4.0
 WC tested up to: 9.1.0
@@ -22,7 +22,7 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/08/14 14:52:32
+ * @Last modified time: 2024/08/14 15:14:02
 */
 
 use Automattic\WooCommerce\Utilities\OrderUtil;
