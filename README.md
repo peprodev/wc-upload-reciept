@@ -42,4 +42,10 @@
 
 ### **Developed by** [Pepro Development Group](https://pepro.dev/) for WooCommerce
 
-*Current Version: 2.6.0* \| *Lead Developer:* [amirhp.com](https://amirhp.com)
+*Current Version: 2.6.9* \| *Lead Developer:* [amirhp.com](https://amirhp.com)
+
+---
+
+#### How can I report security bugs?
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/pepro-bacs-receipt-upload-for-woocommerce)

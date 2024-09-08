@@ -5,8 +5,8 @@ Tags: WooCommerce, Upload Receipt, eCommerce solution
 Version: 2.6.9
 Stable tag: 2.6.9
 Requires PHP: 5.6
-Tested up to: 6.6.2
-WC tested up to: 9.2.0
+Tested up to: 6.6.1
+WC tested up to: 9.2.3
 Requires at least: 5.0
 WC requires at least: 4.0
 License: GPLv2 or later
@@ -72,8 +72,11 @@ Upload Receipt for Any Payment method in WooCommerce
 
 = How can I contribute to this plugin? =
 
-You can help us improve our works by committing/requesting your changes to Pepro Dev's GitHub (https://github.com/peprodev/)
+You can help us improve our works by committing/requesting your changes to [our GitHub repository](https://github.com/peprodev/wc-upload-reciept)
 
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/pepro-bacs-receipt-upload-for-woocommerce)
 
 == Screenshots ==
 
