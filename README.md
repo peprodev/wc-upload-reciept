@@ -42,7 +42,7 @@
 
 ### **Developed by** [Pepro Development Group](https://pepro.dev/) for WooCommerce
 
-*Current Version: 2.6.9* \| *Lead Developer:* [amirhp.com](https://amirhp.com)
+*Current Version: 2.7.0* \| *Lead Developer:* [amirhp.com](https://amirhp.com)
 
 ---
 

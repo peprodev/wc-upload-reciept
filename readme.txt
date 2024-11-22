@@ -92,10 +92,16 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Upgrade Notice ==
 
+= v2.7.0 (2024-11-22/1403-09-02) =
+- Fixed security Issue Addressed by Mika from Patchstack & vgo0 from Wordfence
+
 = v2.6.9 (2024-08-14/1403-05-24) =
 - HPOS Full Compatibility
 
 == Changelog ==
+
+= v2.7.0 (2024-11-22/1403-09-02) =
+- Fixed security Issue Addressed by Mika from Patchstack & vgo0 from Wordfence
 
 = v2.6.9 (2024-08-14/1403-05-24) =
 - HPOS Full Compatibility

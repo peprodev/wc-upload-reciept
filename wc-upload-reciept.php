@@ -9,20 +9,20 @@ Developer: amirhp.com
 Developer URI: https://amirhp.com
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/receipt-upload
-Version: 2.6.9
-Stable tag: 2.6.9
+Version: 2.7.0
+Stable tag: 2.7.0
 Requires at least: 5.0
-Tested up to: 6.6.1
+Tested up to: 6.7.0
 Requires PHP: 5.6
 WC requires at least: 4.0
-WC tested up to: 9.2.3
+WC tested up to: 9.4.1
 Text Domain: receipt-upload
 Domain Path: /languages
 Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2024/09/08 10:23:49
+ * @Last modified time: 2024/11/22 10:09:05
 */
 
 use Automattic\WooCommerce\Utilities\OrderUtil;
@@ -32,12 +32,12 @@ defined("ABSPATH") or die("<h2>Unauthorized Access!</h2><hr><small>PeproDev WooC
 
 if (!class_exists("peproDev_UploadReceiptWC")) {
   class peproDev_UploadReceiptWC {
-    public $td;
+    public $td = "receipt-upload";
+    public $version = "2.7.0";
+    public $db_slug = "wcuploadrcp";
     public $url;
-    public $version;
     public $title;
     public $title_w;
-    public $db_slug;
     private $plugin_dir;
     private $folder_name;
     private $assets_url;
@@ -51,12 +51,10 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     private $use_secure_link;
     private $defaultImg;
     public function __construct() {
-      $this->td                               = "receipt-upload";
-      $this->db_slug                          = "wcuploadrcp";
+      load_plugin_textdomain("receipt-upload", false, dirname(plugin_basename(__FILE__)) . "/languages/");
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->version                          = "2.6.9";
       $this->title                            = __("WooCommerce Upload Receipt", $this->td);
       $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       $this->folder_name                      = apply_filters("pepro_upload_receipt_folder_name", "receipt_upload");
@@ -89,7 +87,6 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       });
     }
     public function init_plugin() {
-      load_plugin_textdomain("receipt-upload", false, dirname(plugin_basename(__FILE__)) . "/languages/");
       $this->add_wc_prebuy_status();
       add_action("admin_init", array($this, "admin_init"));
       add_action("pre_get_posts", array($this, "media_custom_filter"));
@@ -152,7 +149,8 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
         $filesize = filesize(get_attached_file($attachment_id));
         $meta = get_post_meta($attachment_id, "_attached_order", true);
         if (!empty($meta)) {
-          echo "<a href='" . add_query_arg(["receipt_attached" => $meta]) . "' title='" . esc_attr__("Filter Receipts uploaded to this Order", $this->td) . "'>#{$meta}</a> | " . size_format($filesize, 2);
+          $url = esc_url(add_query_arg(["receipt_attached" => sanitize_text_field($meta)]));
+          echo "<a href='" . esc_attr($url) . "' title='" . esc_attr__("Filter Receipts uploaded to this Order", $this->td) . "'>#{$meta}</a> | " . size_format($filesize, 2);
         } else {
           echo size_format($filesize, 2);
         }
@@ -166,7 +164,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       wp_enqueue_script("upload_receipt-js");
       wp_add_inline_script('upload_receipt-js', "(function ($) {
         $(document).ready(function () {
-          $('.filter-items .actions').append('<a class=\"button button-secondary\" href=\"$url\">$title</a>');
+          $('.filter-items .actions').append('<a class=\"button button-secondary\" href=\"".esc_attr(esc_url($url))."\">$title</a>');
         });
       })(jQuery);
       ");
