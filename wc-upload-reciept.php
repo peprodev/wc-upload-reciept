@@ -1074,7 +1074,6 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             remove_filter("upload_dir", array($this, "change_receipt_upload_dir"));
             $datetime = current_time("Y-m-d H:i:s");
             if (!is_wp_error($attachment_id) && is_numeric($attachment_id)) {
-              do_action("woocommerce_receipt_uploaded_notification", $postOrder);
               $order->update_meta_data("receipt_uploaded_attachment_id", $attachment_id);
               $order->update_meta_data("receipt_upload_date_uploaded", $datetime);
               $order->update_meta_data("receipt_upload_status", "pending");
@@ -1087,6 +1086,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
               $url = wp_get_attachment_image_url($attachment_id, [50, 50]);
               $order->add_order_note("<strong>{$this->title}</strong><br>" . sprintf(__("Customer uploaded payment receipt image. %s", $this->td), "<br><a target='_blank' href='" . wp_get_attachment_url($attachment_id) . "'><img src=\"$url\" style='height: 50px; min-width: 50px; border-radius: 4px; border: 1px solid #eee;' /></a>"));
               $order->save();
+              do_action("woocommerce_receipt_uploaded_notification", $postOrder);
               do_action("peprodev_uploadreceipt_customer_uploaded_receipt", $postOrder, $attachment_id);
               wp_send_json_success(
                 array(
