@@ -49,7 +49,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     private $html_before;
     private $html_after;
     private $use_secure_link;
-    private $defaultImg;
+    private $defaultImg;   
     public function __construct() {
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
@@ -68,6 +68,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
       $this->defaultImg                       = "{$this->assets_url}backend/images/NoImageLarge.png";
       define("PEPRODEV_RECEIPT_UPLOAD_EMAIL_PATH", plugin_dir_path(__FILE__));
       add_action("init", array($this, "init_plugin"));
+      add_action("init", array($this, "load_textdomain"));
       add_filter("woocommerce_email_classes", array($this, "register_email"), 1, 1);
       add_action("woocommerce_receipt_uploaded_notification", array($this, "trigger_receipt_uploaded_notification"));
       add_action("woocommerce_receipt_approved_notification", array($this, "trigger_receipt_approved_notification"));
@@ -752,7 +753,10 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
           $src = $src_org ? $src_org[0] : $this->defaultImg;
         }
         if ($src_org) {
-          echo "<img src='$src' class='receipt-preview $status' alt='$status_text' title='$status_text' />";
+          $full_url = wp_get_attachment_url($attachment_id);
+          echo "<a href='" . esc_url($full_url) . "' target='_blank'>
+                  <img src='" . esc_url($src) . "' class='receipt-preview $status' alt='" . esc_attr($status_text) . "' title='" . esc_attr($status_text) . "' />
+                </a>";
         } else {
           echo "<span style='box-shadow: 0 0 0 3px #009fff;text-align: center;padding: 0.5rem;'>" . __("Awaiting Upload", $this->td) . "</span>";
         }
@@ -1070,7 +1074,6 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
             remove_filter("upload_dir", array($this, "change_receipt_upload_dir"));
             $datetime = current_time("Y-m-d H:i:s");
             if (!is_wp_error($attachment_id) && is_numeric($attachment_id)) {
-              do_action("woocommerce_receipt_uploaded_notification", $postOrder);
               $order->update_meta_data("receipt_uploaded_attachment_id", $attachment_id);
               $order->update_meta_data("receipt_upload_date_uploaded", $datetime);
               $order->update_meta_data("receipt_upload_status", "pending");
@@ -1083,6 +1086,7 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
               $url = wp_get_attachment_image_url($attachment_id, [50, 50]);
               $order->add_order_note("<strong>{$this->title}</strong><br>" . sprintf(__("Customer uploaded payment receipt image. %s", $this->td), "<br><a target='_blank' href='" . wp_get_attachment_url($attachment_id) . "'><img src=\"$url\" style='height: 50px; min-width: 50px; border-radius: 4px; border: 1px solid #eee;' /></a>"));
               $order->save();
+              do_action("woocommerce_receipt_uploaded_notification", $postOrder);
               do_action("peprodev_uploadreceipt_customer_uploaded_receipt", $postOrder, $attachment_id);
               wp_send_json_success(
                 array(
@@ -1160,6 +1164,9 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     public function read_opt($mc, $def = "") {
       return get_option($mc) <> "" ? get_option($mc) : $def;
     }
+    public function load_textdomain() {
+      load_plugin_textdomain($this->td, false, dirname(plugin_basename(__FILE__)) . "/languages/");
+    } 
   }
   /**
    * load plugin and load textdomain then set a global variable to access plugin class!
@@ -1168,10 +1175,6 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
    * @since   1.0.0
    * @license https://pepro.dev/license Pepro.dev License
    */
-  add_action('init', 'load_receipt_upload_textdomain');
-    function load_receipt_upload_textdomain() {
-        load_plugin_textdomain("receipt-upload", false, dirname(plugin_basename(__FILE__)) . "/languages/");
-    }
 
   add_action("plugins_loaded", function () {
     global $Pepro_Upload_Receipt;
