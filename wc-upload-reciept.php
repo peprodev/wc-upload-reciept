@@ -51,12 +51,11 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
     private $use_secure_link;
     private $defaultImg;
     public function __construct() {
-      load_plugin_textdomain("receipt-upload", false, dirname(plugin_basename(__FILE__)) . "/languages/");
       $this->plugin_dir                       = plugin_dir_path(__FILE__);
       $this->assets_url                       = plugins_url("/assets/", __FILE__);
       $this->url                              = admin_url("admin.php?page=wc-settings&tab=checkout&section=upload_receipt");
-      $this->title                            = __("WooCommerce Upload Receipt", $this->td);
-      $this->title_w                          = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
+      $this->title                            = 'WooCommerce Upload Receipt';
+      $this->title_w                          = sprintf('%2$s ver. %1$s', $this->version, $this->title);
       $this->folder_name                      = apply_filters("pepro_upload_receipt_folder_name", "receipt_upload");
       $this->status_order_placed              = get_option("peprobacsru_auto_change_status", "none");
       $this->status_receipt_awaiting_upload   = get_option("peprobacsru_status_on_receipt_awaiting_upload", "none");
@@ -1172,6 +1171,11 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
    * @since   1.0.0
    * @license https://pepro.dev/license Pepro.dev License
    */
+  add_action('init', 'load_receipt_upload_textdomain');
+    function load_receipt_upload_textdomain() {
+        load_plugin_textdomain("receipt-upload", false, dirname(plugin_basename(__FILE__)) . "/languages/");
+    }
+
   add_action("plugins_loaded", function () {
     global $Pepro_Upload_Receipt;
     $Pepro_Upload_Receipt = new peproDev_UploadReceiptWC;
