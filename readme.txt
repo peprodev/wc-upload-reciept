@@ -2,11 +2,11 @@
 Contributors: peprodev, amirhpcom, blackswanlab
 Donate link: https://pepro.dev/donate
 Tags: WooCommerce, Upload Receipt, eCommerce solution
-Version: 2.7.0
-Stable tag: 2.7.0
+Version: 2.8.0
+Stable tag: 2.8.0
 Requires PHP: 5.6
-Tested up to: 6.7.0
-WC tested up to: 9.4.1
+Tested up to: 6.7
+WC tested up to: 9.7
 Requires at least: 5.0
 WC requires at least: 4.0
 License: GPLv2 or later
@@ -15,12 +15,10 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Upload Receipt for Any Payment method in WooCommerce
 
 == Description ==
-
 ### **Upload Receipt for Any Payment method in WooCommerce. Customers will Upload the receipt and Shop Managers will approve/reject it manually.**
 
 
 == 🔥 v2.6 [2024 🎉 release] Finally Upload to different directory is here! ==
-
 - 😍 Upload Receipts to different directory (wp-content/uploads/receipt_upload) -- Thanks to (Yok Morales)
 - ✅ Added compatibility with WooCommerce High-Performance Order Storage
 - ✅ Auto-add an .htaccess file into upload directory to prevent listing
@@ -29,7 +27,6 @@ Upload Receipt for Any Payment method in WooCommerce
 - ✅ Fixed trimming New Lines while Saving custom html content (before/after upload form)
 
 == 🔥 v2.0, a Mega-update released 🤩 ==
-
 - 😍 Integration with WooCommerce Email Notifications
 - 😍 Send Email on Receipt Upload, Approve and Reject to Admin and Customer
 - 😍 Change Order Status on Order Placed, Receipt Uploaded, Approved or Rejected
@@ -51,31 +48,29 @@ Upload Receipt for Any Payment method in WooCommerce
 - 😍 Fully Compatible with Pepro Delivery Stages for WooCommerce
 - 😍 Fully Compatible with LocoTranslate to have your own translation
 
----
-
-#### Made with Love in [Pepro Dev. Group](https://pepro.dev/)
 
 == Installation ==
-
 1. Upload the plugin files to the `/wp-content/plugins` directory, or install the plugin through the WordPress plugins screen directly.
-
 2. Activate the plugin through the 'Plugins' screen in WordPress
-
 3. Set up WooCommerce BACS Payments
-
 4. Users will upload receipt after transferring money in BACS payment
-
 5. From WooCommerce Orders screen, view/change/delete/approve/reject/comment on transaction receipt
+
+
+== Disclaimer and Warranty ==
+This plugin is provided "as is" without any warranties, express or implied. While every effort has been made to ensure reliability and security, the developers are not responsible for any issues arising from its use. Always test in a staging environment before deploying to production.
+
+== Credits ==
+Developed at: [BlackSwanDev](https://blackswandev.com/) & [Pepro.Dev](https://pepro.dev/)
+Lead Developer: [AmirhpCom](https://amirhp.com/)
 
 
 == Frequently Asked Questions ==
 
 = How can I contribute to this plugin? =
-
 You can help us improve our works by committing/requesting your changes to [our GitHub repository](https://github.com/peprodev/wc-upload-reciept)
 
 = How can I report security bugs? =
-
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/pepro-bacs-receipt-upload-for-woocommerce)
 
 == Screenshots ==
@@ -92,6 +87,12 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Upgrade Notice ==
 
+= v2.8.0 2025-03-31 | 1404-01-11 =
+- Fixed: ensure receipt attachment meta is saved before email notification
+- Added: Enhance UX by linking receipt preview image to full-size version
+- Fixed: load_plugin_textdomain called too early in WordPress 6.7+
+- This version was released with thanks to Alan Rodriguez (github@tatenalan)
+
 = v2.7.0 (2024-11-22/1403-09-02) =
 - Fixed security Issue Addressed by Mika from Patchstack & vgo0 from Wordfence
 
@@ -99,6 +100,12 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 - HPOS Full Compatibility
 
 == Changelog ==
+
+= v2.8.0 2025-03-31 | 1404-01-11 =
+- Fixed: ensure receipt attachment meta is saved before email notification
+- Added: Enhance UX by linking receipt preview image to full-size version
+- Fixed: load_plugin_textdomain called too early in WordPress 6.7+
+- This version was released with thanks to Alan Rodriguez (github@tatenalan)
 
 = v2.7.0 (2024-11-22/1403-09-02) =
 - Fixed security Issue Addressed by Mika from Patchstack & vgo0 from Wordfence
