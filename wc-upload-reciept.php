@@ -753,7 +753,10 @@ if (!class_exists("peproDev_UploadReceiptWC")) {
           $src = $src_org ? $src_org[0] : $this->defaultImg;
         }
         if ($src_org) {
-          echo "<img src='$src' class='receipt-preview $status' alt='$status_text' title='$status_text' />";
+          $full_url = wp_get_attachment_url($attachment_id);
+          echo "<a href='" . esc_url($full_url) . "' target='_blank'>
+                  <img src='" . esc_url($src) . "' class='receipt-preview $status' alt='" . esc_attr($status_text) . "' title='" . esc_attr($status_text) . "' />
+                </a>";
         } else {
           echo "<span style='box-shadow: 0 0 0 3px #009fff;text-align: center;padding: 0.5rem;'>" . __("Awaiting Upload", $this->td) . "</span>";
         }
